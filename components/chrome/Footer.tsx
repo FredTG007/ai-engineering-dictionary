@@ -1,7 +1,6 @@
 import { NewsletterForm } from "./NewsletterForm";
 
-// TODO: replace with Fred's X handle, e.g. https://x.com/<handle>
-const X_PROFILE_URL = "https://x.com/";
+const X_PROFILE_URL = "https://x.com/fredoseiadu";
 
 export function Footer() {
   return (
