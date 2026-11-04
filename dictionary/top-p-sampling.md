@@ -1,6 +1,9 @@
 ---
 title: Top-p Sampling
 description: A sampling method that limits each next-token choice to the smallest set of tokens whose probabilities add up to p.
+difficulty: intermediate
+interview: "Generated product copy has random foreign tokens in some places and odd repetition in others, and both temperature and top-p were changed. How do you debug it?"
+interviewAnswer: "Covers how top-p keeps the smallest set of tokens reaching probability p while temperature reshapes the distribution, why tuning both at once is hard to reason about, resetting to defaults and adjusting one knob, and that sampling does not fix factual errors."
 ---
 
 Top-p sampling, also called nucleus sampling, restricts which tokens the model is allowed to pick at each step. The model ranks every candidate [token](./tokens.md) by probability, then keeps only the top ones until their combined probability reaches the threshold p. Sampling happens within that shortlist. With p set to 0.9, the long tail of unlikely tokens making up the last 10 percent is discarded.

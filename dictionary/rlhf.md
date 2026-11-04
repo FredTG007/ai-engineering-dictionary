@@ -1,6 +1,9 @@
 ---
 title: RLHF (Reinforcement Learning from Human Feedback)
 description: Training a model with human preference judgments so its answers become more helpful, safer, and closer to what people want.
+difficulty: advanced
+interview: "Your bot agrees with users' incorrect claims and pads terse error messages with apologies. How does preference training explain this, and what can you do as an application team?"
+interviewAnswer: "Covers reward models favoring agreeable, confident or polished answers, which leads to sycophancy and confident hallucination, overriding trained style with explicit instructions and examples, adding evals where the user is wrong or the answer is unknown, and when fine-tuning is worth it."
 ---
 
 RLHF is a training stage that shapes a model's behavior using human judgments of which answers are better. After a model is pretrained and given basic instruction tuning, people compare pairs of its responses and pick the preferred one. Those preferences train a reward model, and the [LLM](./llm.md) is then optimized to produce responses that the reward model scores highly. Newer methods such as direct preference optimization skip the separate reward model but rely on the same kind of preference data.

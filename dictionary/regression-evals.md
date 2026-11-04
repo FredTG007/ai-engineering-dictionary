@@ -1,6 +1,9 @@
 ---
 title: Regression Evals
 description: Evals run automatically on every change to catch cases where something that used to work stops working.
+difficulty: intermediate
+interview: "A prompt change to make answers concise also dropped a required medical disclaimer, and nobody noticed for two weeks. How would you design a suite to block that at merge time?"
+interviewAnswer: "Covers a CI suite built from past bugs, compliance cases and key intents with clear pass conditions, handling non-determinism with low temperature, repeats and pass rates, comparing per-category scores to a baseline, and tying results to prompt and model versions."
 ---
 
 Regression evals are evals that run automatically whenever the system changes, with the specific job of catching anything that used to work and no longer does. They are the LLM equivalent of a regression test suite in CI: less about measuring overall quality and more about guarding what you have already fixed.

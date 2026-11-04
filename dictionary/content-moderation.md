@@ -1,6 +1,9 @@
 ---
 title: Content Moderation
 description: Classifying user inputs and model outputs for harmful or off-policy content such as hate, self-harm, violence or sexual material.
+difficulty: intermediate
+interview: "Your moderation filter blocks too many harmless medical questions but still misses some abusive ones. How do you tune it?"
+interviewAnswer: "Covers checking both inputs and outputs, per-category thresholds instead of one global cutoff, and measuring precision and recall on a labeled set of real traffic. Mentions domain-specific policy, human review for borderline cases, and the latency cost of each check."
 ---
 
 Content moderation in an LLM application means checking text, and sometimes images or audio from [multimodal](./multimodal.md) inputs, against a set of harm categories and deciding what to do when something matches. It runs in both directions: on user input, to catch abuse or requests you will not serve, and on model output, to catch anything harmful the model produced despite its training. It is one specific kind of [guardrail](./guardrails.md), focused on harm categories rather than business rules.

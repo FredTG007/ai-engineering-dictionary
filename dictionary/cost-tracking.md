@@ -1,6 +1,9 @@
 ---
 title: Cost Tracking
 description: Measuring and attributing LLM spend per request, feature, user and model so you can see where money goes and control it.
+difficulty: beginner
+interview: "Your monthly LLM bill went from about 4k to 31k dollars with flat user growth. How do you find the cause and stop it happening again?"
+interviewAnswer: "Covers logging per call the model, input, output and cached tokens and computed cost, tagged by feature, tenant and trace ID, drilling from costly features to requests, and levers like trimming context, model routing, caching, output caps, per-user budgets and watching reasoning tokens."
 ---
 
 Cost tracking is the practice of recording what each LLM call costs and attributing that spend to the features, customers and workflows that caused it. Model providers bill by [tokens](./tokens.md), with different prices for input and output and for each model, so the cost of a request depends on prompt length, response length, model choice and how many calls a workflow makes. A monthly invoice tells you the total; cost tracking tells you why.

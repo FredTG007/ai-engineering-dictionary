@@ -1,6 +1,9 @@
 ---
 title: Open-Weight Models
 description: Models whose trained weights are published for download, so you can run, inspect, and fine-tune them on your own infrastructure.
+difficulty: beginner
+interview: "A healthcare client cannot send patient data to an external API. When would you recommend an open-weight model, and what trade-offs would you explain?"
+interviewAnswer: "Covers keeping data inside their own network, owning GPU serving, patching and on-call, checking quality with your own evals rather than leaderboards, reading license terms for commercial use and derivatives, cost only winning at high volume, and stability from pinned weights."
 ---
 
 An open-weight model is one whose trained parameters are released for anyone to download and run. Unlike models available only through a provider's API, you can host an open-weight model on your own hardware, modify it through [fine-tuning](./fine-tuning.md), and keep all data inside your network. "Open weight" is narrower than fully open source: the training data and code are often not released, and licenses vary from permissive to restrictive.

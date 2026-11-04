@@ -1,6 +1,9 @@
 ---
 title: Speech-to-Text (STT)
 description: Converting spoken audio into written text, the first stage of most voice AI pipelines.
+difficulty: beginner
+interview: "Your voice ordering bot keeps mishearing product names and customers repeat themselves. Where do you start?"
+interviewAnswer: "Covers measuring word error rate on real call audio, custom vocabulary or prompting the STT model with product names, and audio quality issues like noise and phone codecs. Mentions streaming versus batch latency, accents, and confirming critical fields back to the user."
 ---
 
 Speech-to-text, also called automatic speech recognition or ASR, turns audio into a transcript that downstream systems can read. In a [voice agent](./voice-agents.md), it is the first stage: whatever the STT model writes down is all the [LLM](./llm.md) knows about what the caller said. If recognition is wrong, the most capable model in the world will confidently answer the wrong question.

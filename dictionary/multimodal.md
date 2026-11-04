@@ -1,6 +1,9 @@
 ---
 title: Multimodal
 description: Models and systems that accept or produce more than text, such as images, audio, PDFs, or video, within a single interaction.
+difficulty: beginner
+interview: "Users want to upload photos of receipts and ask questions about them. What changes when your text-only pipeline becomes multimodal?"
+interviewAnswer: "Covers images costing many tokens and adding latency, file size and format limits, and choosing between a vision model and OCR first. Mentions errors on blurry or rotated images, validating extracted numbers, privacy of uploads, and evals built from real images."
 ---
 
 A multimodal model can take in, and sometimes produce, more than one kind of data, such as text, images, audio, or video. In practice most production use today is text plus images or documents as input: screenshots, scanned forms, charts, photos of receipts, and PDFs whose layout matters. Some models also handle audio directly, which overlaps with [voice agents](./voice-agents.md) that otherwise chain [speech-to-text](./speech-to-text.md) and text models together.

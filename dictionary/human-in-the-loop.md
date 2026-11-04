@@ -1,6 +1,9 @@
 ---
 title: Human-in-the-Loop
 description: A design where a person reviews, approves or corrects an AI system's output or action before it takes effect.
+difficulty: intermediate
+interview: "Your procurement agent can now place orders directly, and leadership wants a human check. Where would you put it so it actually catches mistakes?"
+interviewAnswer: "Covers gating irreversible or high-value actions with approval, routing only low-confidence or flagged cases to reviewers, showing reviewers the evidence, watching for rubber-stamp approval rates, and logging reviewer edits as labeled data for evals."
 ---
 
 Human-in-the-loop means a person sits at a defined checkpoint in an AI workflow and must approve, edit or reject what the system proposes. The checkpoint might be before an [agent](./agent.md) sends an email, before a refund over a threshold is issued, or when the model's confidence is low. The point is to keep consequential or irreversible decisions under human control while still letting automation handle the routine bulk.

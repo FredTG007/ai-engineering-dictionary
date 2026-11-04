@@ -1,6 +1,9 @@
 ---
 title: Reasoning Models
 description: Models trained to think through a problem in hidden or visible steps before answering, trading time and tokens for accuracy.
+difficulty: intermediate
+interview: "Switching your claims-analysis step to a reasoning model halved errors, but timeouts and cost per claim jumped. How would you deploy it sensibly?"
+interviewAnswer: "Covers thinking tokens billed as output and inflating cost and time to first token, revisiting timeouts, routing only the steps that measurably benefit or tuning effort settings, keeping simple tasks on fast models, and prompting with goals and constraints instead of step-by-step scripts."
 ---
 
 A reasoning model is an [LLM](./llm.md) trained to work through a problem step by step before giving its final answer. Where [chain-of-thought](./chain-of-thought.md) prompting asks an ordinary model to show its working, reasoning models do this by default, generating an extended internal sequence of thinking tokens that may be hidden, summarized, or returned depending on the provider. Many expose a setting that controls how much thinking effort to spend.

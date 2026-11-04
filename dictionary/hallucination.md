@@ -1,6 +1,9 @@
 ---
 title: Hallucination
 description: When a model states something false or unsupported with full confidence, such as an invented fact, citation or policy.
+difficulty: beginner
+interview: "Your support bot told a customer about a refund policy your company does not have. How would you reduce the chance of that happening again?"
+interviewAnswer: "Covers grounding answers in retrieved policy documents, instructing the model to say it does not know when sources are silent, requiring citations, checking answers against sources with evals or a judge, and routing policy commitments through guardrails or human review."
 ---
 
 A hallucination is output that sounds plausible but is not true or not supported by the information the model was given. It might be a made-up statistic, a citation to a paper that does not exist, an API method that was never shipped, or a company policy nobody wrote. The defining feature is confidence: the model presents the invented detail in the same tone as everything else.

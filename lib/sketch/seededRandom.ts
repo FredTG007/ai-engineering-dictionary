@@ -1,4 +1,4 @@
-/** Deterministic PRNG (mulberry32) so the layout is identical on every build. */
+/** Deterministic PRNG (mulberry32) so hand-drawn strokes look the same on every render. */
 export function createSeededRandom(seed: number): () => number {
   let state = seed >>> 0;
   return () => {

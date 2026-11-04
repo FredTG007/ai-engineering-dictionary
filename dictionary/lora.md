@@ -1,6 +1,9 @@
 ---
 title: LoRA (Low-Rank Adaptation)
 description: A cheap fine-tuning method that trains small add-on matrices instead of all model weights, producing compact swappable adapters.
+difficulty: advanced
+interview: "You need distinct tone and terminology for twenty enterprise customers on one self-hosted model. How would LoRA adapters fit, and what are the operational trade-offs?"
+interviewAnswer: "Covers training small low-rank matrices on a frozen base, so each customer gets a compact adapter instead of a full model copy. Discusses serving many adapters on one base, rank and data quality, retraining when the base changes, and evaluating each adapter against the base."
 ---
 
 LoRA is a way to fine-tune a large model by training only a small number of extra parameters. Instead of updating every weight in the network, it freezes the original model and learns pairs of thin matrices that are added alongside selected layers. The result is an adapter that is often a few megabytes to a few hundred megabytes, compared with many gigabytes for a full copy of the model.

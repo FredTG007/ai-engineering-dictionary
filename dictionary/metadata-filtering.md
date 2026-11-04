@@ -1,6 +1,9 @@
 ---
 title: Metadata Filtering
 description: Restricting a vector search to documents whose attributes, like tenant, date or product, match hard conditions before ranking.
+difficulty: intermediate
+interview: "A multi-tenant RAG app occasionally shows one customer a snippet from another customer's documents. How would you fix retrieval to stop this?"
+interviewAnswer: "Covers attaching tenant and permission metadata at indexing time, applying filters inside the vector query rather than after it, pre-filter versus post-filter trade-offs on recall and latency, enforcing access server-side, and tests that assert no cross-tenant results."
 ---
 
 Metadata filtering means narrowing a search to documents whose structured attributes match explicit conditions, such as `tenant_id = 42` or `published_after = 2025-01-01`, before or during the vector lookup. Every chunk you store carries a small set of fields next to its embedding, and the filter turns those fields into rules that similarity alone cannot express.

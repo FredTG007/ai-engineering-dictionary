@@ -1,6 +1,9 @@
 ---
 title: Streaming
 description: Sending a model's output to the client token by token as it is generated, rather than waiting for the full response.
+difficulty: beginner
+interview: "Streaming works on your laptop, but in production the whole reply shows up at once after eight seconds. Where do you look?"
+interviewAnswer: "Covers proxies, gateways or load balancers buffering server-sent events, checking those settings, and the wider changes streaming brings: handling streams that fail midway, timeouts for stalled streams, partial JSON, and output moderation before text reaches the user."
 ---
 
 Streaming is returning model output incrementally while it is still being generated. Instead of one HTTP response after the model finishes, the server sends a sequence of small chunks, usually over server-sent events, and the client renders them as they arrive. Most LLM APIs support it with a single flag.

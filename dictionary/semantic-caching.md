@@ -1,6 +1,9 @@
 ---
 title: Semantic Caching
 description: Reusing a stored LLM response when a new query means roughly the same thing as an earlier one, judged by embedding similarity.
+difficulty: intermediate
+interview: "You want a semantic cache in front of your help bot to cut costs. What could go wrong and how would you guard against it?"
+interviewAnswer: "Covers embedding queries and matching by similarity threshold, wrong hits where small words like team or not change meaning, tuning the threshold on labeled pairs, scoping by tenant or product, excluding personalized or time-sensitive queries, and tracking wrong-hit rate."
 ---
 
 Semantic caching serves a previously generated answer when a new request is close in meaning to one already seen, even if the wording differs. Instead of keying the cache on the exact prompt text, you compute an [embedding](./embeddings.md) of the query, run a [similarity search](./similarity-search.md) against embeddings of past queries, and if the closest match is above a similarity threshold, return its stored response without calling the model.

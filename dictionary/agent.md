@@ -1,6 +1,9 @@
 ---
 title: Agent
 description: An LLM system that decides its own next steps, calling tools and reacting to results in a loop until a task is done.
+difficulty: beginner
+interview: "Product wants an agent to resolve refund tickets end to end. How do you decide whether it should be an agent or a fixed workflow, and what controls would you require?"
+interviewAnswer: "Covers using an agent only when steps cannot be known in advance, preferring workflows for predictable paths, and controls such as step and token caps, least-privilege tools, human approval for irreversible actions like refunds, step logging, and evaluating path as well as outcome."
 ---
 
 An agent is an LLM-based system that decides for itself what to do next in pursuit of a goal, typically by choosing tools to call, observing the results, and repeating until it judges the task complete. The defining feature is that the model controls the sequence of steps, rather than following a fixed path written in code.

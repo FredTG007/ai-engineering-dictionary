@@ -1,6 +1,9 @@
 ---
 title: Text-to-Speech (TTS)
 description: Generating spoken audio from text, giving an AI system a voice for calls, assistants and accessibility.
+difficulty: beginner
+interview: "Callers say your voice agent sounds slow and mispronounces dosages and addresses. How would you improve the text-to-speech stage?"
+interviewAnswer: "Covers streaming LLM output and sending sentence or clause chunks to TTS early, measuring time to first audio, normalizing numbers, units and abbreviations before synthesis, pronunciation hints, stopping playback on barge-in, and keeping replies short."
 ---
 
 Text-to-speech converts written text into synthetic audio. In a [voice agent](./voice-agents.md), it is the final stage, turning the LLM's reply into something the caller hears. Modern neural TTS can sound close to human, with control over voice, speed and sometimes emotion, but the quality users perceive depends heavily on what text you feed it and how quickly it starts speaking.

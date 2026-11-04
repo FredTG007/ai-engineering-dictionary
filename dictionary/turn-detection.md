@@ -1,6 +1,9 @@
 ---
 title: Turn Detection
 description: Deciding when a speaker has finished their turn so a voice agent knows when to respond and when to keep listening.
+difficulty: intermediate
+interview: "Your voice agent cuts callers off while they read out card numbers in groups of four. How would you change turn detection without adding dead air everywhere?"
+interviewAnswer: "Covers the trade-off between cutting people off and adding latency, why a fixed silence threshold fails, voice activity detection plus semantic endpointing on transcript partials, adjusting timeouts by what the agent just asked, and handling barge-in versus backchannels."
 ---
 
 Turn detection, sometimes called endpointing, is how a [voice agent](./voice-agents.md) decides that the person has finished speaking and it is time to reply. Humans do this effortlessly using pauses, intonation, grammar and context. Machines have to infer it from an audio stream and partial transcripts, and getting it wrong is one of the most noticeable failures in voice products.

@@ -1,6 +1,9 @@
 ---
 title: Function Schema
 description: The name, description and typed parameter definition that tells a model what a tool does and how to call it correctly.
+difficulty: intermediate
+interview: "Your agent often calls the right tool with wrong or missing arguments. How would you improve the function schema?"
+interviewAnswer: "Covers clear tool and parameter names, descriptions that say when to use the tool and what each field means, enums and required fields to constrain values, units and formats spelled out, validating arguments before execution, and returning helpful validation errors."
 ---
 
 A function schema is the definition you give a model for each tool it can use: a name, a plain-language description, and a typed specification of the parameters, usually written in JSON Schema. It is the model's main source of information about what the tool does, when to use it and how to fill in its arguments.

@@ -1,6 +1,9 @@
 ---
 title: Temperature
 description: A sampling setting that controls how random a model's word choices are; low values are focused, high values more varied.
+difficulty: beginner
+interview: "Your extraction pipeline returns different field values for the same document on repeated runs. How do you think about temperature here?"
+interviewAnswer: "Covers temperature scaling the randomness of token sampling, using zero or near-zero for extraction and classification, keeping higher values for creative tasks, noting that low temperature reduces but does not fully guarantee determinism, and pairing it with structured output and validation."
 ---
 
 Temperature is a parameter that controls how much randomness goes into choosing each next token. At every step the model produces a probability for every possible next [token](./tokens.md). Temperature reshapes that distribution before sampling: low values sharpen it so the most likely token almost always wins, high values flatten it so less likely tokens get picked more often.

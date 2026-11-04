@@ -1,6 +1,9 @@
 ---
 title: MCP (Model Context Protocol)
 description: An open standard that lets LLM apps discover and call external tools and data through a common client-server interface.
+difficulty: intermediate
+interview: "Three internal assistants each wrap the same ticketing API, and an upstream schema change broke two of them silently. Would you move to MCP, and what risks come with it?"
+interviewAnswer: "Covers one MCP server exposing tools that any client can discover, so a fix lands once; the trade-offs of tool lists bloating context and confusing tool choice, prompt injection from untrusted servers, pinning versions and scoping permissions, and when a direct integration is simpler."
 ---
 
 The Model Context Protocol is a standard way for an LLM application to talk to outside tools and data. Instead of hand-writing a separate integration for every API, you run an MCP server that advertises its tools, resources and prompts, and any MCP-aware client can connect to it, list what is available and invoke it. The model still does ordinary [tool calling](./tool-calling.md); MCP just standardizes how those tools are described, discovered and transported.

@@ -1,6 +1,9 @@
 ---
 title: Prompt Versioning
 description: Tracking every change to a prompt with an identifier, history and author, so outputs can be traced to the exact prompt used.
+difficulty: intermediate
+interview: "Answer quality dropped last Tuesday and nobody can say which prompt change caused it. How would you set up prompt versioning to prevent this?"
+interviewAnswer: "Covers storing prompts outside scattered code strings with an ID, history and author, logging the prompt version on every request, and running evals before a version ships. Mentions quick rollback, linking versions to model and settings, and diffing outputs between versions."
 ---
 
 Prompt versioning is the practice of giving every [prompt](./prompt.md) a tracked history, with an identifier for each version, a record of who changed what, and a way to tell which version produced any given output. It treats prompts as the deployable artifacts they are, rather than strings edited in place.

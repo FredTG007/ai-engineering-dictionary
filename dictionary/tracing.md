@@ -1,6 +1,9 @@
 ---
 title: Tracing
 description: Recording every step behind one LLM request, such as model calls, retrievals and tool calls, as a timed tree of spans.
+difficulty: intermediate
+interview: "Your agent's p95 latency climbed from four to eleven seconds and the dashboards only show that it is slow. How would you use tracing to find the cause?"
+interviewAnswer: "Covers a span tree per request for model calls, retrievals and tool calls with durations and token counts, opening slow traces to spot repeated tool calls or slow rerankers, propagating trace IDs across services, and tagging prompt version and model on spans."
 ---
 
 Tracing captures everything that happened while serving one request as a connected tree of spans. The root span is the user's request; child spans are each model call, retrieval, reranking step, tool call and guardrail check it triggered, each with its own start time, duration, inputs, outputs and metadata like token counts. It is the most useful single tool in LLM [observability](./observability.md).

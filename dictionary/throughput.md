@@ -1,6 +1,9 @@
 ---
 title: Throughput
 description: How much work a model deployment completes per unit of time, measured in tokens or requests per second across all users.
+difficulty: intermediate
+interview: "Your self-hosted model handles one user quickly but falls over at fifty concurrent users. How do you think about throughput versus latency?"
+interviewAnswer: "Covers tokens or requests per second across all users versus per-request speed. Discusses batching and continuous batching, GPU memory limits from the KV cache, how larger batches raise per-user latency, and load testing at realistic concurrency and prompt lengths."
 ---
 
 Throughput is the total amount of work a system completes over time, usually measured in output tokens per second or requests per second across all concurrent users. It is a property of the whole deployment, not of a single request. [Latency](./latency.md) tells you how long one user waits; throughput tells you how many users you can serve at once with acceptable waits.

@@ -1,6 +1,9 @@
 ---
 title: Tool Calling
 description: A model capability where it returns a structured request to run a named function with arguments, which your code then executes.
+difficulty: beginner
+interview: "Your agent sometimes calls the refund tool with an order ID it made up. How do you make tool calling safe?"
+interviewAnswer: "Explains that the model only proposes a call and your code runs it. Covers validating arguments against the schema and real data, clear tool descriptions, permission checks and confirmation for risky actions, returning errors to the model, and logging each call."
 ---
 
 Tool calling is the capability that lets a model respond with a structured request to run a specific function, with specific arguments, instead of plain text. Your application executes the function, sends the result back to the model, and the model continues with that new information. The model never runs anything itself; it only asks.

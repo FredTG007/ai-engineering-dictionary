@@ -1,6 +1,9 @@
 ---
 title: Context Window
 description: The maximum number of tokens a model can consider in one request, covering both the input you send and the output it writes.
+difficulty: beginner
+interview: "Users say your assistant forgets constraints they gave early in long chats, yet no request ever errors. What is likely happening and how would you fix it?"
+interviewAnswer: "Covers silent truncation of history to stay under the token limit, logging what gets dropped and how full the window gets, and fixes such as pinning key facts, summarizing older turns or retrieving on demand, noting that bigger windows cost more and dilute attention."
 ---
 
 The context window is the hard limit on how much text a model can see in a single call. It is measured in [tokens](./tokens.md) and includes everything: the [system prompt](./system-prompt.md), conversation history, retrieved documents, tool results and the response the model is about to generate. Anything outside the window simply does not exist for that request.

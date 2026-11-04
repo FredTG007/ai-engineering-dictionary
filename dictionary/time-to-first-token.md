@@ -1,6 +1,9 @@
 ---
 title: Time to First Token (TTFT)
 description: The delay between sending a request and receiving the first generated token, which sets how responsive an AI feature feels.
+difficulty: intermediate
+interview: "Users say your chat assistant feels sluggish even though total response time is unchanged since you added a long system prompt and retrieval. What do you measure and fix?"
+interviewAnswer: "Covers separating time to first token from total latency, prefill cost growing with prompt length, retrieval and reranking steps that run before generation, streaming output, prompt caching for shared prefixes, and tracking p50 and p95 TTFT separately."
 ---
 
 Time to first token is how long it takes from sending a request until the model emits its first piece of output. It covers network time, queueing at the provider, and the prefill phase of [inference](./inference.md), where the model reads the entire prompt before it can write anything. When responses are [streamed](./streaming.md), TTFT is the moment the user stops staring at a spinner.

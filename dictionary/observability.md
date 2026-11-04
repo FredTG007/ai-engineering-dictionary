@@ -1,6 +1,9 @@
 ---
 title: Observability
 description: The ability to understand what an LLM system is doing in production from its logs, traces, metrics and recorded outputs.
+difficulty: beginner
+interview: "A customer reports the assistant gave a wrong answer yesterday afternoon. What would your observability setup need to let you find out why?"
+interviewAnswer: "Covers traces per request linking the exact prompt, prompt and model versions, retrieved context, tool calls and output, plus token counts, latency and cost. Mentions searchable logs with privacy controls, quality metrics and user feedback tied to the same trace ID."
 ---
 
 Observability is how well you can answer "what happened and why" about your LLM system after the fact, using the data it emits. For traditional services that means logs, metrics and traces. For LLM applications it also means capturing the actual prompts, retrieved context, model responses, tool calls, token counts and user feedback, because the interesting failures are usually about content, not crashes.

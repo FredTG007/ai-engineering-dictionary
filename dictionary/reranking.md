@@ -1,6 +1,9 @@
 ---
 title: Reranking
 description: A second retrieval pass where a slower, more accurate model reorders candidate documents by how well they answer the query.
+difficulty: intermediate
+interview: "Logs show the correct chunk is retrieved but sits at rank 14 while only the top 5 reach the prompt. How would you fix this without blowing your latency budget?"
+interviewAnswer: "Covers retrieving wide then reranking with a cross-encoder or small model that reads query and passage together, tuning candidate count against p95 latency, batching with a timeout and fallback to original order, and using rerank scores as an abstain threshold tuned on evals."
 ---
 
 Reranking is a second pass over retrieved candidates in which a more precise model scores each one against the query and reorders the list. The first-stage retriever is built for speed across millions of documents; the reranker is built for accuracy across a few dozen.

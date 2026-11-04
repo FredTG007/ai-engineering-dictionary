@@ -1,6 +1,9 @@
 ---
 title: Retries and Timeouts
 description: Rules for how long to wait on a model call and when to try again, so slow or failed requests don't hang or cascade.
+difficulty: intermediate
+interview: "When your LLM provider degraded, your entire web app stopped responding, including pages that never call the model. How would you redesign timeouts and retries?"
+interviewAnswer: "Covers replacing long library-default timeouts, a short time-to-first-token limit plus a longer total limit for streaming, retrying 429 and 5xx with exponential backoff and jitter but not 400s, retry budgets, isolating LLM worker pools, idempotent tools and fallback models."
 ---
 
 Retries and timeouts decide what your application does when a model call is slow or fails. A timeout sets the maximum time you will wait before giving up; a retry policy decides which failures are worth trying again, how many times, and with what delay. LLM calls fail more often and vary in duration more than typical API calls, so these settings matter more than usual.

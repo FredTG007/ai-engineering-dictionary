@@ -1,6 +1,9 @@
 ---
 title: Fallback Models
 description: A backup model or provider your system switches to when the primary model errors, times out, or is rate limited.
+difficulty: intermediate
+interview: "You are adding a second provider as a fallback after an outage. What would you do so the fallback actually works when the primary fails?"
+interviewAnswer: "Covers defining triggers such as exhausted retries, repeated 5xx or long 429 waits, per-model prompt variants for format and tool-schema differences, running each fallback through evals, logging which model served each request, and weighing same-region versus cross-provider options."
 ---
 
 A fallback model is a second option your system uses when the first one cannot answer. If the primary model returns errors, times out, or hits [rate limits](./rate-limits.md), the request is resent to a different model, a different region, or a different provider. The goal is to keep the feature working, possibly at slightly lower quality, rather than showing users an error page.

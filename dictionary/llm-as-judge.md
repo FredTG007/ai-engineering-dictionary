@@ -1,6 +1,9 @@
 ---
 title: LLM-as-Judge
 description: Using a language model with a scoring rubric to grade another model's outputs when exact-match checks are not possible.
+difficulty: intermediate
+interview: "You want to replace manual review of chatbot answers with an LLM judge. How would you make sure its scores can be trusted?"
+interviewAnswer: "Covers calibrating the judge against human-labeled examples and measuring agreement, using a clear rubric with specific criteria, checking position, length and self-preference bias, pairwise versus absolute scoring, and periodically re-auditing samples by hand."
 ---
 
 LLM-as-judge is the technique of using a language model to grade outputs from your system, guided by a rubric, when a simple programmatic check cannot decide whether an answer is good. It makes it possible to score qualities like correctness of a free-form answer, tone, completeness or groundedness across thousands of cases without a human reading each one.

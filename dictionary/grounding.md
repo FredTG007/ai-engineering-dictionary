@@ -1,6 +1,9 @@
 ---
 title: Grounding
 description: Making a model base its answer on specific supplied sources, and checking that each claim can be traced back to them.
+difficulty: intermediate
+interview: "Your policy assistant cited a refund rule that does not exist in any document you gave it. How would you design the system to stay grounded?"
+interviewAnswer: "Covers supplying retrieved sources, instructing the model to answer only from them and say when it cannot, and requiring citations per claim. Adds automated checks that each claim maps to a source, refusal when retrieval is weak, and evals that measure unsupported claims."
 ---
 
 Grounding means tying a model's output to specific evidence you supplied, so that each claim in the answer can be traced to a source rather than to the model's general training. A grounded answer is one you can check line by line against the documents in the context.

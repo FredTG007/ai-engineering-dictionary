@@ -1,6 +1,9 @@
 ---
 title: Tokens
 description: The chunks of text a language model actually reads and writes, and the unit you are billed and rate-limited by.
+difficulty: beginner
+interview: "Your LLM bill tripled this month with flat traffic, and the only recent change was a feature that adds API data to prompts. How do you investigate?"
+interviewAnswer: "Covers measuring input and output tokens per feature, noting that JSON keys, braces and quotes tokenize poorly, trimming fields or reformatting data compactly, output being priced higher than input, and adding per-feature cost tracking so spikes surface in days."
 ---
 
 Tokens are the units of text a language model processes. A tokenizer splits input into pieces that are often whole common words, fragments of rarer words, punctuation or whitespace. As a rough rule, one token is about four characters of English, but code, numbers and non-English text usually take more tokens per character.

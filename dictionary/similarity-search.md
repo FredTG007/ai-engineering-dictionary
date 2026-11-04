@@ -1,6 +1,9 @@
 ---
 title: Similarity Search
 description: Finding the stored items whose vectors are closest to a query vector, used to retrieve content by meaning rather than keywords.
+difficulty: intermediate
+interview: "Your vector search returns documents that look related but rarely contain the answer. How do you diagnose and improve it?"
+interviewAnswer: "Covers checking the embedding model fits the domain, chunk size and boundaries, the distance metric, top-k choice, and approximate index recall settings, measuring recall on labeled queries, and adding reranking or hybrid keyword search for exact terms."
 ---
 
 Similarity search is the process of finding the items in a collection that are most similar to a query, measured by the distance between their vectors. You turn the query into an [embedding](./embeddings.md), compare it against stored embeddings using a measure such as cosine similarity or dot product, and return the top k closest results. It is how a [RAG](./rag.md) system finds passages relevant to a question that may not share any exact words with them.

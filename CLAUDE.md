@@ -10,6 +10,9 @@ Every term lives in `dictionary/<slug>.md`:
 ---
 title: Context Window
 description: One plain sentence, under 140 characters.
+difficulty: beginner | intermediate | advanced
+interview: "One original, scenario-style interview question ending in ?"
+interviewAnswer: "What a good answer covers, in one to three plain sentences."
 ---
 
 Body paragraphs...
@@ -31,11 +34,12 @@ _Usage:_
 7. **Relative links on first mention only.** Link other terms as `[embeddings](./embeddings.md)` the first time they appear in an entry; later mentions are plain text. Only link to terms that exist.
 8. **Tables are welcome** where they clarify (lifecycles, trade-offs, comparisons).
 9. **End with a `_Usage:_` section** of 2–3 short realistic quotes as list items ("Heard in the wild").
-10. **Add every new slug to `internal/Curriculum.md`** in a sensible learning position.
+10. **Add every new slug to `internal/Curriculum.md`** in a sensible learning position, **and to at least one track in `internal/Tracks.md`**, with a map position in `lib/map/stationPlacements.ts`.
 11. **Link new entries back into older ones.** When you add a term, edit the existing entries that should mention it so the graph stays connected in both directions.
+12. **Frontmatter includes `difficulty`, `interview` and `interviewAnswer`.** The interview question is original and tied to a real scenario, and the answer note lists what a good answer covers without becoming an essay.
 
-Run `npm run validate` before committing; it enforces rules 5, 6, 7 (missing targets), 9 and 10.
+Run `npm run validate` before committing. It enforces rules 5, 6, 7 (missing targets), 9, 10 and 12, and checks that no map label overlaps another label, a station or a line.
 
 ## Code rules
 
-Clean-code practices: small focused functions and components, intention-revealing names, single responsibility, no dead code. Pure content-loading and graph logic lives in `lib/` and has no UI imports; React components live in `components/`.
+Clean-code practices: small focused functions and components, intention-revealing names, single responsibility, no dead code. Pure content-loading, map and progress logic lives in `lib/` and has no UI imports; React components live in `components/`.

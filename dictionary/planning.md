@@ -1,6 +1,9 @@
 ---
 title: Planning
 description: Having an agent lay out the steps of a task before or while acting, so long tasks stay coherent instead of drifting.
+difficulty: advanced
+interview: "Your research agent drifts after about twenty steps and repeats searches it already ran. How would you add planning, and how do you stop the plan itself going stale?"
+interviewAnswer: "Covers drafting an explicit step list, tracking progress in state outside the context window, and revising the plan when results contradict it. Discusses plan-then-execute versus interleaved replanning, step and budget limits, checkpoints, and evaluating plan quality separately."
 ---
 
 Planning, in agent systems, means having the model lay out the steps of a task explicitly, before or while carrying it out, instead of choosing each action only in reaction to the last result. The plan becomes something the [agent](./agent.md) can follow, check off and revise.

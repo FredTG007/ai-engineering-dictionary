@@ -1,6 +1,9 @@
 ---
 title: GPU Serving
 description: Running model inference on your own GPU infrastructure, including the engines, scaling, and capacity planning it requires.
+difficulty: advanced
+interview: "Your team wants to move a high-volume workload from a hosted API to self-hosted GPUs to save money. How would you plan capacity and scaling, and what costs would you count?"
+interviewAnswer: "Covers memory budget for weights plus KV cache, quantization and parallelism across GPUs, continuous batching engines, load testing throughput and latency, slow cold starts, scaling on queue depth with warm replicas and API fallback, and comparing cost per million tokens including ops time."
 ---
 
 GPU serving is the work of hosting a model on GPUs you control and exposing it as an API to your applications. Rather than calling a provider, you choose hardware, run an inference engine that loads the weights and schedules requests, and handle scaling, monitoring, and upgrades yourself. It is how teams run [open-weight models](./open-weight-models.md), custom [fine-tuned](./fine-tuning.md) models, or workloads that cannot leave their network.

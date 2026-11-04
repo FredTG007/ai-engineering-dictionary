@@ -7,7 +7,7 @@ interface PaletteSwitcherProps {
 
 export function PaletteSwitcher({ activeId, onChange }: PaletteSwitcherProps) {
   return (
-    <div className="palette-switcher" role="radiogroup" aria-label="Color palette">
+    <div className="palette-switcher" role="radiogroup" aria-label="Paper">
       {PALETTES.map((palette) => (
         <button
           key={palette.id}
@@ -25,6 +25,6 @@ export function PaletteSwitcher({ activeId, onChange }: PaletteSwitcherProps) {
   );
 }
 
-function swatchStyle({ colors }: Palette) {
-  return { background: `linear-gradient(135deg, ${colors.background} 50%, ${colors.accent} 50%)` };
+function swatchStyle({ swatch: [page, ink] }: Palette) {
+  return { background: `linear-gradient(135deg, ${page} 55%, ${ink} 55%)` };
 }

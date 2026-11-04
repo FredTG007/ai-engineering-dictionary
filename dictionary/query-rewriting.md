@@ -1,6 +1,9 @@
 ---
 title: Query Rewriting
 description: Using a model or rules to turn a user's raw question into one or more better search queries before retrieval runs.
+difficulty: intermediate
+interview: "Follow-up questions like and what about the annual plan retrieve nothing useful in your RAG chatbot. How would query rewriting help, and what does it cost?"
+interviewAnswer: "Covers rewriting a follow-up into a standalone query using chat history, expanding or splitting into several queries, and handling synonyms. Trade-offs include an extra model call adding latency and cost, and rewrites that drift from what the user meant, so log and evaluate them."
 ---
 
 Query rewriting is the step where you transform what the user typed into a query that your retrieval system can actually match well. Users write short, ambiguous, conversational messages; search indexes respond best to explicit, self-contained phrasing. A rewriting step sits between the two.

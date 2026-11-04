@@ -1,5 +1,6 @@
 import { countWords } from "../content/parseTerm";
-import type { Term } from "../content/types";
+import { DIFFICULTIES, type Term } from "../content/types";
+import type { Track } from "../map/types";
 
 export const MAX_DESCRIPTION_LENGTH = 140;
 export const MIN_BODY_WORDS = 200;
@@ -14,6 +15,7 @@ type TermRule = (term: Term, context: RuleContext) => string[];
 interface RuleContext {
   knownSlugs: Set<string>;
   curriculum: Set<string>;
+  trackedSlugs: Set<string>;
 }
 
 const descriptionIsShort: TermRule = (term) =>
@@ -40,6 +42,18 @@ const isInCurriculum: TermRule = (term, { curriculum }) =>
 const hasUsageSection: TermRule = (term) =>
   term.hasUsageSection && term.quotes.length > 0 ? [] : ["no _Usage:_ section with quotes"];
 
+const hasDifficulty: TermRule = (term) =>
+  term.difficulty ? [] : [`difficulty must be one of: ${DIFFICULTIES.join(", ")}`];
+
+const hasInterviewQuestion: TermRule = (term) =>
+  term.interview.endsWith("?") ? [] : ["interview must be a question ending in \"?\""];
+
+const hasInterviewAnswer: TermRule = (term) =>
+  term.interviewAnswer === "" ? ["interviewAnswer is missing"] : [];
+
+const isOnATrack: TermRule = (term, { trackedSlugs }) =>
+  trackedSlugs.has(term.slug) ? [] : ["not on any track in internal/Tracks.md"];
+
 const TERM_RULES: TermRule[] = [
   descriptionIsPresent,
   descriptionIsShort,
@@ -47,13 +61,18 @@ const TERM_RULES: TermRule[] = [
   linksResolve,
   isInCurriculum,
   hasUsageSection,
+  hasDifficulty,
+  hasInterviewQuestion,
+  hasInterviewAnswer,
+  isOnATrack,
 ];
 
 /** Pure: checks every term against the writing rules and the curriculum against the files. */
-export function validateDictionary(terms: Term[], curriculum: string[]): ValidationError[] {
+export function validateDictionary(terms: Term[], curriculum: string[], tracks: Track[]): ValidationError[] {
   const context: RuleContext = {
     knownSlugs: new Set(terms.map((term) => term.slug)),
     curriculum: new Set(curriculum),
+    trackedSlugs: new Set(tracks.flatMap((track) => track.slugs)),
   };
   const termErrors = terms.flatMap((term) =>
     TERM_RULES.flatMap((rule) => rule(term, context)).map((message) => ({ slug: term.slug, message })),

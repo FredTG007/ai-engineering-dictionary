@@ -1,6 +1,9 @@
 ---
 title: Hybrid Search
 description: Combining keyword search and vector search in one retrieval step so you catch both exact terms and paraphrased meaning.
+difficulty: intermediate
+interview: "Your RAG assistant fails on queries containing part numbers and error codes but handles conceptual questions well. What retrieval change would you propose and why?"
+interviewAnswer: "Covers combining keyword search such as BM25 for exact identifiers with vector search for meaning, merging results with reciprocal rank fusion or weighted scores, tuning weights on labeled queries, and the extra indexing and latency cost of running both."
 ---
 
 Hybrid search runs a keyword search and a vector search over the same corpus and merges their results into a single ranked list. Each method misses things the other finds, and combining them is one of the cheapest ways to raise retrieval recall.

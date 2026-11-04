@@ -1,6 +1,9 @@
 ---
 title: Embeddings
 description: Lists of numbers that represent the meaning of text, so similar content ends up close together and can be compared.
+difficulty: beginner
+interview: "Search over your help center returns articles that share keywords with the query but miss its meaning. How could embeddings help, and what can go wrong?"
+interviewAnswer: "Explains vectors that place similar meaning close together, compared with cosine similarity. Covers using the same embedding model for documents and queries, re-embedding everything when the model changes, weak handling of exact terms like IDs, and pairing with keyword search."
 ---
 
 An embedding is a vector, a fixed-length list of numbers, that represents the meaning of a piece of text. An embedding model reads a sentence, paragraph or document and outputs, say, 1,024 numbers. Texts with similar meaning produce vectors that point in similar directions, even if they share no words. "How do I reset my password" and "I forgot my login" end up close together.

@@ -1,6 +1,9 @@
 ---
 title: Voice Agents
 description: AI agents that hold spoken conversations in real time, combining speech recognition, an LLM and speech synthesis.
+difficulty: beginner
+interview: "Callers keep talking over your phone booking agent and conversations spiral, with median response time around 2.4 seconds. How would you bring that down?"
+interviewAnswer: "Covers measuring delay per stage across speech-to-text, turn detection, LLM and text-to-speech, streaming every stage, starting synthesis on the first sentence, faster models for simple turns, short ear-friendly replies without markdown, and testing with real audio."
 ---
 
 A voice agent is an [agent](./agent.md) you talk to rather than type to. It listens to audio, works out what the caller said, decides how to respond, possibly calls tools, and speaks back, all within the rhythm of a normal conversation. Phone support lines, appointment booking, drive-through ordering and in-car assistants are typical uses.

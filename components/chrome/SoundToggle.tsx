@@ -7,7 +7,7 @@ export function SoundToggle({ muted, onToggle }: SoundToggleProps) {
   return (
     <button
       type="button"
-      className="icon-button"
+      className="ink-button"
       aria-pressed={!muted}
       aria-label={muted ? "Turn sounds on" : "Mute sounds"}
       title={muted ? "Sounds off" : "Sounds on"}

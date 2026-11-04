@@ -1,6 +1,9 @@
 ---
 title: System Prompt
 description: The standing instructions placed before a conversation that set a model's role, rules, tone and output format for every turn.
+difficulty: beginner
+interview: "Your support bot keeps ignoring a rule in its system prompt once conversations get long. What would you check and change?"
+interviewAnswer: "Covers how instructions compete with long conversation history, keeping the system prompt focused and free of contradictions, stating rules plainly with examples, trimming or summarizing old turns, and adding eval cases for long sessions instead of only single-turn tests."
 ---
 
 A system prompt is a block of instructions that sits at the start of every request and frames how the model should behave. It typically defines the assistant's role, the rules it must follow, the tone, the output format and how to handle edge cases. Most chat APIs give it a dedicated slot separate from user messages, and models are trained to give it more weight.

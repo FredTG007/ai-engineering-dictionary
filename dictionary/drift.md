@@ -1,6 +1,9 @@
 ---
 title: Drift
 description: Gradual change in model behavior, user inputs, or data over time that quietly erodes the quality of a system that once worked.
+difficulty: intermediate
+interview: "Your extraction pipeline started returning dates in a new format with no deploy on your side, and offline evals still look fine. What is happening and how do you prevent it?"
+interviewAnswer: "Covers model drift from provider aliases moving to new snapshots, pinning explicit versions gated by regression evals, input and data drift making the golden dataset stale, sampling live traffic into evals, and alerting on shifts in format, length and refusal rates."
 ---
 
 Drift is the slow divergence between the conditions your system was built and tested for and the conditions it actually faces in production. In LLM systems it shows up in three main forms: the model changes underneath you, the inputs users send change, or the data you retrieve from changes. In each case nothing visibly breaks; quality simply erodes until someone notices.

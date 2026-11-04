@@ -1,6 +1,9 @@
 ---
 title: Prompt
 description: The full input text sent to a language model for one request, including instructions, context, examples and user input.
+difficulty: beginner
+interview: "Your summarizer started ignoring its formatting rules after someone pasted a long customer email into it. What would you check in the prompt?"
+interviewAnswer: "Covers the prompt as the full assembled input: system instructions, examples, context and user text. Looks at ordering, clear delimiters around untrusted content, conflicting instructions, length pushing rules out of focus, and logging the exact final prompt sent."
 ---
 
 A prompt is everything you send to a model in a single request. In casual usage it means the user's question, but in an engineered system it is a structured document: instructions, the [system prompt](./system-prompt.md), retrieved context, examples, conversation history and finally the user's message. The model sees all of it as one sequence of [tokens](./tokens.md) and generates a continuation.

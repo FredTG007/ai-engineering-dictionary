@@ -1,6 +1,9 @@
 ---
 title: Batching
 description: Grouping multiple requests so they are processed together, raising hardware efficiency or lowering cost at the expense of latency.
+difficulty: advanced
+interview: "Your self-hosted model serves one user fast, but queues grow to minutes once a dozen users arrive. Why, and how would you tune serving to hit a p95 target?"
+interviewAnswer: "Covers decode being memory-bound and leaving GPU compute idle without batching, continuous batching to raise throughput, batch size trading per-request latency and time to first token, KV cache memory bounding concurrency, and capping concurrent sequences, plus keeping batch APIs off interactive paths."
 ---
 
 Batching means processing several requests together instead of one at a time. In LLM systems the word covers two related ideas: server-side batching, where an inference engine runs many users' requests through the GPU in the same forward pass, and client-side batching, where you submit a large set of offline jobs to a provider's batch API for cheaper, slower processing. Both trade some per-request latency for much better efficiency.

@@ -1,6 +1,9 @@
 ---
 title: Red Teaming
 description: Deliberately attacking your own LLM system to find safety, security and misuse failures before real users or attackers do.
+difficulty: intermediate
+interview: "Your team is about to launch an agent that can read account data and issue refunds. How would you plan a red-team exercise before release?"
+interviewAnswer: "Covers testing safety, security, privacy, policy and abuse areas, attempting prompt injection and tool-permission escalation, combining human testers with automated attack generation, turning each successful attack into a regression eval, and repeating after major changes."
 ---
 
 Red teaming is the practice of trying to break your own AI system on purpose. A red team, whether internal staff, outside specialists or automated attack generators, plays the adversary: they attempt [jailbreaks](./jailbreak.md), [prompt injection](./prompt-injection.md), data extraction, policy violations and misuse of tools, then report what worked so it can be fixed. It is the security mindset applied to model behavior.

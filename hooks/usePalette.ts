@@ -1,22 +1,26 @@
 "use client";
 
-import { useEffect } from "react";
-import { DEFAULT_PALETTE_ID, PALETTES, findPalette, paletteCssVariables } from "@/lib/theme/palettes";
+import { useCallback } from "react";
+import { DEFAULT_PALETTE_ID, PALETTES, PALETTE_STORAGE_KEY, findPalette } from "@/lib/theme/palettes";
 import { useStoredPreference } from "./useStoredPreference";
 
 const PALETTE_IDS = new Set(PALETTES.map((palette) => palette.id));
 const isPaletteId = (value: string): value is string => PALETTE_IDS.has(value);
 
-/** Active palette, persisted in localStorage and applied as CSS variables. */
+/**
+ * Active palette, persisted in localStorage. The boot script in the layout
+ * applies the stored palette before paint; this hook only changes it.
+ */
 export function usePalette() {
-  const [paletteId, setPaletteId] = useStoredPreference("aied:palette", DEFAULT_PALETTE_ID, isPaletteId);
-  const palette = findPalette(paletteId);
+  const [paletteId, storePaletteId] = useStoredPreference(PALETTE_STORAGE_KEY, DEFAULT_PALETTE_ID, isPaletteId);
 
-  useEffect(() => {
-    const root = document.documentElement;
-    Object.entries(paletteCssVariables(palette)).forEach(([name, value]) => root.style.setProperty(name, value));
-    root.style.colorScheme = palette.scheme;
-  }, [palette]);
+  const setPaletteId = useCallback(
+    (id: string) => {
+      document.documentElement.dataset.palette = id;
+      storePaletteId(id);
+    },
+    [storePaletteId],
+  );
 
-  return { palette, setPaletteId };
+  return { palette: findPalette(paletteId), setPaletteId };
 }

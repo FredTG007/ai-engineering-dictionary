@@ -1,6 +1,9 @@
 ---
 title: Latency
 description: How long a user or system waits for a response, measured end to end and usually tracked as percentiles like p50 and p95.
+difficulty: beginner
+interview: "Users say your chat feature feels slow, but the average response time looks fine on the dashboard. Where do you look?"
+interviewAnswer: "Covers tracking p95 and p99 instead of the mean, and splitting time into retrieval, queueing, time to first token and generation. Mentions streaming to cut perceived wait, shorter outputs, smaller models for simple steps, and tracing each stage end to end."
 ---
 
 Latency is the time between sending a request and getting the response you need. In LLM systems it is rarely a single number, because a request often passes through retrieval, a [reranking](./reranking.md) step, one or more model calls and post-processing. Measure it end to end, and break it down per stage so you know where the time goes.

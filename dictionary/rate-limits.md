@@ -1,6 +1,9 @@
 ---
 title: Rate Limits
 description: Caps a provider places on requests or tokens per minute, which your system must respect, queue around, or plan capacity for.
+difficulty: beginner
+interview: "A nightly batch job started hitting 429 errors and is now slowing down live user traffic. How would you handle rate limits?"
+interviewAnswer: "Covers requests and tokens per minute limits, retries with exponential backoff and jitter, honoring retry-after headers, and queueing with concurrency caps. Mentions separating batch from live traffic or keys, using batch APIs, and planning quota for peak load."
 ---
 
 Rate limits are the ceilings an LLM provider puts on how much you can send in a window of time. They are usually expressed as requests per minute and tokens per minute, sometimes split into input and output tokens, and they apply per API key, per organization, or per model. When you cross one, the provider rejects the call with an HTTP 429 instead of serving it.

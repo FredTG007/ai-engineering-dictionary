@@ -1,6 +1,9 @@
 ---
 title: Vector Database
 description: A database built to store embeddings and quickly find the ones nearest to a query vector, often alongside metadata filters.
+difficulty: intermediate
+interview: "Your assistant keeps quoting a pricing page that was edited two months ago. What would you check in the retrieval index, and how do you prevent it recurring?"
+interviewAnswer: "Covers ingestion that only adds new documents and never re-embeds edited or deleted ones, change detection and re-indexing pipelines, keeping raw text and tracking the embedding model per vector, plus enforcing metadata filters like tenant inside the query itself."
 ---
 
 A vector database stores [embeddings](./embeddings.md) and answers the question "which stored vectors are closest to this one?" quickly, even across millions or billions of items. It builds approximate nearest neighbor indexes for [similarity search](./similarity-search.md), stores the original text or an ID alongside each vector, and usually supports [metadata filtering](./metadata-filtering.md) so you can restrict results by tenant, date, language or document type.

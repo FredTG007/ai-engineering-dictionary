@@ -1,6 +1,9 @@
 ---
 title: Prompt Injection
 description: An attack where text supplied by a user or external source overrides an LLM application's intended instructions.
+difficulty: beginner
+interview: "Your email assistant summarizes inbound messages and can also send replies. How would an attacker abuse it through prompt injection, and how do you defend it?"
+interviewAnswer: "Covers indirect injection via instructions hidden in email content that the model treats as commands. Defenses include least-privilege tools, human confirmation for sending, separating trusted and untrusted text, output checks, and accepting that prompt wording alone cannot fully stop it."
 ---
 
 Prompt injection happens when untrusted text gets into a model's input and the model treats it as instructions rather than data. Because an [LLM](./llm.md) sees the system prompt, user message and retrieved documents as one stream of tokens, it has no reliable built-in way to tell "rules from the developer" apart from "text that happens to look like rules". An attacker exploits that by writing instructions where the model will read them.

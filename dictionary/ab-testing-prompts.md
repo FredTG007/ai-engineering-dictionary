@@ -1,6 +1,9 @@
 ---
 title: A/B Testing Prompts
 description: Serving two prompt versions to different slices of live traffic and comparing real user outcomes to decide which to keep.
+difficulty: intermediate
+interview: "Offline evals say your new prompt is better, but leadership wants proof in production. How would you design the A/B test?"
+interviewAnswer: "Covers randomizing at the user or session level, choosing a primary metric such as resolution or task success plus guardrail metrics like cost and latency, sizing the sample for significance, logging prompt version per request, and watching for novelty effects."
 ---
 
 A/B testing prompts means splitting live traffic between two or more prompt versions and comparing how real users respond, so the decision about which version to keep rests on production outcomes rather than offline scores alone. It is the last step after offline [evals](./evals.md) say a change is safe to try.

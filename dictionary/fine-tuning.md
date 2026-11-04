@@ -1,6 +1,9 @@
 ---
 title: Fine-Tuning
 description: Further training a pretrained model on your own examples so it adopts a specific format, style, or narrow skill more reliably.
+difficulty: beginner
+interview: "A team wants to fine-tune a model on the internal wiki so it can answer policy questions. How would you respond, and where would fine-tuning fit better?"
+interviewAnswer: "Covers fine-tuning being poor at storing and updating facts, RAG suiting changing knowledge with citations, fine-tuning fitting format, style, fixed labels or replacing long few-shot prompts, data quality over volume, held-out evals against a prompt baseline, and retraining overhead."
 ---
 
 Fine-tuning means continuing to train an existing [LLM](./llm.md) on a dataset of your own examples so that its weights shift toward the behavior you want. You provide pairs of inputs and ideal outputs, the training process adjusts the model, and you get a new model version that you call like any other. It changes how the model behaves by default, rather than relying on instructions in each [prompt](./prompt.md).

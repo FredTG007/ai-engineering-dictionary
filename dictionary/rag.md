@@ -1,6 +1,9 @@
 ---
 title: RAG (Retrieval-Augmented Generation)
 description: A pattern where you fetch relevant documents at request time and place them in the prompt so the model answers from them.
+difficulty: beginner
+interview: "Your support bot invented a 60-day refund window when the real policy is 30 days. How would you use retrieval to fix it and confirm the fix holds?"
+interviewAnswer: "Covers retrieving the actual policy at request time and instructing the model to answer only from it, logging retrieved chunk IDs to check retrieval before touching the prompt, and evaluating retrieval and answer quality separately, with the token and latency cost of context."
 ---
 
 Retrieval-augmented generation (RAG) is the pattern of looking up relevant information when a request arrives and putting it into the [prompt](./prompt.md) so the model can answer from it instead of from memory alone. The model's weights stay the same; what changes is the context it sees on each call.

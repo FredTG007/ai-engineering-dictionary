@@ -1,6 +1,9 @@
 ---
 title: Structured Output
 description: Getting a model to return data in a fixed machine-readable shape, such as JSON matching a schema, instead of free text.
+difficulty: intermediate
+interview: "About 2% of your extraction responses fail JSON parsing and crash a downstream job. How would you make the output reliable?"
+interviewAnswer: "Covers provider JSON or schema-constrained modes and tool schemas, validating every response against the schema, bounded retries with the error fed back, and safe fallbacks. Notes that valid JSON can still hold wrong values, so field-level checks and evals still matter."
 ---
 
 Structured output means constraining a model to produce data your code can parse reliably, usually JSON that matches a defined schema. Instead of asking for a paragraph and scraping it with regular expressions, you specify the fields, types and allowed values, and the model fills them in. Many APIs now support this natively, either through a JSON mode or by enforcing a schema during generation.

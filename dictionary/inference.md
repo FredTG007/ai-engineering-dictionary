@@ -1,6 +1,9 @@
 ---
 title: Inference
 description: Running a trained model to produce output for a given input; the per-request compute you pay for in production.
+difficulty: beginner
+interview: "You moved a long-document summarization job to self-hosted GPUs and throughput came in far below your estimate. What did the sizing likely miss?"
+interviewAnswer: "Covers the prefill versus decode split, with long prompts making prefill dominate and driving time to first token, sizing on output speed alone being wrong, and fixes like request batching and KV cache reuse for shared prefixes, tracked as tokens and latency per feature."
 ---
 
 Inference is the act of running a trained model on new input to get output. Training is when the model's weights are learned; inference is everything after, every time a user sends a message and the model replies. For most AI engineering teams, inference is the only phase they touch, either by calling a hosted API or by running a model on their own hardware.

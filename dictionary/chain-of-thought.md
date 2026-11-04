@@ -1,6 +1,9 @@
 ---
 title: Chain-of-Thought
 description: Prompting a model to work through intermediate reasoning steps before giving a final answer, which often improves accuracy.
+difficulty: intermediate
+interview: "Asking the model to reason step by step lifted accuracy on your pricing calculator, but latency and cost rose. How do you decide whether to keep it?"
+interviewAnswer: "Weighs the accuracy gain on an eval set against extra output tokens, cost and p95 latency. Considers reasoning only on hard cases via routing, hiding or discarding the reasoning from users, and that the stated steps do not always reflect what the model actually did."
 ---
 
 Chain-of-thought is the practice of having a model write out its reasoning before committing to an answer. You either ask for it directly ("think step by step, then give the answer") or show it in [few-shot](./few-shot-prompting.md) examples. Because the model generates [tokens](./tokens.md) one at a time, writing the intermediate steps gives it more computation to spend on the problem, and later tokens can build on earlier ones.

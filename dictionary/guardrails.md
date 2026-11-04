@@ -1,6 +1,9 @@
 ---
 title: Guardrails
 description: Checks placed around an LLM's inputs and outputs to block, fix or flag content and actions that break your rules.
+difficulty: beginner
+interview: "Your support bot promised a customer a delivery date despite a system prompt telling it never to. What guardrails would you add and where in the request path?"
+interviewAnswer: "Covers why prompt instructions are not enforcement, input and output checks that block, rewrite or escalate, layering cheap rule and schema checks before classifiers or LLM judges, latency and false-positive costs, and how streaming affects when output can be checked."
 ---
 
 Guardrails are the checks you wrap around a model call to enforce rules the model itself cannot be trusted to follow every time. They run on the way in, inspecting user input and retrieved context, and on the way out, inspecting the model's response or proposed action before it reaches a user or a system. A guardrail can block, rewrite, redact, retry or escalate.

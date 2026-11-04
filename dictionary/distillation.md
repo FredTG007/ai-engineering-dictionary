@@ -1,6 +1,9 @@
 ---
 title: Distillation
 description: Training a smaller, cheaper model to imitate a larger model's outputs on your task so you keep most of the quality at lower cost.
+difficulty: advanced
+interview: "A large model tags millions of documents well but costs more than the feature earns. How would you distill it, and how would you know the student is good enough?"
+interviewAnswer: "Covers sampling inputs that match production, curating teacher outputs with validators or a judge, fine-tuning a small student, evaluating on an independently labeled golden set, task suitability for narrow tasks, license terms, and routing low-confidence cases back to the teacher."
 ---
 
 Distillation is the process of using a large, capable model as a teacher to train a smaller student model. You run the teacher on many representative inputs, collect its outputs, and [fine-tune](./fine-tuning.md) the student on those input and output pairs. The student learns to reproduce the teacher's behavior on that task, usually at a fraction of the cost and with much lower latency.

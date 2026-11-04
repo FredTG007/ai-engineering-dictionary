@@ -1,6 +1,9 @@
 ---
 title: Golden Dataset
 description: A curated, versioned set of inputs with known-good expected outputs that serves as the reference for running evals.
+difficulty: intermediate
+interview: "Your team wants to start running evals before each release but has no test data yet. How would you build a golden dataset?"
+interviewAnswer: "Covers sampling real production inputs including hard and edge cases, writing expected outputs or grading criteria with domain experts, and versioning the set. Mentions keeping it representative as usage shifts, adding past failures, and avoiding leakage into prompts."
 ---
 
 A golden dataset is a curated collection of inputs paired with expected outputs, or with clear criteria for a good output, that you treat as the reference standard for [evals](./evals.md). It is the fixed ruler you measure every version of your system against.

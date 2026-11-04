@@ -1,6 +1,9 @@
 ---
 title: Prompt Caching
 description: Reusing the model's processed state for a repeated prompt prefix so later calls are cheaper and start answering sooner.
+difficulty: intermediate
+interview: "You enabled prompt caching on a long system prompt but input costs barely moved. What would you check?"
+interviewAnswer: "Covers caching needing an exact prefix match, volatile content such as timestamps or user data placed early and invalidating the cache, ordering stable material first, cache expiry on low-traffic endpoints, and tracking hit rate instead of assuming savings."
 ---
 
 Prompt caching lets a provider skip reprocessing the part of a prompt it has already seen. When many requests share a long, identical prefix, such as a large [system prompt](./system-prompt.md), a block of tool definitions, or a reference document, the provider stores the computed state for that prefix and reuses it on the next call. You still pay for the new tokens at the end, but the cached portion is billed at a steep discount and processed far faster.

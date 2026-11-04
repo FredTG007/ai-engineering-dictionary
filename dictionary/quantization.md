@@ -1,6 +1,9 @@
 ---
 title: Quantization
 description: Storing model weights with fewer bits, such as 8 or 4 instead of 16, so models use less memory and run faster at some quality cost.
+difficulty: advanced
+interview: "Your 70B model barely fits on your GPUs and you want to quantize it to 4-bit. How would you decide whether the quality loss is acceptable?"
+interviewAnswer: "Covers memory and speed gains from fewer bits per weight, choosing methods like 8-bit versus 4-bit, and running the golden eval set on both versions. Watches for losses on reasoning, long context or non-English tasks, and checks real throughput on the target hardware."
 ---
 
 Quantization reduces the numeric precision used to store and compute a model's weights, and sometimes its activations and [KV cache](./kv-cache.md). A model trained in 16-bit floating point can be converted to 8-bit or 4-bit representations, cutting its memory footprint by half or more. Less memory means a model fits on smaller or fewer GPUs, and less data to move per token usually means faster generation.

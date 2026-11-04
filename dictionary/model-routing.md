@@ -1,6 +1,9 @@
 ---
 title: Model Routing
 description: Sending each request to the model best suited to it, so easy tasks use cheap fast models and hard ones get stronger models.
+difficulty: intermediate
+interview: "Most of your traffic is simple FAQ questions, yet every request goes to your most expensive model. How would you design a router, and how would you know it works?"
+interviewAnswer: "Covers routing by rules or a small classifier, sending easy requests to a cheap fast model and escalating hard or low-confidence ones. Measures quality per route on an eval set, cost and latency savings, misroute rates, and adds fallbacks when a provider fails."
 ---
 
 Model routing is the practice of choosing which model handles a request based on what the request needs. Instead of sending everything to one large model, a router inspects each call and directs it to a small, cheap model, a large capable model, or a specialist, depending on difficulty, task type, or customer tier. It is primarily a cost and [latency](./latency.md) tool, not a reliability mechanism.
