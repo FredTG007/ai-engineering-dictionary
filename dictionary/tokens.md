@@ -9,7 +9,7 @@ Tokens matter because almost every limit and cost in an [LLM](./llm.md) system i
 
 A common production surprise is the bill that jumps without any change in traffic. One team saw costs triple in a month and traced it to a feature that pasted full JSON API responses into the prompt. The payloads were full of repeated keys, quotes and braces, all of which tokenize poorly. Trimming the fields and reformatting the data as compact text cut input tokens by about 70 percent. Proper [cost tracking](./cost-tracking.md) per feature would have caught it in days rather than weeks.
 
-Output tokens deserve separate attention because they drive both cost and [latency](./latency.md). The model generates output one token at a time, so a response twice as long takes roughly twice as long to finish. Asking for concise answers, capping the maximum output length, and avoiding verbose formats are the cheapest optimisations available. Always count with the tokenizer for the specific model you call, since different model families split the same text differently.
+Output tokens deserve separate attention because they drive both cost and [latency](./latency.md). The model generates output one token at a time, so a response twice as long takes roughly twice as long to finish. Asking for concise answers, capping the maximum output length, and avoiding verbose formats are the cheapest optimizations available. Always count with the tokenizer for the specific model you call, since different model families split the same text differently.
 
 _Usage:_
 

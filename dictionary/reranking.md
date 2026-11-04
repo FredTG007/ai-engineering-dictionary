@@ -17,7 +17,7 @@ The standard shape is retrieve wide, rerank narrow. Pull 50 to 100 candidates us
 
 The cost is real and shows up in [latency](./latency.md). One team watched p95 response time nearly double after adding a hosted reranker over 100 candidates; cutting to 40 candidates recovered most of the time with almost no loss in answer quality. Batch the scoring call, set a timeout, and fall back to the original order if the reranker is slow or unavailable.
 
-Rerankers also give you a useful signal. Their scores are better calibrated than raw similarity, so you can drop candidates below a threshold and let the model say "I don't know" instead of answering from weak context. That threshold should be tuned with [evals](./evals.md) in your [RAG](./rag.md) pipeline, not picked by intuition.
+Rerankers also give you a useful signal. Their scores are usually more reliable for thresholding than raw similarity, so you can drop candidates below a threshold and let the model say "I don't know" instead of answering from weak context. That threshold should be tuned with [evals](./evals.md) in your [RAG](./rag.md) pipeline, not picked by intuition.
 
 _Usage:_
 

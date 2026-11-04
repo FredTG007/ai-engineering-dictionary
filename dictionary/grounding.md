@@ -11,7 +11,7 @@ Grounding has a prompt side and a verification side. On the prompt side, you ins
 
 On the verification side, you check the answer after it is generated. Common approaches include confirming that each cited passage exists and was actually in the context, using a second model as an [LLM-as-judge](./llm-as-judge.md) to decide whether each claim is supported, and flagging answers where a high share of sentences have no citation. These checks can run inline for high-stakes flows or offline on sampled traffic.
 
-Grounding is a property you measure, not one you assume. In a [RAG](./rag.md) system, track a groundedness rate alongside answer correctness in your [evals](./evals.md). The two diverge in useful ways: an answer can be correct but ungrounded, meaning the model got lucky from prior knowledge, which will break the day your documents change. An answer can also be grounded but wrong, which points to a bad or outdated source document rather than a model problem. Knowing which case you are in tells you whether to fix the prompt, the retrieval, or the content.
+Grounding is a property you measure, not one you assume. In a [retrieval-augmented generation (RAG)](./rag.md) system, track a groundedness rate alongside answer correctness in your [evals](./evals.md). The two diverge in useful ways: an answer can be correct but ungrounded, meaning the model got lucky from prior knowledge, which will break the day your documents change. An answer can also be grounded but wrong, which points to a bad or outdated source document rather than a model problem. Knowing which case you are in tells you whether to fix the prompt, the retrieval, or the content.
 
 _Usage:_
 

@@ -12,7 +12,7 @@ A bigger window is not a free fix. Long inputs cost more, increase [time to firs
 | Strategy | When it helps | Cost |
 | --- | --- | --- |
 | Truncate oldest messages | Short chats, simple bots | Silent loss of early facts |
-| Summarise history | Long conversations | Extra call, some detail lost |
+| Summarize history | Long conversations | Extra call, some detail lost |
 | Retrieve on demand | Large document sets | Retrieval pipeline to build |
 | Pin key facts | User preferences, constraints | Manual curation |
 

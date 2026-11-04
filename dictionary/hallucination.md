@@ -5,7 +5,7 @@ description: When a model states something false or unsupported with full confid
 
 A hallucination is output that sounds plausible but is not true or not supported by the information the model was given. It might be a made-up statistic, a citation to a paper that does not exist, an API method that was never shipped, or a company policy nobody wrote. The defining feature is confidence: the model presents the invented detail in the same tone as everything else.
 
-It happens because an [LLM](./llm.md) generates likely text, not verified text. When the right answer is missing from its training data or its [context window](./context-window.md), the model still produces the most plausible continuation, and plausible is not the same as correct. A support bot asked about a refund window it was never told about will often invent a reasonable-sounding number. One airline-style incident involved exactly that: the bot promised a bereavement discount that did not exist, and the company had to honour it.
+It happens because an [LLM](./llm.md) generates likely text, not verified text. When the right answer is missing from its training data or its [context window](./context-window.md), the model still produces the most plausible continuation, and plausible is not the same as correct. A support bot asked about a refund window it was never told about will often invent a reasonable-sounding number. One widely reported airline case involved exactly that: the bot described a bereavement refund policy that did not exist, and a tribunal ordered the airline to honor it.
 
 | Cause | Typical symptom | Mitigation |
 | --- | --- | --- |
@@ -20,6 +20,6 @@ Detection needs to be part of your pipeline, not an occasional manual check. Bui
 
 _Usage:_
 
-- "It hallucinated a return policy, the doc wasn't even retrieved."
+- "It hallucinated a return policy; the doc wasn't even retrieved."
 - "Add 'not in the docs' cases to the eval set so we catch hallucinations."
-- "Lower temperature won't fix it, the model just doesn't have the facts."
+- "Lower temperature won't fix it. The model just doesn't have the facts."

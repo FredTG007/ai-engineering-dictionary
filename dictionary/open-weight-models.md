@@ -3,7 +3,7 @@ title: Open-Weight Models
 description: Models whose trained weights are published for download, so you can run, inspect, and fine-tune them on your own infrastructure.
 ---
 
-An open-weight model is one whose trained parameters are released for anyone to download and run. Unlike models available only through a provider's API, you can host an open-weight model on your own hardware, modify it through [fine-tuning](./fine-tuning.md), and keep all data inside your network. "Open weight" is narrower than fully open source: the training data and code are often not released, and licences vary from permissive to restrictive.
+An open-weight model is one whose trained parameters are released for anyone to download and run. Unlike models available only through a provider's API, you can host an open-weight model on your own hardware, modify it through [fine-tuning](./fine-tuning.md), and keep all data inside your network. "Open weight" is narrower than fully open source: the training data and code are often not released, and licenses vary from permissive to restrictive.
 
 Teams usually turn to open-weight models for data control, cost at high volume, or customization. A healthcare company that could not send patient notes to an external API ran an open-weight model inside its own cloud account, which satisfied its compliance review in weeks rather than months. Another team with a narrow, high-volume classification task found a small open-weight model, adapted with [LoRA](./lora.md), cheaper than any hosted option once traffic passed a few million calls per day.
 
@@ -18,12 +18,12 @@ The trade-off is that you take on operations the provider used to handle. Self-h
 | Customization | Limited | Full fine-tuning, adapters |
 | Version control | Provider decides | You pin exactly |
 
-Licences need reading, not assuming. Some open-weight licences restrict commercial use above a user threshold, forbid certain applications, or require attribution, and these terms also govern derivatives such as fine-tunes and [distillation](./distillation.md) outputs. Check before you build a product on one.
+Licenses need reading, not assuming. Some open-weight licenses restrict commercial use above a user threshold, forbid certain applications, or require attribution, and these terms also govern derivatives such as fine-tunes and [distillation](./distillation.md) outputs. Check before you build a product on one.
 
 Open-weight models also help with stability. Because you control the exact weights, the model cannot change underneath you, which removes one source of [drift](./drift.md). Many teams use them alongside hosted models, for example as a [fallback model](./fallback-models.md) during provider outages or as the cheap tier in a routing setup.
 
 _Usage:_
 
 - "Compliance won't approve the external API, so we're running an open-weight model in our VPC."
-- "Read the licence; the commercial terms change above a certain number of monthly users."
+- "Read the license; the commercial terms change above a certain number of monthly users."
 - "Leaderboards say it's close to the big models, but our eval says otherwise on contracts."

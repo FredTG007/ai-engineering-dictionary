@@ -11,7 +11,7 @@ Valid shape is not the same as correct content. A schema guarantees that "refund
 
 Schema design affects quality. Clear field names and short descriptions act like instructions. Putting a reasoning field before the answer field gives the model room for [chain-of-thought](./chain-of-thought.md) inside the structure. Deeply nested schemas with dozens of fields tend to degrade accuracy; splitting one large extraction into two smaller calls often works better.
 
-Structured output is also the foundation of [tool calling](./tool-calling.md). When a model decides to call a function, it is producing arguments that must match a [function schema](./function-schema.md), and the same rules about clear names, nullable fields and validation apply.
+Structured output is also the foundation of [tool calling](./tool-calling.md). When a model decides to call a tool, it is producing arguments that must match a [function schema](./function-schema.md), and the same rules about clear names, nullable fields and validation apply.
 
 _Usage:_
 

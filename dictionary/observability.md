@@ -12,10 +12,10 @@ Good LLM observability usually covers several layers:
 - **Request content:** prompts, completions and retrieved chunks, with [PII redaction](./pii-redaction.md) applied before storage.
 - **Structure:** a [trace](./tracing.md) linking each user request to every model call, retrieval and tool call it triggered.
 - **Operational metrics:** [latency](./latency.md), time to first token, error rates and token usage.
-- **Quality signals:** user thumbs, escalations, guardrail triggers and online eval scores.
+- **Quality signals:** thumbs-up and thumbs-down ratings, escalations, guardrail triggers and online eval scores.
 - **Cost:** spend per request, feature and customer, which feeds [cost tracking](./cost-tracking.md).
 
-Observability is also the foundation for improving quality. Production traces are the best source of real failure cases for your [evals](./evals.md), and patterns in quality metrics are often the first sign of drift after a model update or a change in user behaviour.
+Observability is also the foundation for improving quality. Production traces are the best source of real failure cases for your [evals](./evals.md), and patterns in quality metrics are often the first sign of drift after a model update or a change in user behavior.
 
 Storing full content has costs and risks. Prompt and completion logs can be large, and they may contain sensitive data, so set retention limits, control access, and sample high-volume, low-risk traffic rather than keeping everything forever.
 

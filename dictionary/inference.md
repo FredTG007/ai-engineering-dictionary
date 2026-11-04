@@ -7,7 +7,7 @@ Inference is the act of running a trained model on new input to get output. Trai
 
 Inference for an [LLM](./llm.md) happens in two stages. In the prefill stage, the model processes the whole input [prompt](./prompt.md) at once, which is relatively fast per token because it runs in parallel. In the decode stage, it generates output one token at a time, each step depending on the last. Prefill length drives [time to first token](./time-to-first-token.md); decode length drives total response time.
 
-This split explains many cost and speed surprises. One team moved a summarisation job from a hosted API to self-hosted [GPU serving](./gpu-serving.md) to save money, then found throughput far below their estimate. Their documents were long, so prefill dominated, and they had sized the hardware based on output speed alone. Enabling request [batching](./batching.md) and reusing the [KV cache](./kv-cache.md) for a shared prefix brought throughput up to where the business case worked.
+This split explains many cost and speed surprises. One team moved a summarization job from a hosted API to self-hosted [GPU serving](./gpu-serving.md) to save money, then found throughput far below their estimate. Their documents were long, so prefill dominated, and they had sized the hardware based on output speed alone. Enabling request [batching](./batching.md) and reusing the [KV cache](./kv-cache.md) for a shared prefix brought throughput up to where the business case worked.
 
 Inference cost scales with usage, unlike training, which is a one-off. That makes it an operating expense to watch closely. Track tokens and latency per feature, and remember that a small change in prompt length, multiplied by millions of requests, is often the largest line on the bill.
 

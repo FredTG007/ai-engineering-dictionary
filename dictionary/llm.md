@@ -3,7 +3,7 @@ title: LLM (Large Language Model)
 description: A neural network trained on huge amounts of text to predict the next token, used as the core engine of most AI products.
 ---
 
-A large language model is a neural network trained to predict the next piece of text given everything before it. That single objective, repeated over trillions of [tokens](./tokens.md), produces a system that can summarise, translate, classify, write code and hold a conversation. Nothing in the model "knows" facts the way a database does; it has learned statistical patterns that usually line up with facts, and sometimes do not.
+A large language model is a neural network trained to predict the next piece of text given everything before it. That objective, repeated over trillions of [tokens](./tokens.md) and followed by post-training on instructions and human feedback, produces a system that can summarize, translate, classify, write code and hold a conversation. Nothing in the model "knows" facts the way a database does; it has learned statistical patterns that usually line up with facts, and sometimes do not.
 
 For an engineer, the useful mental model is a stateless function. You send a [prompt](./prompt.md), the model reads it inside a fixed [context window](./context-window.md), and it returns generated text. It does not remember the previous request unless you send that history again. Teams that miss this point end up confused when a chatbot "forgets" the user's name halfway through a session, when the real cause is that the conversation history was trimmed before the call.
 

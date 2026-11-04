@@ -16,7 +16,7 @@ Most voice agents are built as a pipeline:
 
 Some newer systems use speech-to-speech models that skip the text stages, trading control and observability for lower delay and more natural prosody.
 
-[Latency](./latency.md) is the defining constraint. In text chat, a two-second wait is fine. On a phone call, anything above about a second feels like the line went dead, and callers start saying "hello?" which the system then treats as a new utterance. A clinic's booking agent had a median response time of 2.4 seconds; callers routinely talked over it, the agent restarted its answer, and conversations spiralled. Streaming every stage, starting speech synthesis on the first sentence and using a faster model for simple turns brought the gap under 900 milliseconds and fixed most of the overlap.
+[Latency](./latency.md) is the defining constraint. In text chat, a two-second wait is fine. On a phone call, anything above about a second feels like the line went dead, and callers start saying "hello?" which the system then treats as a new utterance. A clinic's booking agent had a median response time of 2.4 seconds; callers routinely talked over it, the agent restarted its answer, and conversations spiraled. Streaming every stage, starting speech synthesis on the first sentence and using a faster model for simple turns brought the gap under 900 milliseconds and fixed most of the overlap.
 
 Voice also changes how you write prompts. Responses must be short, free of markdown, bullet points and URLs, and phrased for the ear. Numbers, dates and email addresses need to be spoken in a way that will not be misheard. Interruptions, background noise, accents and hold music all show up in production in ways a text-only team will not anticipate.
 

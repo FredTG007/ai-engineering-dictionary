@@ -3,9 +3,9 @@ title: Red Teaming
 description: Deliberately attacking your own LLM system to find safety, security and misuse failures before real users or attackers do.
 ---
 
-Red teaming is the practice of trying to break your own AI system on purpose. A red team, whether internal staff, outside specialists or automated attack generators, plays the adversary: they attempt [jailbreaks](./jailbreak.md), [prompt injection](./prompt-injection.md), data extraction, policy violations and misuse of tools, then report what worked so it can be fixed. It is the security mindset applied to model behaviour.
+Red teaming is the practice of trying to break your own AI system on purpose. A red team, whether internal staff, outside specialists or automated attack generators, plays the adversary: they attempt [jailbreaks](./jailbreak.md), [prompt injection](./prompt-injection.md), data extraction, policy violations and misuse of tools, then report what worked so it can be fixed. It is the security mindset applied to model behavior.
 
-The value shows up in what it catches before launch. A bank preparing to release an account-assistant [agent](./agent.md) ran a two-week red-team exercise. Testers discovered that by asking the agent to "summarise my recent activity including any linked accounts", they could get it to reveal transactions from a spouse's joint account the user was not authorised to see. The bug was in tool permissions, not the model, but only adversarial use revealed it.
+The value shows up in what it catches before launch. A bank preparing to release an account-assistant [agent](./agent.md) ran a two-week red-team exercise. Testers discovered that by asking the agent to "summarize my recent activity including any linked accounts", they could get it to reveal transactions from a spouse's joint account the user was not authorized to see. The bug was in tool permissions, not the model, but only adversarial use revealed it.
 
 A useful red-team exercise usually covers several areas:
 

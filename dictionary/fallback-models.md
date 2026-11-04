@@ -7,11 +7,11 @@ A fallback model is a second option your system uses when the first one cannot a
 
 Teams usually add fallbacks after a single-provider outage. A meeting-notes product we worked on went dark for 90 minutes when its only provider had an incident; customers saw spinners and then blank summaries. The fix was a simple chain: primary model, then the same model in another region, then a smaller model from a second provider. The next incident caused a brief quality dip instead of an outage.
 
-Fallbacks are not free substitutes, because models differ in behaviour. A prompt tuned for one model may produce different formatting, refuse more often, or break [structured output](./structured-output.md) parsing on another. Function schemas for [tool calling](./tool-calling.md) can be interpreted differently too. Each model in the chain needs its own prompt variant where necessary and its own pass through your [evals](./evals.md), or the fallback will fail at exactly the moment you need it.
+Fallbacks are not free substitutes, because models differ in behavior. A prompt tuned for one model may produce different formatting, refuse more often, or break [structured output](./structured-output.md) parsing on another. Function schemas for [tool calling](./tool-calling.md) can be interpreted differently too. Each model in the chain needs its own prompt variant where necessary and its own pass through your [evals](./evals.md), or the fallback will fail at exactly the moment you need it.
 
 | Fallback target | Pros | Cons |
 |---|---|---|
-| Same model, other region | Identical behaviour | Shares provider-wide outages |
+| Same model, other region | Identical behavior | Shares provider-wide outages |
 | Smaller model, same provider | Cheap, fast | Lower quality; same outages |
 | Comparable model, other provider | Survives provider incidents | Prompt and format drift |
 | Cached or canned response | Always available | Not a real answer |

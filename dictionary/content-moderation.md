@@ -9,9 +9,9 @@ The need is easy to underestimate until it bites. A language-learning app let us
 
 Most teams use a dedicated moderation classifier rather than asking the main model to police itself. Classifiers are fast, cheap, and return per-category scores you can threshold differently for different products. A mental-health support app might route self-harm signals to a crisis flow rather than blocking, while a children's product might block at a much lower threshold than an internal tool.
 
-Choosing thresholds is a trade-off between harm and frustration. Set them too strict and you block legitimate questions about medicine, history or safety, which users experience as the product being broken. Set them too loose and harmful output gets through. Review flagged samples regularly, track false-positive rates alongside catches, and keep labelled examples in your [evals](./evals.md).
+Choosing thresholds is a trade-off between harm and frustration. Set them too strict and you block legitimate questions about medicine, history or safety, which users experience as the product being broken. Set them too loose and harmful output gets through. Review flagged samples regularly, track false-positive rates alongside catches, and keep labeled examples in your [evals](./evals.md).
 
-Moderation also interacts with [streaming](./streaming.md). If you stream tokens to the user as they are generated, an output check that only runs on the complete response is too late. Options include moderating in chunks, delaying the stream slightly, or retracting a message after the fact, each with its own cost to [latency](./latency.md) and user experience. Moderation also complements [jailbreak](./jailbreak.md) defences, catching harmful output however it was elicited.
+Moderation also interacts with [streaming](./streaming.md). If you stream tokens to the user as they are generated, an output check that only runs on the complete response is too late. Options include moderating in chunks, delaying the stream slightly, or retracting a message after the fact, each with its own cost to [latency](./latency.md) and user experience. Moderation also complements [jailbreak](./jailbreak.md) defenses, catching harmful output however it was elicited.
 
 _Usage:_
 

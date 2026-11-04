@@ -16,7 +16,7 @@ Building a useful golden dataset is mostly curation work. Sources that tend to p
 
 Size matters less than coverage. A hundred well-chosen cases spread across your main user intents will tell you more than ten thousand near-duplicates of the most common question. Tag each case with its category so you can see scores broken down, since an overall average can hide a collapse in one important slice.
 
-Treat the dataset like code. Store it in version control, review changes, and record which version each eval run used. Expected answers go stale: a [RAG](./rag.md) system over a help center will "fail" cases whose reference answers describe last year's policies. Schedule periodic review, and be careful about leakage, such as copying golden examples into a prompt as [few-shot prompting](./few-shot-prompting.md) examples, which inflates scores without improving the system. A held-out portion that nobody tunes against keeps you honest, and it is what makes [regression evals](./regression-evals.md) trustworthy.
+Treat the dataset like code. Store it in version control, review changes, and record which version each eval run used. Expected answers go stale: a [retrieval-augmented generation (RAG)](./rag.md) system over a help center will "fail" cases whose reference answers describe last year's policies. Schedule periodic review, and be careful about leakage, such as copying golden examples into a prompt as [few-shot prompting](./few-shot-prompting.md) examples, which inflates scores without improving the system. A held-out portion that nobody tunes against keeps you honest, and it is what makes [regression evals](./regression-evals.md) trustworthy.
 
 _Usage:_
 

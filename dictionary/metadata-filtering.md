@@ -11,7 +11,7 @@ Where the filter runs matters for both correctness and speed. Most [vector datab
 
 | Approach | How it works | Risk |
 |---|---|---|
-| Pre-filter | Apply conditions first, then search the survivors | Slow if the filter is highly selective and the index can't use it |
+| Pre-filter | Apply conditions first, then search the survivors | Slow if many documents pass the filter and the index can't be used to search them |
 | Post-filter | Search top-k, then drop non-matching results | Can return zero results when matches sit outside the top-k |
 | Filtered index | Index is built to traverse only matching nodes | Needs engine support and careful field indexing |
 

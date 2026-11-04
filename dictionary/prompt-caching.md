@@ -16,7 +16,7 @@ Caching only works on an exact prefix match, so prompt layout matters. Put the s
 | Conversation history | Per turn | Near the end |
 | Latest user message, timestamps | Every call | Last |
 
-Prompt caching is different from response [caching](./caching.md) and [semantic caching](./semantic-caching.md). Those return a stored answer and skip the model entirely; prompt caching still runs the model and produces a fresh answer, it just avoids redoing work on the shared prefix. Under the hood it relies on the same idea as the [KV cache](./kv-cache.md), persisted across requests. Caches also expire after a few minutes of inactivity, so low-traffic endpoints may rarely get hits. Track the cache hit rate in your [cost tracking](./cost-tracking.md) dashboard rather than assuming it works.
+Prompt caching is different from response [caching](./caching.md) and [semantic caching](./semantic-caching.md). Those return a stored answer and skip the model entirely; prompt caching still runs the model and produces a fresh answer, but avoids redoing work on the shared prefix. Under the hood it relies on the same idea as the [KV cache](./kv-cache.md), persisted across requests. Caches also expire after a period of inactivity, often around five minutes by default, so low-traffic endpoints may rarely get hits. Track the cache hit rate in your [cost tracking](./cost-tracking.md) dashboard rather than assuming it works.
 
 _Usage:_
 

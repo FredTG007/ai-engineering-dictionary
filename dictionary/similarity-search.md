@@ -5,7 +5,7 @@ description: Finding the stored items whose vectors are closest to a query vecto
 
 Similarity search is the process of finding the items in a collection that are most similar to a query, measured by the distance between their vectors. You turn the query into an [embedding](./embeddings.md), compare it against stored embeddings using a measure such as cosine similarity or dot product, and return the top k closest results. It is how a [RAG](./rag.md) system finds passages relevant to a question that may not share any exact words with them.
 
-Exact search compares the query with every stored vector, which is accurate but slow once you have millions of items. Production systems almost always use approximate nearest neighbour indexes, such as HNSW or IVF, that trade a little accuracy for large speed gains. A [vector database](./vector-database.md) manages these indexes for you, but the trade-off is still yours to tune.
+Exact search compares the query with every stored vector, which is accurate but slow once you have millions of items. Production systems almost always use approximate nearest neighbor indexes, such as HNSW or IVF, that trade a little accuracy for large speed gains. A [vector database](./vector-database.md) manages these indexes for you, but the trade-off is still yours to tune.
 
 | Setting | Higher value means | Watch out for |
 | --- | --- | --- |

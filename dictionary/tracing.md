@@ -16,7 +16,7 @@ A few practices make traces far more useful:
 - Record token counts and computed cost per span for [cost tracking](./cost-tracking.md).
 - Link user feedback and eval scores back to the trace that produced the response.
 
-Most teams build on OpenTelemetry-style conventions so LLM traces sit alongside their existing service traces. Whatever tooling you choose, make it easy to go from a user complaint to the exact trace in a few clicks, because that path is used constantly during debugging.
+Many teams build on OpenTelemetry-style conventions so LLM traces sit alongside their existing service traces. Whatever tooling you choose, make it easy to go from a user complaint to the exact trace in a few clicks, because that path is used constantly during debugging.
 
 _Usage:_
 

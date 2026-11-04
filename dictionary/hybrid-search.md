@@ -16,7 +16,7 @@ The weakness of pure vector search shows up with exact identifiers. A user paste
 
 Merging two ranked lists is the main design decision. The scores from each method live on different scales, so adding them directly rarely works. Reciprocal rank fusion sidesteps the problem by scoring each document based on its position in each list, not its raw score. Weighted blending of normalized scores is the alternative, but the weights need tuning against real queries and tend to drift as the corpus changes.
 
-Hybrid search is usually the first retrieval improvement worth making in a [RAG](./rag.md) system, ahead of more expensive steps. Many [vector databases](./vector-database.md) now offer it natively, which avoids running and syncing a separate search engine. It pairs naturally with [reranking](./reranking.md): retrieve a broad candidate set from both methods, then let a reranker sort out the final order.
+Hybrid search is usually the first retrieval improvement worth making in a [retrieval-augmented generation (RAG)](./rag.md) system, ahead of more expensive steps. Many [vector databases](./vector-database.md) now offer it natively, which avoids running and syncing a separate search engine. It pairs naturally with [reranking](./reranking.md): retrieve a broad candidate set from both methods, then let a reranker sort out the final order.
 
 Measure it before and after. Build a set of queries that includes identifiers, paraphrases and domain jargon, and track recall at your cutoff for each category. A blended score that improves the average can still hurt one category badly, and that category may be the one your users care about most.
 

@@ -15,7 +15,7 @@ Where you put the human matters more than whether you have one. Common patterns 
 
 Badly designed review steps fail quietly. If reviewers see hundreds of near-identical approvals a day, they start clicking "approve" without reading, which gives you the latency of a human check with none of the safety. Keep the queue small by routing only what genuinely needs judgment, show reviewers the evidence the model used, and make rejecting as easy as approving.
 
-Human corrections are also valuable data. Every edit a reviewer makes is a labelled example of what the system got wrong, and teams that log these systematically can grow a [golden dataset](./golden-dataset.md) and tune [guardrails](./guardrails.md) far faster than teams that treat review as a pure cost.
+Human corrections are also valuable data. Every edit a reviewer makes is a labeled example of what the system got wrong, and teams that log these systematically can grow a [golden dataset](./golden-dataset.md) and tune [guardrails](./guardrails.md) far faster than teams that treat review as a pure cost.
 
 _Usage:_
 

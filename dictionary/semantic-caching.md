@@ -11,12 +11,12 @@ The danger is that "similar" is not the same as "equivalent". The same help bot 
 
 Several practices reduce wrong hits:
 
-- Tune the similarity threshold on real queries labelled as same or different, rather than guessing a number.
+- Tune the similarity threshold on real queries labeled as same or different, rather than guessing a number.
 - Scope the cache with [metadata filtering](./metadata-filtering.md) by product, language, user tier or tenant so near-duplicates from different contexts cannot match.
-- Exclude personalised or time-sensitive questions entirely.
+- Exclude personalized or time-sensitive questions entirely.
 - Optionally verify a candidate hit with a cheap classifier or small model before serving it.
 
-Semantic caching suits high-volume, repetitive, non-personalised traffic such as FAQ and documentation bots. It is a poor fit for open-ended conversation or anything where context from earlier turns changes the right answer. Monitor wrong-hit rates from user feedback and sampled reviews, not just hit rate.
+Semantic caching suits high-volume, repetitive, non-personalized traffic such as FAQ and documentation bots. It is a poor fit for open-ended conversation or anything where context from earlier turns changes the right answer. Monitor wrong-hit rates from user feedback and sampled reviews, not just hit rate.
 
 _Usage:_
 

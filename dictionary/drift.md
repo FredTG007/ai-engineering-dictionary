@@ -1,11 +1,11 @@
 ---
 title: Drift
-description: Gradual change in model behaviour, user inputs, or data over time that quietly erodes quality of a system that once worked.
+description: Gradual change in model behavior, user inputs, or data over time that quietly erodes the quality of a system that once worked.
 ---
 
 Drift is the slow divergence between the conditions your system was built and tested for and the conditions it actually faces in production. In LLM systems it shows up in three main forms: the model changes underneath you, the inputs users send change, or the data you retrieve from changes. In each case nothing visibly breaks; quality simply erodes until someone notices.
 
-Model drift is the version most specific to LLM engineering. A team using a provider alias like "latest" found that their extraction pipeline started returning dates in a different format one Tuesday; the provider had rolled the alias to a new snapshot. No deploy happened on their side, so the regression was invisible in their change log. Pinning an explicit model version and treating upgrades as deliberate releases, gated by [regression evals](./regression-evals.md), is the standard defence.
+Model drift is the version most specific to LLM engineering. A team using a provider alias like "latest" found that their extraction pipeline started returning dates in a different format one Tuesday; the provider had rolled the alias to a new snapshot. No deploy happened on their side, so the regression was invisible in their change log. Pinning an explicit model version and treating upgrades as deliberate releases, gated by [regression evals](./regression-evals.md), is the standard defense.
 
 Input drift happens when users start asking different things. A support bot launched for billing questions gradually received more questions about a new product line it had never been prompted for, and its [hallucination](./hallucination.md) rate climbed because it tried to answer anyway. The prompts and [golden dataset](./golden-dataset.md) still reflected launch-day traffic, so offline scores stayed high while real-world quality fell.
 
