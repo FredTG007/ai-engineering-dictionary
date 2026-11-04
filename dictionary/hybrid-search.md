@@ -8,7 +8,7 @@ interviewAnswer: "Covers combining keyword search such as BM25 for exact identif
 
 Hybrid search runs a keyword search and a vector search over the same corpus and merges their results into a single ranked list. Each method misses things the other finds, and combining them is one of the cheapest ways to raise retrieval recall.
 
-The weakness of pure vector search shows up with exact identifiers. A user pastes an error code like `ERR_4012` or a SKU like `KX-220B`, and [similarity search](./similarity-search.md) over [embeddings](./embeddings.md) returns documents about vaguely similar errors instead of the one page that contains that exact string. Keyword engines such as BM25 handle this well. The reverse is also true: a keyword search for "cancel my subscription" misses a page titled "Ending your membership," which a vector search finds easily.
+The weakness of pure vector search shows up with exact identifiers. A user pastes an error code like `ERR_4012` or a SKU like `KX-220B`, and [similarity search](./similarity-search.md) over [embeddings](./embeddings.md) returns documents about vaguely similar errors instead of the one page that contains that exact string. Keyword engines such as [BM25](./bm25.md) handle this well. The reverse is also true: a keyword search for "cancel my subscription" misses a page titled "Ending your membership," which a vector search finds easily.
 
 | Query type | Keyword (BM25) | Vector |
 |---|---|---|
@@ -21,7 +21,7 @@ Merging two ranked lists is the main design decision. The scores from each metho
 
 Hybrid search is usually the first retrieval improvement worth making in a [retrieval-augmented generation (RAG)](./rag.md) system, ahead of more expensive steps. Many [vector databases](./vector-database.md) now offer it natively, which avoids running and syncing a separate search engine. It pairs naturally with [reranking](./reranking.md): retrieve a broad candidate set from both methods, then let a reranker sort out the final order.
 
-Measure it before and after. Build a set of queries that includes identifiers, paraphrases and domain jargon, and track recall at your cutoff for each category. A blended score that improves the average can still hurt one category badly, and that category may be the one your users care about most.
+Measure it before and after. Build a set of queries that includes identifiers, paraphrases and domain jargon, and track [recall at your cutoff](./retrieval-metrics.md) for each category. A blended score that improves the average can still hurt one category badly, and that category may be the one your users care about most.
 
 _Usage:_
 

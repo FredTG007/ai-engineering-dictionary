@@ -1,0 +1,7 @@
+An embedding is a list of numbers that captures the meaning of a piece of text. Two sentences that mean the same thing, like "how do I reset my password" and "I forgot my login", end up close together, even though they share almost no words.
+
+That closeness is what makes semantic search work. You embed your documents once, store the vectors, then embed each question and look for its nearest neighbours.
+
+The catch is that every vector has to come from the same model. One team upgraded the model for queries but never re-embedded their documents. Nothing crashed, the numbers were still the right length, but search results turned close to random.
+
+Embeddings also struggle with exact strings like error codes, which is why many teams pair them with keyword search.

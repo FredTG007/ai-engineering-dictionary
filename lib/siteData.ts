@@ -1,3 +1,4 @@
+import { loadAudioManifest } from "./audio/loadAudio";
 import { loadCurriculum, loadTerms, loadTracks } from "./content/loadDictionary";
 import { publishTerms } from "./content/publishTerms";
 import type { PublishedTerm } from "./content/types";
@@ -10,6 +11,8 @@ export interface SiteData {
   terms: PublishedTerm[];
   tracks: Track[];
   map: SubwayMap;
+  /** Terms with recorded narration in `public/audio/`. */
+  audioSlugs: string[];
 }
 
 /** Build-time entry point: everything the client needs, computed once. */
@@ -20,5 +23,5 @@ export function loadSiteData(): SiteData {
   const titles = new Map(rawTerms.map((term) => [term.slug, term.title]));
   const terms = publishTerms(rawTerms, loadCurriculum(), (slug) => membership.get(slug) ?? []);
   const map = buildSubwayMap({ tracks, placements: STATION_PLACEMENTS, titleOf: (slug) => titles.get(slug) ?? slug });
-  return { terms, tracks, map };
+  return { terms, tracks, map, audioSlugs: loadAudioManifest().slugs };
 }

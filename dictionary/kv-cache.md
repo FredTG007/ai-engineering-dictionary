@@ -6,7 +6,7 @@ interview: "Your self-hosted model handles forty concurrent short chats but fail
 interviewAnswer: "Covers KV cache memory growing with sequence length times concurrent requests, out-of-memory errors and queuing, paged cache management, grouped-query attention and cache quantization, capping context length, prefix caching for shared prompts, and prefill versus decode behavior."
 ---
 
-The KV cache is the memory a transformer model uses to avoid redoing work during generation. Each layer computes key and value vectors for every token it has seen; rather than recomputing these for the whole sequence each time a new token is produced, the model stores them and only computes the new token's entries. This is what makes token-by-token generation affordable.
+The KV cache is the memory a [transformer](./transformer.md) model uses to avoid redoing work during generation. Each layer computes key and value vectors for every token it has seen; rather than recomputing these for the whole sequence each time a new token is produced, the model stores them and only computes the new token's entries. This is what makes token-by-token generation affordable.
 
 For application engineers the cache matters mainly because it consumes GPU memory in proportion to sequence length and the number of concurrent requests. A team self-hosting a model found that their server handled 40 simultaneous chats with short prompts but fell over at eight when users pasted long documents. The model weights had not changed; the KV cache for those long sequences filled the GPU, and new requests queued or failed with out-of-memory errors.
 

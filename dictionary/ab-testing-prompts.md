@@ -6,7 +6,7 @@ interview: "Offline evals say your new prompt is better, but leadership wants pr
 interviewAnswer: "Covers randomizing at the user or session level, choosing a primary metric such as resolution or task success plus guardrail metrics like cost and latency, sizing the sample for significance, logging prompt version per request, and watching for novelty effects."
 ---
 
-A/B testing prompts means splitting live traffic between two or more prompt versions and comparing how real users respond, so the decision about which version to keep rests on production outcomes rather than offline scores alone. It is the last step after offline [evals](./evals.md) say a change is safe to try.
+A/B testing prompts means splitting live traffic between two or more prompt versions and comparing how real users respond, so the decision about which version to keep rests on production outcomes rather than [offline scores](./online-vs-offline-evals.md) alone. It is the last step after offline [evals](./evals.md) say a change is safe to try.
 
 Offline evals and live behavior can disagree, and that gap is the reason to test in production. One team's new onboarding prompt scored higher on their [LLM-as-judge](./llm-as-judge.md) helpfulness rubric, so they shipped it to everyone. Conversion to a paid plan dropped noticeably over the next week. The new prompt gave longer, more thorough answers that the judge liked and users skimmed past. A 50/50 split would have shown the drop within days and limited the damage.
 
@@ -14,7 +14,7 @@ Running a fair test requires a few basics:
 
 - **Stable assignment:** hash a user or session ID so each person sees one variant consistently, rather than flipping on every message.
 - **Clear version IDs:** tie each response to the exact prompt through [prompt versioning](./prompt-versioning.md), so the analysis is not muddied by edits during the test.
-- **A primary metric chosen in advance:** task completion, thumbs-up rate, escalation to a human, or conversion. Picking the best-looking metric afterwards produces false wins.
+- **A primary metric chosen in advance:** task completion, [thumbs-up rate](./user-feedback-loops.md), escalation to a human, or conversion. Picking the best-looking metric afterwards produces false wins.
 - **Guardrail metrics:** cost per conversation, [latency](./latency.md), and error or refusal rates, so a "winning" prompt that doubles token use is caught.
 
 Sample size is often the hard part. Thumbs-up feedback is sparse, and LLM outputs are noisy, so small differences need a lot of traffic to confirm. Decide the minimum effect you care about and the run length before starting, and resist stopping the test early because a dashboard looks good on day two.

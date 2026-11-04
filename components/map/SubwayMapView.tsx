@@ -36,9 +36,10 @@ export function SubwayMapView({ map, startSlug, colourOf, selectedSlug, learned,
   const stationsBySlug = useMemo(() => new Map(map.stations.map((station) => [station.slug, station])), [map.stations]);
   const selectedStation = selectedSlug ? stationsBySlug.get(selectedSlug) : undefined;
 
+  const termOpen = selectedSlug !== null;
   const fitView = useCallback(
-    (view: Size) => fitContent({ width: map.width, height: map.height }, view, overlayInsets(view), FIT_MIN_SCALE),
-    [map.width, map.height],
+    (view: Size) => fitContent({ width: map.width, height: map.height }, view, overlayInsets(view, termOpen), FIT_MIN_SCALE),
+    [map.width, map.height, termOpen],
   );
 
   useViewportFollowsSelection(size, selectedStation, viewport.scale, fitView, setViewport, flyTo);
@@ -98,7 +99,7 @@ function useViewportFollowsSelection(
   useEffect(() => {
     if (!size) return;
     const target = station
-      ? centreOn(station.position, Math.max(scale.current, FOCUS_SCALE), size, overlayInsets(size))
+      ? centreOn(station.position, Math.max(scale.current, FOCUS_SCALE), size, overlayInsets(size, true))
       : null;
     if (!placed.current) {
       placed.current = true;

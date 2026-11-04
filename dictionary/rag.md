@@ -14,14 +14,14 @@ A basic pipeline has two phases. Offline, you split source documents with [chunk
 
 | Stage | Common failure | Typical fix |
 |---|---|---|
-| Ingestion | Tables and PDFs parsed into noise | Better parsers, structure-aware chunking |
+| [Ingestion](./document-ingestion.md) | Tables and PDFs parsed into noise | Better parsers, structure-aware chunking |
 | Retrieval | Right document exists but is not returned | Hybrid search, [query rewriting](./query-rewriting.md), metadata filters |
 | Ranking | Relevant chunk returned at position 15, cut off | Reranking, larger candidate pool |
 | Generation | Model ignores context or blends in prior knowledge | Stricter instructions, citations, grounding checks |
 
 Most RAG problems are retrieval problems wearing a generation costume. When an answer is wrong, look at what was retrieved before touching the prompt. If the right chunk was not in the context, no amount of prompt tuning will help. Logging the retrieved chunk IDs for every request makes this debugging possible.
 
-RAG is not free. Each retrieved chunk adds tokens, which raises cost and [latency](./latency.md), and a larger context can dilute the model's attention. Measure retrieval quality and answer quality separately with [evals](./evals.md), so you know which half of the system to fix.
+RAG is not free. Each retrieved chunk adds tokens, which raises cost and [latency](./latency.md), and a larger context can dilute the model's attention. Measure [retrieval quality](./retrieval-metrics.md) and answer quality separately with [evals](./evals.md), so you know which half of the system to fix.
 
 _Usage:_
 

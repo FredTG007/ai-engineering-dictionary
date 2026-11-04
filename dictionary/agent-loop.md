@@ -35,7 +35,7 @@ Production loops add several controls around this core:
 
 Loops also need to handle errors in a way the model can use. When a tool fails, return a short, specific error as the tool result instead of crashing, so the model can try something else. When the loop stops due to a limit, tell the user plainly rather than returning a half-finished answer as if it were complete.
 
-Observability is essential because the loop is where behavior unfolds over time. Record each step, the model's tool choice, the arguments, the result and the tokens used, ideally with [tracing](./tracing.md) so a run can be replayed. Patterns like [planning](./planning.md) and [memory](./memory.md) are mostly additions to this loop, not replacements for it.
+Observability is essential because the loop is where behavior unfolds over time. Record each step, the model's tool choice, the arguments, the result and the tokens used, ideally with [tracing](./tracing.md) so a run can be replayed. Patterns like [ReAct](./react-pattern.md), [planning](./planning.md) and [memory](./memory.md) are mostly additions to this loop, not replacements for it.
 
 _Usage:_
 

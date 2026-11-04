@@ -8,7 +8,7 @@ interviewAnswer: "Covers using an agent only when steps cannot be known in advan
 
 An agent is an LLM-based system that decides for itself what to do next in pursuit of a goal, typically by choosing tools to call, observing the results, and repeating until it judges the task complete. The defining feature is that the model controls the sequence of steps, rather than following a fixed path written in code.
 
-The distinction matters because it changes how a system fails. A fixed workflow that classifies a ticket, retrieves an article and drafts a reply fails in predictable places. An agent given the same job plus access to a refund API might decide to issue a refund it was never meant to, or loop for 40 steps searching for an order that does not exist. One team found a single stuck conversation had made over 200 model calls before a timeout killed it, and their daily spend spiked accordingly.
+The distinction matters because it changes how a system fails. A fixed [workflow](./workflows-vs-agents.md) that classifies a ticket, retrieves an article and drafts a reply fails in predictable places. An agent given the same job plus access to a refund API might decide to issue a refund it was never meant to, or loop for 40 steps searching for an order that does not exist. One team found a single stuck conversation had made over 200 model calls before a timeout killed it, and their daily spend spiked accordingly.
 
 An agent is built from a few parts working together:
 

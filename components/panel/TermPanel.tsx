@@ -13,6 +13,7 @@ import { DifficultyBadge } from "./DifficultyBadge";
 import { HeardInTheWild } from "./HeardInTheWild";
 import { InterviewCard } from "./InterviewCard";
 import { LearnedToggle } from "./LearnedToggle";
+import { ListenButton } from "./ListenButton";
 import { TrackBadges } from "./TrackBadges";
 
 interface TermPanelProps {
@@ -21,6 +22,8 @@ interface TermPanelProps {
   progressOf: (trackId: string) => TrackProgress | undefined;
   orderedSlugs: string[];
   learned: boolean;
+  /** Narration URL, or null while the term has no recorded audio. */
+  audioSrc: string | null;
   titleOf: (slug: string) => string;
   onToggleLearned: () => void;
   onSelect: (slug: string) => void;
@@ -29,7 +32,7 @@ interface TermPanelProps {
 }
 
 export function TermPanel(props: TermPanelProps) {
-  const { term, tracks, progressOf, orderedSlugs, learned, titleOf, onToggleLearned, onSelect, onClose, onExpand } = props;
+  const { term, tracks, progressOf, orderedSlugs, learned, audioSrc, titleOf, onToggleLearned, onSelect, onClose, onExpand } = props;
   const [expanded, setExpanded] = useState(false);
   const position = curriculumPosition(orderedSlugs, term.slug);
 
@@ -59,6 +62,7 @@ export function TermPanel(props: TermPanelProps) {
             {expanded ? "Show less" : "Read more"}
           </button>
           <LearnedToggle learned={learned} onToggle={onToggleLearned} />
+          <ListenButton src={audioSrc} />
         </div>
         {expanded && <DefinitionBody html={term.definitionHtml} onTermLink={onSelect} />}
         <InterviewCard question={term.interview} answer={term.interviewAnswer} onReveal={onExpand} />

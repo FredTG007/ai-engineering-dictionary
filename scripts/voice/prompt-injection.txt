@@ -1,0 +1,5 @@
+Prompt injection happens when untrusted text gets into a model's input and the model follows it as if it were an instruction. The model sees your rules, the user's message and any retrieved content as one stream of text, so it has no reliable way to tell them apart.
+
+The direct form is a user typing "ignore your previous instructions." The indirect form is worse. The attack hides in an email, a web page or a document your app reads on the user's behalf. One email assistant read a message with hidden text telling it to forward the user's inbox to a stranger. It had a send tool, so it did.
+
+No single fix stops this. Keep tool permissions narrow, put a human in front of risky actions, and design so a successful injection can't do much damage.

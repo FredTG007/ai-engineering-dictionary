@@ -30,7 +30,9 @@ export function clampScale(scale: number): number {
 
 /**
  * Pure: viewport that shows the whole content inside the visible area, centred.
- * `minScale` keeps text legible on small screens at the cost of cropping the edges.
+ * `minScale` keeps text legible on small screens at the cost of cropping; the
+ * crop falls on the right and bottom, so the top-left labels never slide under
+ * the overlays that the insets describe.
  */
 export function fitContent(content: Size, view: Size, insets: Insets = NO_INSETS, minScale = MIN_SCALE, padding = 24): Viewport {
   const visible = visibleSize(view, insets);
@@ -39,9 +41,14 @@ export function fitContent(content: Size, view: Size, insets: Insets = NO_INSETS
   );
   return {
     scale,
-    x: insets.left + (visible.width - content.width * scale) / 2,
-    y: insets.top + (visible.height - content.height * scale) / 2,
+    x: insets.left + centredOrPinned(visible.width, content.width * scale, padding),
+    y: insets.top + centredOrPinned(visible.height, content.height * scale, padding),
   };
+}
+
+/** Offset that centres content when it fits, or pins its start edge `padding` in when it doesn't. */
+function centredOrPinned(visibleLength: number, contentLength: number, padding: number): number {
+  return Math.max(padding, (visibleLength - contentLength) / 2);
 }
 
 /** Pure: zooms by `factor` while keeping the world point under `anchor` fixed on screen. */

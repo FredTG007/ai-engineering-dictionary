@@ -10,7 +10,7 @@ Reranking is a second pass over retrieved candidates in which a more precise mod
 
 The symptom that leads teams to add a reranker is usually "the right document was retrieved but not used." Logs show the correct chunk sitting at position 14, while only the top 5 make it into the prompt. Fast retrievers compare a query embedding with document [embeddings](./embeddings.md) computed independently, so they cannot weigh how specific words in the question relate to specific words in the passage. A reranker, usually a cross-encoder or a small [LLM](./llm.md), reads the query and each candidate together and catches those relationships.
 
-The standard shape is retrieve wide, rerank narrow. Pull 50 to 100 candidates using [hybrid search](./hybrid-search.md), rerank them, and pass the best 5 to 10 to the model. This lets the cheap step optimize for recall and the expensive step optimize for precision.
+The standard shape is retrieve wide, rerank narrow. Pull 50 to 100 candidates using [hybrid search](./hybrid-search.md), rerank them, and pass the best 5 to 10 to the model. This lets the cheap step optimize for [recall](./retrieval-metrics.md) and the expensive step optimize for precision.
 
 | Setting | Effect of increasing it |
 |---|---|

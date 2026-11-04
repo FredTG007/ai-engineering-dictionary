@@ -6,7 +6,7 @@ interview: "Retrieval keeps returning passages that cut off halfway through the 
 interviewAnswer: "Covers chunk size versus focus, overlap between chunks, splitting on document structure like headings rather than fixed character counts, and keeping metadata such as title and section. Mentions measuring retrieval hit rate on real questions before and after a change."
 ---
 
-Chunking is splitting source documents into smaller pieces before you embed and index them. A retrieval system rarely wants a whole fifty-page manual; it wants the two paragraphs that answer the question. Each chunk gets its own [embedding](./embeddings.md) and is stored in a [vector database](./vector-database.md), so the quality of your chunks sets an upper limit on what [similarity search](./similarity-search.md) can find.
+Chunking is splitting source documents, once [document ingestion](./document-ingestion.md) has turned them into clean text, into smaller pieces before you embed and index them. A retrieval system rarely wants a whole fifty-page manual; it wants the two paragraphs that answer the question. Each chunk gets its own [embedding](./embeddings.md) and is stored in a [vector database](./vector-database.md), so the quality of your chunks sets an upper limit on what [similarity search](./similarity-search.md) can find.
 
 Chunk size is a balancing act. Large chunks carry more context but blend several topics into one vector, so they match many queries loosely and few precisely, and they eat [tokens](./tokens.md) in the prompt. Small chunks match precisely but can lose the information needed to interpret them. A sentence like "This limit does not apply to enterprise plans" means little if the chunk does not say which limit.
 

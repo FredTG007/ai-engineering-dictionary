@@ -10,16 +10,18 @@ colour: #c8402a
 
 1. llm
 2. tokens
-3. context-window
-4. prompt
-5. system-prompt
-6. few-shot-prompting
-7. chain-of-thought
-8. temperature
-9. top-p-sampling
-10. structured-output
-11. hallucination
-12. inference
+3. tokenizer
+4. transformer
+5. context-window
+6. prompt
+7. system-prompt
+8. few-shot-prompting
+9. chain-of-thought
+10. temperature
+11. top-p-sampling
+12. structured-output
+13. hallucination
+14. inference
 
 ## RAG
 
@@ -29,14 +31,17 @@ colour: #2763b0
 2. embeddings
 3. similarity-search
 4. vector-database
-5. chunking
-6. metadata-filtering
-7. rag
-8. query-rewriting
-9. hybrid-search
-10. reranking
-11. grounding
-12. context-engineering
+5. document-ingestion
+6. chunking
+7. metadata-filtering
+8. rag
+9. query-rewriting
+10. bm25
+11. hybrid-search
+12. reranking
+13. retrieval-metrics
+14. grounding
+15. context-engineering
 
 ## Agents
 
@@ -47,11 +52,14 @@ colour: #3f8f3a
 3. tool-calling
 4. function-schema
 5. agent-loop
-6. planning
-7. memory
-8. mcp
-9. multi-agent
-10. human-in-the-loop
+6. react-pattern
+7. planning
+8. memory
+9. mcp
+10. workflows-vs-agents
+11. orchestrator-worker
+12. multi-agent
+13. human-in-the-loop
 
 ## Evals
 
@@ -59,12 +67,16 @@ colour: #7a4a9e
 
 1. hallucination
 2. evals
-3. golden-dataset
-4. llm-as-judge
-5. regression-evals
-6. prompt-versioning
-7. ab-testing-prompts
-8. drift
+3. error-analysis
+4. golden-dataset
+5. llm-as-judge
+6. pairwise-evals
+7. regression-evals
+8. prompt-versioning
+9. ab-testing-prompts
+10. online-vs-offline-evals
+11. drift
+12. user-feedback-loops
 
 ## Safety
 
@@ -73,11 +85,12 @@ colour: #df8a1b
 1. system-prompt
 2. guardrails
 3. prompt-injection
-4. jailbreak
-5. pii-redaction
-6. content-moderation
-7. red-teaming
-8. human-in-the-loop
+4. indirect-prompt-injection
+5. jailbreak
+6. pii-redaction
+7. content-moderation
+8. red-teaming
+9. human-in-the-loop
 
 ## Production
 
@@ -97,7 +110,8 @@ colour: #148a96
 12. retries-and-timeouts
 13. fallback-models
 14. model-routing
-15. drift
+15. llm-gateway
+16. drift
 
 ## Training & Inference
 
@@ -108,14 +122,17 @@ colour: #8b5a2b
 3. multimodal
 4. open-weight-models
 5. fine-tuning
-6. lora
-7. rlhf
-8. distillation
-9. quantization
-10. kv-cache
-11. batching
-12. throughput
-13. gpu-serving
+6. supervised-fine-tuning
+7. lora
+8. rlhf
+9. dpo
+10. distillation
+11. quantization
+12. kv-cache
+13. speculative-decoding
+14. batching
+15. throughput
+16. gpu-serving
 
 ## Voice
 

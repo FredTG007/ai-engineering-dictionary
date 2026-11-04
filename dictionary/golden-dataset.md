@@ -13,7 +13,7 @@ The value of having one becomes obvious when you do not. A team comparing two mo
 Building a useful golden dataset is mostly curation work. Sources that tend to pay off:
 
 - Real production inputs, sampled and anonymized, so the set reflects what users actually send.
-- Past failures and bug reports, each turned into a case with the correct answer.
+- Past failures and bug reports, found through [error analysis](./error-analysis.md), each turned into a case with the correct answer.
 - Edge cases chosen on purpose: empty inputs, very long ones, other languages, adversarial phrasing.
 - Cases that test refusal or "I don't know" behavior, so the system is rewarded for not inventing answers.
 

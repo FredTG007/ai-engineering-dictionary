@@ -6,7 +6,7 @@ interview: "Your LLM bill tripled this month with flat traffic, and the only rec
 interviewAnswer: "Covers measuring input and output tokens per feature, noting that JSON keys, braces and quotes tokenize poorly, trimming fields or reformatting data compactly, output being priced higher than input, and adding per-feature cost tracking so spikes surface in days."
 ---
 
-Tokens are the units of text a language model processes. A tokenizer splits input into pieces that are often whole common words, fragments of rarer words, punctuation or whitespace. As a rough rule, one token is about four characters of English, but code, numbers and non-English text usually take more tokens per character.
+Tokens are the units of text a language model processes. A [tokenizer](./tokenizer.md) splits input into pieces that are often whole common words, fragments of rarer words, punctuation or whitespace. As a rough rule, one token is about four characters of English, but code, numbers and non-English text usually take more tokens per character.
 
 Tokens matter because almost every limit and cost in an [LLM](./llm.md) system is measured in them. The [context window](./context-window.md) is a token budget. Provider pricing is per million input and output tokens, with output usually priced several times higher. [Rate limits](./rate-limits.md) are often expressed as tokens per minute. If you only think in characters or words, your estimates will drift.
 

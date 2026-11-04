@@ -1,0 +1,5 @@
+An agent is a system where the model decides its own next step. It picks a tool, looks at the result, and keeps going until it thinks the job is done. The key difference from a fixed workflow is that the model, not your code, controls the sequence.
+
+That freedom changes how things go wrong. A workflow fails in predictable places. An agent can loop for forty steps hunting for an order that doesn't exist, or issue a refund nobody approved. One team found a single stuck conversation had made over two hundred model calls before a timeout stopped it.
+
+So use an agent only when the path really can't be known in advance. Then cap the steps and the budget, keep tool permissions narrow, and put a human in front of anything irreversible.

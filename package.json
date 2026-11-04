@@ -9,6 +9,7 @@
     "build": "next build",
     "start": "npx serve out",
     "validate": "tsx scripts/validate-content.ts",
+    "audio:manifest": "tsx scripts/build-audio-manifest.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

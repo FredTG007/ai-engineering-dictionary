@@ -6,7 +6,7 @@ interview: "A teammate proposes splitting your single agent into five specialize
 interviewAnswer: "Agrees only if roles need different tools, context or permissions and a single agent measurably fails. Watches for lost context in handoffs, agents looping or contradicting each other, multiplied cost and latency, and harder debugging, so traces across agents and clear ownership matter."
 ---
 
-A multi-agent system splits work across more than one [agent](./agent.md), each with its own instructions, tools and often its own model. A common shape is an orchestrator that breaks a request into subtasks and hands them to specialist workers, such as a researcher, a coder and a reviewer, then merges their results. Other shapes include peer agents passing messages or a pipeline where each agent transforms the previous one's output.
+A multi-agent system splits work across more than one [agent](./agent.md), each with its own instructions, tools and often its own model. A common shape is an [orchestrator](./orchestrator-worker.md) that breaks a request into subtasks and hands them to specialist workers, such as a researcher, a coder and a reviewer, then merges their results. Other shapes include peer agents passing messages or a pipeline where each agent transforms the previous one's output.
 
 The usual motivation is that one agent with everything in its prompt starts to degrade. A team building a due-diligence assistant found that once their single agent had twenty-five tools and a four-page [system prompt](./system-prompt.md), it began skipping steps and calling the wrong search tool about one time in six. Splitting it into a planner plus three narrow workers, each seeing only its own five tools, brought tool-selection errors close to zero.
 

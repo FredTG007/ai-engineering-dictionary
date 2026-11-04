@@ -21,7 +21,7 @@ An eval has three parts: inputs, a way to run the system, and a way to score the
 
 Good evals measure the parts separately. In a [retrieval-augmented generation (RAG)](./rag.md) system, score retrieval (was the right document found?) independently from generation (was the answer correct and supported?). In an agent, score whether the right tool was chosen separately from whether the final answer was right. When a number drops, this tells you where to look.
 
-Evals only help if they run often. Wire them into CI so prompt and model changes are checked before merge, which is the basis of [regression evals](./regression-evals.md). Keep the suite fast enough that people do not skip it, and keep adding cases from production failures. An eval suite that has not grown in three months is probably measuring last quarter's problems.
+Evals only help if they run often. Wire them into CI so prompt and model changes are checked before merge, which is the basis of [regression evals](./regression-evals.md). Keep the suite fast enough that people do not skip it, and keep adding cases from production failures that [error analysis](./error-analysis.md) turns up. An eval suite that has not grown in three months is probably measuring last quarter's problems.
 
 _Usage:_
 

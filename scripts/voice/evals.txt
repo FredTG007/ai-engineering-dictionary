@@ -1,0 +1,7 @@
+Evals are repeatable tests for an LLM system. You run it over a fixed set of inputs, score the outputs, and compare versions with numbers instead of gut feeling.
+
+Most teams start after a change that looked fine and wasn't. An engineer makes the system prompt friendlier, checks five conversations, and ships. A week later, support notices the bot has quietly stopped including order numbers. Five hand-picked examples were never going to catch that.
+
+Scoring depends on the task. Exact checks work for extraction and classification. A judge model can grade tone or helpfulness, as long as you calibrate it. Humans still get the final say on subtle quality.
+
+Measure the parts separately, so a drop tells you where to look. Run the suite on every change, and keep adding the failures you find in production.

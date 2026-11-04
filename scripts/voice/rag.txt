@@ -1,0 +1,7 @@
+Retrieval-augmented generation, or RAG, means looking up the right documents when a question arrives and putting them in front of the model, so it answers from them instead of from memory.
+
+Teams usually reach for it after a bad moment. A support bot tells a customer the refund window is sixty days. The real policy is thirty. Nothing in the prompt corrected it, so the model guessed. Put the actual policy into the context, and that kind of mistake mostly goes away.
+
+The pipeline is simple to describe. Split your documents into chunks, turn them into embeddings, and store them. At request time, find the closest chunks and pass them in.
+
+One habit matters most. When an answer is wrong, check what was retrieved before you touch the prompt.

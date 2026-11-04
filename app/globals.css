@@ -417,6 +417,23 @@ kbd {
 @keyframes tick { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
 .learned-toggle[aria-checked="true"] { color: #3f8f3a; font-weight: 600; }
 
+.listen-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px 4px 8px;
+  background: none;
+  border: 1.3px solid var(--ink);
+  border-radius: 14px 12px 15px 11px;
+  cursor: pointer;
+  font-size: 0.92rem;
+}
+.listen-button:hover:not(:disabled) { background: var(--highlight); }
+.listen-button[aria-pressed="true"] { background: var(--highlight); font-weight: 600; }
+.listen-button:disabled { cursor: default; color: var(--ink-soft); border-style: dashed; border-color: var(--pencil); font-style: italic; }
+.listen-button__icon { width: 18px; height: 18px; overflow: visible; }
+.listen-button__icon path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
+
 .definition { line-height: 1.6; margin: 10px 0 6px; }
 .definition p { margin: 0 0 0.9em; }
 .definition table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 0 0 1em; }
@@ -598,6 +615,120 @@ kbd {
 }
 .newsletter__message { margin: 6px 0 0; font-style: italic; color: var(--ink-soft); }
 
+/* ---------- Header view toggle ---------- */
+
+.view-toggle {
+  padding: 5px 14px 6px;
+  background: var(--page-raised);
+  border: 1.5px solid var(--ink);
+  border-radius: 16px 13px 17px 12px;
+  cursor: pointer;
+  font-family: var(--serif-display);
+  font-weight: 600;
+}
+.view-toggle:hover,
+.view-toggle[aria-pressed="true"] { background: var(--highlight); }
+
+/* ---------- Study view (flashcards) ---------- */
+
+.study {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  padding: 108px var(--edge-gap) 40px;
+}
+.study__sheet {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 18px 26px 22px 58px;
+  background:
+    linear-gradient(90deg, transparent 38px, var(--margin-line) 38px, var(--margin-line) 39.5px, transparent 39.5px),
+    var(--grain),
+    var(--page-raised);
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.study__header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.study__title { margin: 0; font-family: var(--serif-display); font-size: 1.7rem; font-weight: 650; }
+.deck-controls { display: flex; flex-wrap: wrap; gap: 14px; }
+.deck-controls__field { display: inline-flex; align-items: baseline; gap: 6px; font-style: italic; color: var(--ink-soft); font-size: 0.92rem; }
+.deck-controls select {
+  padding: 3px 4px;
+  background: transparent;
+  color: var(--ink);
+  border: none;
+  border-bottom: 1.3px solid var(--ink);
+  font: inherit;
+  font-style: normal;
+}
+.deck-stats { margin: 14px 0 6px; }
+.deck-stats__counts { margin: 0 0 6px; }
+.deck-stats .rough-progress { width: 100%; height: 12px; }
+.deck-stats__seen { margin: 4px 0 0; font-size: 0.85rem; font-style: italic; color: var(--ink-soft); }
+
+.study-session { margin-top: 18px; }
+.study-session--done { padding: 26px 4px; }
+.study-session__open { margin-top: 12px; }
+.study-session__keys { margin: 14px 0 0; font-size: 0.85rem; color: var(--ink-soft); }
+
+.flashcard {
+  position: relative;
+  min-height: 220px;
+  padding: 20px 22px 18px;
+  background: color-mix(in srgb, var(--highlight) 45%, var(--page-raised));
+  border: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 10px 22px -14px rgba(0, 0, 0, 0.45);
+  transform: rotate(-0.4deg);
+  animation: fade 0.25s;
+}
+.flashcard[data-kind="interview"] { transform: rotate(0.35deg); }
+.flashcard__eyebrow { margin: 0 0 8px; font-family: var(--serif-display); font-style: italic; color: var(--ink-soft); }
+.flashcard__term { margin: 0 0 14px; font-family: var(--serif-display); font-size: 1.9rem; font-weight: 650; line-height: 1.15; }
+.flashcard__question { margin: 0 0 14px; font-family: var(--serif-display); font-size: 1.25rem; line-height: 1.4; }
+.flashcard__flip {
+  padding: 6px 2px;
+  background: none;
+  border: none;
+  border-bottom: 1.5px dashed currentColor;
+  color: var(--accent);
+  cursor: pointer;
+  font-style: italic;
+}
+.flashcard__answer { border-top: 1px dashed color-mix(in srgb, var(--ink) 35%, transparent); padding-top: 10px; animation: fade 0.25s; }
+.flashcard__answer p { margin: 0; line-height: 1.55; font-size: 1.05rem; }
+.flashcard__answer-title { margin: 0 0 4px; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); }
+
+.grade-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px; }
+.grade-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 7px 4px;
+  background: var(--page-raised);
+  border: 1.4px solid var(--ink);
+  border-radius: 10px 8px 11px 7px;
+  cursor: pointer;
+}
+.grade-button:hover { background: var(--highlight); }
+.grade-button[data-grade="again"] { border-color: #c8402a; }
+.grade-button[data-grade="easy"] { border-color: #3f8f3a; }
+.grade-button__label { font-weight: 600; }
+.grade-button__delay { font-size: 0.8rem; font-style: italic; color: var(--ink-soft); }
+
+.export-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding-top: 12px;
+  border-top: 1px dashed color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.export-buttons__label { font-style: italic; color: var(--ink-soft); font-size: 0.9rem; margin-right: 4px; }
+.chip:disabled { opacity: 0.45; cursor: default; }
+
 /* ---------- Small screens: panel becomes a bottom sheet ---------- */
 
 @media (max-width: 860px) {
@@ -621,6 +752,10 @@ kbd {
   @keyframes sheet-up { from { transform: translateY(20px); opacity: 0; } }
   .zoom-controls { display: none; }
   .lines-card { width: auto; right: var(--edge-gap); top: 104px; bottom: auto; max-height: 50vh; z-index: 25; }
+  .study { padding-top: 112px; }
+  .study__sheet { padding: 14px 14px 18px 46px; background-position: -6px 0, 0 0, 0 0; }
+  .flashcard__term { font-size: 1.5rem; }
+  .grade-buttons { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (prefers-reduced-motion: reduce) {

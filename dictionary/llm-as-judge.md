@@ -14,7 +14,7 @@ Good judges are narrow and explicit. A prompt that asks "rate this answer from 1
 
 Judges have known biases that you need to control for:
 
-- **Position bias:** in pairwise comparisons, preferring whichever answer comes first. Swap the order and average.
+- **Position bias:** in [pairwise comparisons](./pairwise-evals.md), preferring whichever answer comes first. Swap the order and average.
 - **Length bias:** favoring longer answers regardless of quality.
 - **Self-preference:** rating outputs from the same model family more kindly.
 - **Leniency:** passing answers that sound confident.
