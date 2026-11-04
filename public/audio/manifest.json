@@ -1,6 +1,5 @@
 {
   "slugs": [
-    "agent",
     "embeddings",
     "evals",
     "prompt-injection",
