@@ -1,0 +1,20 @@
+---
+title: Chain-of-Thought
+description: Prompting a model to work through intermediate reasoning steps before giving a final answer, which often improves accuracy.
+---
+
+Chain-of-thought is the practice of having a model write out its reasoning before committing to an answer. You either ask for it directly ("think step by step, then give the answer") or show it in [few-shot](./few-shot-prompting.md) examples. Because the model generates [tokens](./tokens.md) one at a time, writing the intermediate steps gives it more computation to spend on the problem, and later tokens can build on earlier ones.
+
+It helps most on tasks that need several dependent steps. Arithmetic, logic puzzles, multi-condition eligibility checks and deciding which tool to call next all benefit. One insurance team found their claims triage model approving claims that failed one of four policy conditions. Asking it to check each condition explicitly, one per line, before deciding cut those errors by more than half.
+
+The reasoning text has costs and risks. It adds output tokens, which raises both the bill and [latency](./latency.md), and users usually should not see it. Separate the reasoning from the final answer with clear markers or [structured output](./structured-output.md) fields so your code can strip it. Also remember the written reasoning is not a faithful trace of how the model reached its answer; it can look convincing and still be wrong, so evaluate the final output rather than trusting the explanation.
+
+Simple tasks rarely need it. Classification, extraction and short rewrites often perform the same without reasoning, and adding it just slows them down. Measure with [evals](./evals.md) before turning it on everywhere.
+
+Many newer [reasoning models](./reasoning-models.md) do this internally, producing hidden thinking before the visible reply. With those, asking for explicit step-by-step text can be redundant, and the main control becomes how much thinking budget to allow.
+
+_Usage:_
+
+- "Add chain-of-thought to the eligibility check, it keeps skipping a condition."
+- "Put the reasoning in a scratchpad field and only show the answer."
+- "CoT doubled our p95, so we only use it on the hard route."

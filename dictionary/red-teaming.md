@@ -1,0 +1,28 @@
+---
+title: Red Teaming
+description: Deliberately attacking your own LLM system to find safety, security and misuse failures before real users or attackers do.
+---
+
+Red teaming is the practice of trying to break your own AI system on purpose. A red team, whether internal staff, outside specialists or automated attack generators, plays the adversary: they attempt [jailbreaks](./jailbreak.md), [prompt injection](./prompt-injection.md), data extraction, policy violations and misuse of tools, then report what worked so it can be fixed. It is the security mindset applied to model behaviour.
+
+The value shows up in what it catches before launch. A bank preparing to release an account-assistant [agent](./agent.md) ran a two-week red-team exercise. Testers discovered that by asking the agent to "summarise my recent activity including any linked accounts", they could get it to reveal transactions from a spouse's joint account the user was not authorised to see. The bug was in tool permissions, not the model, but only adversarial use revealed it.
+
+A useful red-team exercise usually covers several areas:
+
+| Area | Example question |
+|---|---|
+| Safety | Can it be made to produce harmful instructions? |
+| Security | Can injected content trigger tool calls or leak data? |
+| Privacy | Can it reveal other users' data or its own system prompt? |
+| Policy | Will it make commitments, give legal advice, or go off-brand? |
+| Abuse | Can it be used at scale for spam or fraud? |
+
+Manual and automated approaches complement each other. Human testers are creative and find novel multi-step attacks. Automated red teaming uses another model to generate thousands of attack variations, which is good for coverage and for checking that known attacks stay fixed. Neither replaces the other.
+
+The output of red teaming should feed directly into your engineering process. Each successful attack becomes a test case in your [regression evals](./regression-evals.md), and patterns of failure inform new [guardrails](./guardrails.md). Run exercises again after major changes such as new tools, a model swap or a new data source, since each one opens fresh attack surface.
+
+_Usage:_
+
+- "Red team got the system prompt out in four messages by asking it to translate itself into French."
+- "Every finding from the red-team sprint is now a regression test."
+- "We added a refund tool, so we're scheduling another red-team pass before launch."
