@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test \"lib/**/*.test.ts\"",
     "search:assets": "tsx scripts/fetch-search-assets.ts",
-    "prebuild": "npm run search:assets"
+    "prebuild": "npm run search:assets",
+    "search:embeddings": "tsx scripts/build-term-embeddings.ts"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.3.2",
