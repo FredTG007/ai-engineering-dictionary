@@ -14,7 +14,8 @@
     "test": "node --import tsx --test \"lib/**/*.test.ts\"",
     "search:assets": "tsx scripts/fetch-search-assets.ts",
     "prebuild": "npm run search:assets",
-    "search:embeddings": "tsx scripts/build-term-embeddings.ts"
+    "search:embeddings": "tsx scripts/build-term-embeddings.ts",
+    "search:check": "tsx scripts/check-semantic-queries.ts"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.3.2",
