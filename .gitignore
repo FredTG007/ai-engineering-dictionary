@@ -7,3 +7,8 @@ next-env.d.ts
 
 # self-hosted search model + onnxruntime wasm, fetched by `npm run search:assets`
 public/search-model/
+
+# generated intermediates
+internal/build-this.raw.json
+internal/terms-brief.tsv
+scripts/shot-features.mjs

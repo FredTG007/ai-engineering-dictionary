@@ -18,6 +18,7 @@ import { ViewToggle } from "./chrome/ViewToggle";
 import { SubwayMapView } from "./map/SubwayMapView";
 import { TermPanel } from "./panel/TermPanel";
 import { WelcomeCard } from "./panel/WelcomeCard";
+import { AskView } from "./ask/AskView";
 import { SearchBox } from "./search/SearchBox";
 import { StudyView } from "./study/StudyView";
 import { LinesCard } from "./tracks/LinesCard";
@@ -85,6 +86,15 @@ export function DictionaryApp({ terms, tracks, map, audioSlugs }: SiteData) {
       <div className="app" data-view="study">
         {header}
         <StudyView terms={terms} tracks={tracks} onOpenTerm={openOnMap} />
+      </div>
+    );
+  }
+
+  if (view === "ask") {
+    return (
+      <div className="app" data-view="ask">
+        {header}
+        <AskView search={search} titleOf={titleOf} onOpenTerm={openOnMap} />
       </div>
     );
   }

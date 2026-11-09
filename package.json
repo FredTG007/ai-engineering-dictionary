@@ -13,9 +13,12 @@
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test \"lib/**/*.test.ts\" \"components/**/*.test.ts\"",
     "search:assets": "tsx scripts/fetch-search-assets.ts",
-    "prebuild": "npm run search:assets",
+    "prebuild": "npm run search:assets && npm run ask:corpus",
     "search:embeddings": "tsx scripts/build-term-embeddings.ts",
-    "search:check": "tsx scripts/check-semantic-queries.ts"
+    "search:check": "tsx scripts/check-semantic-queries.ts",
+    "ask:corpus": "tsx scripts/build-ask-corpus.ts",
+    "ask:bundle": "tsx scripts/build-ask-corpus.ts && tsx scripts/bundle-ask-api.ts",
+    "ask:dev": "tsx scripts/ask-dev-server.ts"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.3.2",
@@ -34,6 +37,8 @@
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "esbuild": "^0.25.0",
+    "playwright": "^1.64.1",
     "tsx": "^4.23.15",
     "typescript": "^5.9.3"
   }

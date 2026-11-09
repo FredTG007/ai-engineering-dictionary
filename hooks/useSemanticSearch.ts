@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { MeaningMatch } from "@/lib/search/rankByMeaning";
 import type { MeaningQuery, SemanticWorkerEvent } from "@/lib/search/semanticWorkerProtocol";
 
 export type SemanticStatus =
@@ -10,21 +11,23 @@ export type SemanticStatus =
   | { kind: "unavailable" };
 
 const NO_SLUGS: string[] = [];
+const NO_MATCHES: MeaningMatch[] = [];
 
 interface MeaningResults {
   query: string;
-  slugs: string[];
+  matches: MeaningMatch[];
 }
 
 /**
  * Search by meaning in a Web Worker. Nothing is downloaded until `start` is called; after
- * that, every query is sent to the worker once the model is ready. `meaningSlugs` holds the
- * matches for the current query, or nothing while they are still on their way.
+ * that, every query is sent to the worker once the model is ready. `meaningSlugs` /
+ * `meaningMatches` hold the matches for the current query, or nothing while they are still
+ * on their way.
  */
 export function useSemanticSearch(query: string) {
   const workerRef = useRef<Worker | null>(null);
   const [status, setStatus] = useState<SemanticStatus>({ kind: "idle" });
-  const [results, setResults] = useState<MeaningResults>({ query: "", slugs: NO_SLUGS });
+  const [results, setResults] = useState<MeaningResults>({ query: "", matches: NO_MATCHES });
   const trimmedQuery = query.trim();
 
   const start = useCallback(() => {
@@ -48,8 +51,10 @@ export function useSemanticSearch(query: string) {
     workerRef.current?.postMessage(message);
   }, [status.kind, trimmedQuery]);
 
-  const meaningSlugs = results.query === trimmedQuery ? results.slugs : NO_SLUGS;
-  return { status, start, meaningSlugs };
+  const ready = results.query === trimmedQuery;
+  const meaningMatches = ready ? results.matches : NO_MATCHES;
+  const meaningSlugs = ready ? results.matches.map((match) => match.slug) : NO_SLUGS;
+  return { status, start, meaningSlugs, meaningMatches };
 }
 
 function handleEvent(
@@ -61,6 +66,5 @@ function handleEvent(
   else if (event.type === "failed") {
     console.warn(`Search by meaning is off: ${event.reason}`);
     setStatus({ kind: "unavailable" });
-  }
-  else setResults({ query: event.query, slugs: event.matches.map((match) => match.slug) });
+  } else setResults({ query: event.query, matches: event.matches });
 }

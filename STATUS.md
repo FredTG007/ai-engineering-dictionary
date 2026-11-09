@@ -13,6 +13,10 @@
 - **Map fit:** on desktop the default fit now scales the whole map down to 0.4 so no label hides behind the side panel. Phones keep a 0.6 minimum for legibility and pan.
 - **Follow on X:** the unwired newsletter form is gone; the footer says new terms are announced on X and links to @fredoseiadu.
 
+
+- **"Build this" cards:** every term has a portfolio project card in frontmatter (`buildThis`), authored in `internal/build-this.json` and applied with `npx tsx scripts/apply-build-this.ts`. Shown in the term panel under the interview card.
+- **Ask the dictionary:** `?view=ask` (Ask in the header). Client retrieves with the same MiniLM embeddings; `api/ask.js` (Vercel serverless, beside the static `out/` deploy) calls Gemini `gemini-3.5-flash-lite` with only those passages. Rate limit 10/day via signed cookie; `GEMINI_API_KEY` + `ASK_SIGNING_SECRET` are encrypted project env vars. Local: `npm run ask:dev` on :8787.
+
 ## Unfinished / TODO
 
 - **Audio:** all 91 terms narrated with Kokoro `af_heart` (local). Re-run generation from `scripts/voice/` if a script changes, then `npm run audio:manifest`.
@@ -23,4 +27,3 @@
 - **Adding a term needs a map position** in `lib/map/stationPlacements.ts`, a voice script, and a re-run of `npm run search:embeddings`.
 - **No per-term static pages:** term views are client-side (`/?term=slug`).
 - **Progress lives in one browser** (localStorage). No accounts, no sync.
-- No deployment to a git remote yet (as requested).

@@ -2,21 +2,23 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-export type View = "map" | "study";
+export type View = "map" | "study" | "ask";
 const VIEW_PARAM = "view";
 
 function readViewFromUrl(): View {
-  return new URLSearchParams(window.location.search).get(VIEW_PARAM) === "study" ? "study" : "map";
+  const value = new URLSearchParams(window.location.search).get(VIEW_PARAM);
+  if (value === "study" || value === "ask") return value;
+  return "map";
 }
 
 function writeViewToUrl(view: View): void {
   const url = new URL(window.location.href);
-  if (view === "study") url.searchParams.set(VIEW_PARAM, view);
+  if (view === "study" || view === "ask") url.searchParams.set(VIEW_PARAM, view);
   else url.searchParams.delete(VIEW_PARAM);
   if (url.href !== window.location.href) window.history.pushState(null, "", url);
 }
 
-/** Map or study view, kept in sync with `?view=study` and browser history. */
+/** Map, study or ask view, kept in sync with `?view=` and browser history. */
 export function useView() {
   const [view, setViewState] = useState<View>("map");
 
