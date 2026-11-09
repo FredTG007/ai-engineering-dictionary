@@ -1,8 +1,8 @@
 /// <reference lib="webworker" />
 /**
- * Search by meaning, off the main thread. On start it loads the self-hosted model, the
- * onnxruntime wasm and the term vectors; then it answers each query with the terms closest
- * in meaning. Nothing here is fetched from a third party.
+ * Search by meaning, off the main thread. Prefers self-hosted model + wasm under
+ * /search-model/; if those assets are absent (lean deploy), falls back to the
+ * Hugging Face CDN and the default onnxruntime wasm CDN.
  */
 import { env, pipeline, type FeatureExtractionPipeline } from "@huggingface/transformers";
 import { decodeEmbedding } from "@/lib/search/embeddingCodec";
@@ -16,15 +16,28 @@ declare const self: DedicatedWorkerGlobalScope;
 
 const post = (event: SemanticWorkerEvent) => self.postMessage(event);
 
-function useSelfHostedAssets(): void {
-  env.allowRemoteModels = false;
-  env.allowLocalModels = true;
-  env.localModelPath = `/${MODEL_ASSET_DIR}/`;
+async function selfHostedAssetsPresent(): Promise<boolean> {
+  try {
+    const probe = await fetch(`/${MODEL_ASSET_DIR}/${EMBEDDING_MODEL.id}/config.json`, { method: "HEAD" });
+    return probe.ok;
+  } catch {
+    return false;
+  }
+}
+
+async function configureAssets(): Promise<void> {
   const wasm = env.backends.onnx.wasm;
   if (!wasm) throw new Error("onnxruntime wasm backend is missing");
-  wasm.wasmPaths = { mjs: `/${WASM_ASSET_DIR}/${WASM_FILE_STEM}.mjs`, wasm: `/${WASM_ASSET_DIR}/${WASM_FILE_STEM}.wasm` };
-  // Threads need cross-origin isolation, which a static host usually doesn't send.
   wasm.numThreads = 1;
+  if (await selfHostedAssetsPresent()) {
+    env.allowRemoteModels = false;
+    env.allowLocalModels = true;
+    env.localModelPath = `/${MODEL_ASSET_DIR}/`;
+    wasm.wasmPaths = { mjs: `/${WASM_ASSET_DIR}/${WASM_FILE_STEM}.mjs`, wasm: `/${WASM_ASSET_DIR}/${WASM_FILE_STEM}.wasm` };
+    return;
+  }
+  env.allowRemoteModels = true;
+  env.allowLocalModels = false;
 }
 
 async function loadTermVectors(): Promise<TermVector[]> {
@@ -35,9 +48,8 @@ async function loadTermVectors(): Promise<TermVector[]> {
 
 async function loadSearchByMeaning(): Promise<(query: string) => Promise<SemanticWorkerEvent>> {
   if (typeof WebAssembly === "undefined") throw new Error("WebAssembly is not available");
-  useSelfHostedAssets();
+  await configureAssets();
   const [extract, termVectors]: [FeatureExtractionPipeline, TermVector[]] = await Promise.all([
-    // No progress_callback: with one, transformers.js fetches every local file a second time to size it.
     pipeline("feature-extraction", EMBEDDING_MODEL.id, { dtype: EMBEDDING_MODEL.dtype, device: "wasm" }),
     loadTermVectors(),
   ]);
