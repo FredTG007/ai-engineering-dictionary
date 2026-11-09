@@ -11,7 +11,7 @@ import { combineSearchResults, MEANING_FLOOR, RESULT_LIMIT } from "../lib/search
 import { loadTermEmbeddingsFile } from "../lib/search/loadEmbeddingSources";
 import { loadNodeEmbedder } from "../lib/search/loadNodeEmbedder";
 import { rankByMeaning, type TermVector } from "../lib/search/rankByMeaning";
-import { createTermSearch } from "../lib/search/termSearch";
+import { createTermSearch, type TermSearch } from "../lib/search/termSearch";
 
 interface ExpectedQuery {
   query: string;
@@ -75,8 +75,8 @@ async function main(): Promise<void> {
   if (failures.length > 0) process.exit(1);
 }
 
-function checkQuery(entry: ExpectedQuery, meaningSlugs: string[], keywordSearch: ReturnType<typeof createTermSearch>): boolean {
-  const keywordSlugs = keywordSearch(entry.query, RESULT_LIMIT).map((hit) => hit.slug);
+function checkQuery(entry: ExpectedQuery, meaningSlugs: string[], keywordSearch: TermSearch): boolean {
+  const keywordSlugs = keywordSearch.keywordSlugs(entry.query, RESULT_LIMIT);
   const results = combineSearchResults(entry.query, keywordSlugs, meaningSlugs);
   const position = results.findIndex((result) => entry.expected.includes(result.slug)) + 1;
   const passed = position >= 1 && position <= 3;

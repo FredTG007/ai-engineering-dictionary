@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { combineSearchResults, meaningWeightFor, RESULT_LIMIT } from "./hybridSearch";
+import { combineSearchResults, hybridHits, meaningWeightFor, RESULT_LIMIT } from "./hybridSearch";
+import { createTermSearch } from "./termSearch";
 
 test("a sentence-like query trusts meaning more than keywords", () => {
   assert.ok(meaningWeightFor("why does my bot make things up") > 1);
@@ -25,4 +26,23 @@ test("for a short query, keyword order leads", () => {
 test("no more than RESULT_LIMIT results come back", () => {
   const many = Array.from({ length: 20 }, (_, index) => `term-${index}`);
   assert.equal(combineSearchResults("a b c", many, many.slice().reverse()).length, RESULT_LIMIT);
+});
+
+const search = createTermSearch([
+  { slug: "hallucination", title: "Hallucination", description: "Confidently wrong output.", definitionText: "Invented facts." },
+  { slug: "embeddings", title: "Embeddings", description: "Vectors for text.", definitionText: "Why does my bot need numbers." },
+]);
+
+test("before meaning results arrive, hits are the keyword results", () => {
+  const hits = hybridHits(search, "why does my bot", []);
+  assert.deepEqual(hits.map((hit) => [hit.slug, hit.foundBy]), [["embeddings", "keyword"]]);
+});
+
+test("meaning-only hits carry their title and description and are marked as found by meaning", () => {
+  const [top] = hybridHits(search, "why does my bot make things up", ["hallucination"]);
+  assert.deepEqual(top, { slug: "hallucination", title: "Hallucination", description: "Confidently wrong output.", foundBy: "meaning" });
+});
+
+test("a meaning slug with no matching term is skipped", () => {
+  assert.deepEqual(hybridHits(search, "zzz qqq xxx", ["not-a-term"]), []);
 });
