@@ -1,0 +1,5 @@
+A multimodal model can take in, and sometimes produce, more than one kind of data, such as text, images, audio or video. Most production use today is text plus images or documents: screenshots, scanned forms, charts, receipts, and PDFs where layout matters.
+
+It often replaces brittle pipelines. One team read supplier invoices with OCR, then asked a text model for the totals, and it kept confusing line items because the table layout was lost. Sending the page image directly, with a schema for the fields, cut errors substantially and removed a whole service.
+
+Watch the token cost. Full-resolution scans tripled that team's bill with no accuracy gain, so resize and crop first. Test on real, messy samples like bad scans and handwriting. And treat text inside images as untrusted, because it can carry injected instructions.

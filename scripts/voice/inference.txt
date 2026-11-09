@@ -1,0 +1,5 @@
+Inference is running a trained model on new input to get output. Training is when the weights are learned. Inference is everything after, every time a user sends a message and the model replies. For most teams, it's the only part they ever touch.
+
+It happens in two stages. Prefill reads the whole prompt at once, and drives the time to the first token. Decode writes the output one token at a time. One team moved a summarization job to their own GPUs to save money, then found throughput far below their estimate. Their documents were long, so prefill dominated, but they'd sized the hardware on output speed alone.
+
+Unlike training, inference cost grows with every request. Track tokens and latency per feature, because small prompt changes multiply fast.

@@ -1,0 +1,5 @@
+The Model Context Protocol, or M C P, is a standard way for an application to connect a model to outside tools and data. You run a server that advertises its tools, and any compatible client can call them. The model still does ordinary tool calling. M C P standardizes how tools are described and found.
+
+It addresses integration sprawl. One team had three assistants, each with its own copy of a search-tickets tool. When the ticketing API added a required field, two of them broke silently and returned empty results for a week. One shared server would have meant one fix.
+
+But be selective. Every advertised tool can land in the model's context, so too many servers bloat prompts. And treat third-party servers like any dependency, with tightly scoped permissions.

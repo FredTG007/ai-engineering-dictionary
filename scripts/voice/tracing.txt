@@ -1,0 +1,5 @@
+Tracing records everything that happened while serving one request as a connected tree. The root is the user's request, and beneath it sits each model call, retrieval, tool call and check it triggered.
+
+Its value is clearest in multi-step systems. One team's tail latency climbed from four seconds to eleven, and their metrics only said it was slow. Opening a few slow traces showed the agent calling the same lookup tool five or six times in a row, because a tool's error message was ambiguous. Clarifying the error fixed it.
+
+Attach the prompt version, model and settings to every model call. Carry one trace I D across services and agent handoffs. Most of all, make it easy to go from a user complaint to the exact trace.

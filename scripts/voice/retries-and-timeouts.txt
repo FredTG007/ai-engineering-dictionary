@@ -1,0 +1,5 @@
+Retries and timeouts decide what your app does when a model call is slow or fails. A timeout sets how long you'll wait. A retry policy decides which failures are worth trying again, how often, and with what delay.
+
+Defaults are often the problem. One team's chat endpoint inherited a ten-minute timeout from a library. When the provider degraded, requests piled up, threads ran out, and the whole web app stopped responding. A thirty-second timeout and a small worker pool would have contained it.
+
+Retry rate limits and server errors with backoff and jitter, but don't retry bad requests, since that just wastes money. With streaming, put a short timeout on the first token. And make tools safe to repeat before retrying anything with side effects.

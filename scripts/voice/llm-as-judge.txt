@@ -1,0 +1,5 @@
+L L M as judge means using a language model to grade your system's outputs against a rubric, when a simple programmatic check can't tell whether an answer is good.
+
+It fills a gap every team hits. One team's similarity metric rated a reply ninety-one percent similar to the reference, even though it said "you are eligible" where the reference said "you are not eligible". A judge asked one specific question, does it reach the same eligibility conclusion, caught it immediately.
+
+Keep judges narrow. Ask one question at a time, define each label, and ask for a short reason before the verdict. Watch for known biases, like preferring longer answers or whichever comes first. And evaluate the judge itself: have people label about a hundred cases, and measure how often it agrees.

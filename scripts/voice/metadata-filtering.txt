@@ -1,0 +1,5 @@
+Metadata filtering means narrowing a search to documents whose attributes match explicit conditions, like a customer I D or a publication date. Each stored chunk carries a few fields next to its embedding, and the filter turns them into rules similarity alone can't express.
+
+The problem usually shows up as a leak or a stale answer. One internal assistant quoted a pricing sheet from twenty twenty-two, because it was the closest match. Worse, a multi-tenant support bot returned a paragraph from another customer's contract. Similarity search ranks by meaning, not permission or freshness.
+
+So attach the fields you'll need, like source, owner, version and access group, when you ingest. And treat tenant filters as a security boundary: take them from the logged-in session, never from text the model or user produced.

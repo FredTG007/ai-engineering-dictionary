@@ -1,0 +1,5 @@
+A tokenizer converts text into the sequence of numbers a model actually processes. It's fixed when the model is trained, so each model family has its own, and the same sentence can cost a different number of tokens depending on the model.
+
+Its rules reflect the training data, which makes costs uneven. A team that budgeted from English traffic found their Thai and Hindi users cost two to three times more per message, because those scripts break into many more tokens. When they later switched model families, their cost forecast was off by about thirty percent, because they kept counting with the old tokenizer.
+
+It also explains odd behaviour, like a model miscounting the letters in a word. For budgets and context checks, always count with the exact tokenizer of the model you deploy.

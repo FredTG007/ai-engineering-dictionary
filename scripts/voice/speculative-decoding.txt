@@ -1,0 +1,5 @@
+Speculative decoding speeds up generation by letting a cheap model guess ahead and an expensive model check the guesses. A small draft model proposes the next few tokens, and the large model checks them all in one pass, keeping every token it agrees with.
+
+It works because ordinary decoding wastes the hardware. Generation is limited by memory reads, not arithmetic, so checking five tokens costs little more than producing one. And the output doesn't get worse; it matches what the large model would have produced.
+
+One team's internal coding assistant streamed about thirty tokens a second. A small draft model from the same family pushed code completions close to seventy, while free-form chat gained much less. At peak, with large batches, the gain nearly vanished. So measure acceptance rate and latency on your real traffic.

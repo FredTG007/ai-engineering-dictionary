@@ -1,0 +1,5 @@
+A large language model, or L L M, is a neural network trained to predict the next piece of text given everything before it. At scale, that produces something that can summarize, translate, write code and chat. It doesn't know facts like a database. It has learned patterns that usually line up with them.
+
+Treat it as a stateless function. It doesn't remember the last request unless you send the history again. And it isn't a source of truth. One support bot answering billing questions from the model alone promised a customer a thirty-day refund window the company never offered.
+
+The fix wasn't a better model. It was feeding the bot the real policy and checking answers with evals. Most systems end up using more than one model, matched to each task's difficulty.

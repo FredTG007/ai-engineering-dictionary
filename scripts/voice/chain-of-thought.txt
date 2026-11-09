@@ -1,0 +1,5 @@
+Chain-of-thought means having a model write out its reasoning before it commits to an answer. Writing the intermediate steps gives the model more computation to spend on the problem.
+
+It helps most on tasks with several dependent steps. One insurance team found their claims triage model approving claims that failed one of four policy conditions. Asking it to check each condition explicitly, one per line, before deciding cut those errors by more than half.
+
+But the reasoning adds output tokens, which raises both cost and latency, and users usually shouldn't see it, so separate it from the answer. Don't trust it as an honest trace of how the model decided. And measure with evals first, since simple tasks rarely need it.

@@ -1,0 +1,5 @@
+Turn detection is how a voice agent decides the person has finished speaking and it's time to reply. Machines have to infer it from audio and partial transcripts.
+
+There are two ways to fail, pulling in opposite directions. Too early, and the agent cuts people off. Too late, and every exchange has dead air. A bank's voice line waited for half a second of silence. Callers reading out card numbers paused naturally between groups of four digits, and the agent kept jumping in to say the number wasn't valid.
+
+Context helps a lot. If you just asked for a card number, wait for sixteen digits. After a yes or no question, a short yes is a complete turn. And when the user talks over the agent, stop speaking quickly.

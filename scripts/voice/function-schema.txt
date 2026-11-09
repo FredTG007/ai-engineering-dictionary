@@ -1,0 +1,5 @@
+A function schema is the definition you give a model for each tool it can use: a name, a plain description, and typed parameters. It's the model's main source of information about what the tool does, when to use it, and how to fill in its arguments.
+
+Most tool-selection bugs come from a vague schema. One team had two tools called search and lookup, described as "searches records" and "looks up records". The model picked between them almost at random. Renaming them to say exactly what they searched, and when to use each, fixed it with no other change.
+
+So write schemas for a new colleague. Use specific names, say when not to use a tool, and prefer fixed lists of values over free text. And remember every schema costs tokens on every request.

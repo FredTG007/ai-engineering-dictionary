@@ -1,0 +1,5 @@
+The K V cache, short for key-value cache, is memory a model uses to avoid redoing work while it generates. Instead of recomputing internal values for the whole sequence on every new token, it stores them and only computes the new token's entries.
+
+For application engineers, it matters because it eats GPU memory in proportion to sequence length and concurrent requests. One team's self-hosted server handled forty chats with short prompts, but fell over at eight once users pasted long documents. The weights hadn't changed. The cache for those long sequences filled the GPU.
+
+So count the cache, not just the weights, when you plan capacity. Cap context length and concurrency to fit. And if many requests share the same prefix, prefix caching lets the server skip reprocessing it.

@@ -1,0 +1,5 @@
+Regression evals run automatically whenever your system changes, to catch anything that used to work and no longer does. They're the equivalent of a regression test suite: less about overall quality, more about guarding what you've already fixed.
+
+In LLM systems, a fix for one behaviour often breaks another. One team told the model to be concise. It stopped rambling, and also dropped the safety disclaimer required on medical questions. Nobody noticed for two weeks, because nobody tested medical questions while checking conciseness.
+
+Build the suite from past bugs, compliance-critical behaviour and high-traffic cases, each with a clear pass or fail. Results are noisy, so compare against the baseline by category instead of demanding every case passes. Run it on every change, and when something slips through, add it the same day.

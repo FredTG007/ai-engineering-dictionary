@@ -1,0 +1,5 @@
+Content moderation means checking text against harm categories and deciding what to do when something matches. It runs in both directions: on what users send, and on what the model writes back.
+
+It's easy to underestimate until it bites. A language-learning app let users chat freely with a tutor persona. Within a week, some teenage users found the tutor would continue sexually explicit role-play if they called it vocabulary practice. The model's safety training reduced it, but the app had no output check at all.
+
+Most teams use a dedicated classifier and set thresholds per category and per product. Too strict, and you block real questions about medicine. Too loose, and harm gets through. Review flagged samples and track false positives.

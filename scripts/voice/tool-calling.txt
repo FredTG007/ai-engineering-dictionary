@@ -1,0 +1,5 @@
+Tool calling lets a model respond with a structured request to run a specific function with specific arguments, instead of plain text. Your code runs the function and sends back the result. The model never runs anything itself. It only asks.
+
+This is what connects a model to live data. Without it, an assistant asked "where's my order?" can only guess. With an order-status tool, your code looks up the real status and the model answers from it.
+
+Most bugs come from the model choosing badly: the wrong tool because two descriptions overlap, an invented order number, or no call at all, answering from memory. So treat every call as untrusted input. Validate arguments, check permissions, return short errors the model can recover from, and track tool-selection accuracy in your evals.

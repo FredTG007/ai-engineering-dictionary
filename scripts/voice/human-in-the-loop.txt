@@ -1,0 +1,5 @@
+Human-in-the-loop means a person sits at a defined checkpoint in an AI workflow and approves, edits or rejects what the system proposes. The point is to keep consequential or irreversible decisions under human control, while automation handles the routine bulk.
+
+The need usually becomes obvious after an incident. One company let its procurement agent place orders directly. A misread unit field turned twelve boxes into twelve pallets, and the order shipped before anyone noticed. An approval step for orders above a set value would have caught it.
+
+Where you put the human matters. If reviewers see hundreds of near-identical approvals a day, they stop reading and just click approve. Route only what needs judgment, show the evidence, and make rejecting as easy as approving. Then feed their corrections into your evals.

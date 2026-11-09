@@ -1,0 +1,5 @@
+A golden dataset is a curated set of inputs paired with expected outputs, or clear criteria for a good one. It's the fixed ruler you measure every version of your system against.
+
+Its value is obvious when you don't have one. A team comparing two models for contract summaries ran each on fresh random documents, got conflicting results on different days, and argued for two weeks. The inputs kept changing. A fixed set of two hundred contracts with reviewed summaries settled it in an afternoon.
+
+Build it from real, anonymized traffic, past failures and deliberate edge cases. Coverage matters more than size. Keep it in version control, review it as policies change, and never paste its examples into your prompt, because that's grading your own homework.

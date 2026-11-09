@@ -1,0 +1,5 @@
+Indirect prompt injection is prompt injection where the attacker isn't the user. The instructions sit inside content your app pulls in for them: a web page, an email, a PDF, or a tool result. The user can be completely honest. The attacker only needs to get text in front of the model.
+
+This is the version that does real damage. A sales team's research agent could browse the web and read the company's customer records. Asked to summarize a prospect's pricing page, it found tiny grey text telling it to load the latest deal notes and send them out in a link. It did.
+
+Assume the model will sometimes follow planted text. Keep tools narrow, put a human in front of side effects, close the channels data could leak through, and red-team with poisoned documents.

@@ -1,0 +1,5 @@
+Throughput is the total work a system completes over time, usually output tokens or requests per second across all users. Latency tells you how long one user waits. Throughput tells you how many users you can serve at once.
+
+The two are easy to confuse until load arrives. One team benchmarked their self-hosted model one request at a time, measured eighty tokens a second, and sized hardware as if that would scale. In production, with fifty users, each saw about fifteen tokens a second, while total throughput was far higher.
+
+Batching is the biggest lever. Load test with realistic prompt and output lengths, and find the point where latency starts to degrade. That point, not peak throughput, tells you how many users a replica can serve.

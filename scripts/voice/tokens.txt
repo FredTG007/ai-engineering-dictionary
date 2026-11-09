@@ -1,0 +1,5 @@
+Tokens are the units of text a language model processes. They're often whole words, or pieces of rarer ones. As a rough rule, a token is about four characters of English, but code, numbers and other languages take more.
+
+Almost every limit and cost is measured in tokens: the context window, rate limits, and pricing, where output usually costs several times more than input. One team saw costs triple in a month with no change in traffic. A feature was pasting full JSON responses into the prompt. Trimming the fields and reformatting as compact text cut input tokens by about seventy percent.
+
+Watch output tokens too, since the model writes them one at a time, so longer answers take longer. Ask for concise replies, and cap output length.

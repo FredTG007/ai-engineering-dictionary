@@ -1,0 +1,5 @@
+Pairwise evals show a judge two outputs for the same input and ask which is better. The result is a win rate, not an average score. Picking the better of two is an easier, more consistent judgment than placing one answer on a scale.
+
+They fix the problem of flat scores. One team rewrote a summarization prompt, and their judge model gave both versions an average of seven point eight out of ten. Yet every reviewer who read them side by side preferred the new one.
+
+Judges have a strong position bias, so run each pair in both orders, and only count a win when they agree. Check the winner isn't just longer. And remember pairwise tells you which is better, not whether it's good enough, so keep your pass or fail checks too.

@@ -1,0 +1,5 @@
+Observability is how well you can answer "what happened, and why" about your system after the fact. For LLM apps, that means capturing the prompts, retrieved context, responses, tool calls, token counts and user feedback, because the interesting failures are about content, not crashes.
+
+The gap hurts the first time a user reports a bad answer. A legal research assistant told a lawyer a statute had been repealed when it hadn't. The team's logs showed a successful request in about three seconds, but not the prompt, the retrieved documents, or the prompt version. Reproducing it took two days of guessing.
+
+So record the full request context, redacting personal data first, and link every step with a trace. Track latency, errors, cost and quality signals. Then mine those traces for failures to add to your evals.

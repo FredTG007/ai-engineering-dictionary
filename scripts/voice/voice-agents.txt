@@ -1,0 +1,5 @@
+A voice agent is an agent you talk to rather than type to. It listens, works out what the caller said, decides how to respond and speaks back, all within the rhythm of a normal conversation.
+
+Latency is the defining constraint. On a phone call, anything over about a second feels like the line went dead. A clinic's booking agent took about two and a half seconds to respond. Callers talked over it, and conversations spiralled. Streaming every stage and starting speech on the first sentence brought the gap under nine hundred milliseconds.
+
+Voice also changes how you write prompts. Keep replies short, with no formatting, and phrase numbers, dates and email addresses so they won't be misheard. And test with real audio, not transcripts, because many failures happen before the model hears anything.

@@ -1,0 +1,5 @@
+Query rewriting turns what the user typed into a query your retrieval system can actually match. Users write short, conversational messages. Search works best with explicit, self-contained phrasing. The rewrite sits in between.
+
+The need is obvious in multi-turn chat. A user asks about the Enterprise plan, then follows up with "and does it include single sign-on?" On its own, that "it" means nothing to the index. One team's RAG assistant answered about a third of follow-ups about the wrong product, until they rewrote each one using the conversation history.
+
+Rewriting costs an extra model call, so use a small, fast model, and skip it when the first question is already specific. Log the original and the rewrite side by side, because a rewriter that adds assumptions can quietly steer retrieval wrong.

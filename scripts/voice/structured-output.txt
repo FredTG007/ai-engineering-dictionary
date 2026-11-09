@@ -1,0 +1,5 @@
+Structured output means constraining a model to produce data your code can parse reliably, usually JSON matching a defined schema. You specify the fields, types and allowed values, and the model fills them in. Many APIs can now enforce the schema during generation.
+
+The need is obvious the first time a parser breaks. One team's order-extraction service started failing on about two percent of real emails. The model sometimes wrapped its output in extra formatting, added a friendly sentence first, or wrote the quantity as the word "two" instead of a number. Enforcing the schema removed the parse failures entirely.
+
+But a valid shape isn't correct content. Models can still invent values to fill required fields. So make fields nullable when information might be missing, add an unknown option, and check accuracy with evals.

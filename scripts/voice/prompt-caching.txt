@@ -1,0 +1,5 @@
+Prompt caching lets a provider skip reprocessing the part of a prompt it has already seen. When many requests share a long, identical opening, like a big system prompt or tool definitions, the cached part is billed at a steep discount and processed far faster.
+
+The usual symptom is a bill that grows with conversation length. One support assistant resent a nine-thousand-token policy manual on every turn. Caching the manual cut follow-up input cost by roughly eighty percent.
+
+It only works on an exact prefix match. Put stable material first, and the user's message and timestamps last. A single changed character early on, like the current time in the system prompt, wipes out the savings. Track your hit rate.

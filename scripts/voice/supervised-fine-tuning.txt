@@ -1,0 +1,5 @@
+Supervised fine-tuning trains a pretrained model on examples of prompts paired with the responses you want. It's the most common kind of fine-tuning, and the stage that turns a raw model into an assistant.
+
+It teaches imitation, and the model imitates everything. One team tuned a small model on two thousand real support transcripts. It copied the agents' typos, their habit of saying "let me check that for you" with nothing to check, and order numbers that looked plausible but didn't exist. The human agents had looked those up in a tool the model never saw.
+
+So review the training data for things you don't want copied. Use the exact chat template you'll serve with, because getting it wrong is a silent bug. And always compare against the untuned baseline.

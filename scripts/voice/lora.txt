@@ -1,0 +1,5 @@
+LoRA, short for low-rank adaptation, is a way to fine-tune a large model by training only a small number of extra parameters. The original model stays frozen, and you train a small adapter alongside it, often megabytes instead of many gigabytes.
+
+The usual reason is cost and hardware. One team wanted to fine-tune a mid-sized open-weight model for ticket classification, but a full fine-tune needed a multi-GPU node they didn't have. With LoRA, the job ran on a single GPU overnight, and it scored within a point of a full fine-tune.
+
+Because the base stays frozen, one deployment can serve many adapters, say one per customer. Tune the rank carefully, and remember it teaches style and narrow skills, not new facts. Version each adapter with the base model it was trained on.

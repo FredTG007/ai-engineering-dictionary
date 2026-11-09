@@ -1,0 +1,5 @@
+A transformer is the neural network design almost every modern language model is built on. It passes tokens through a stack of layers, and each layer lets every token gather information from earlier tokens, through a mechanism called attention, then transforms it.
+
+The design explains symptoms you'll see in production. One team found that doubling their prompt length made the first token arrive more than twice as late. Attention compares every token with every earlier one, so that part of the work grows with the square of the prompt length.
+
+You rarely need the maths, but the shape matters. Generating text takes one pass through the model per output token. That's why output length drives latency, why the context window has a hard limit, and why caching helps.

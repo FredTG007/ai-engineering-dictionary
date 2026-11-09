@@ -1,0 +1,5 @@
+Top-p sampling, also called nucleus sampling, limits which tokens the model can pick at each step. It keeps the most likely candidates until their combined probability reaches a threshold, and samples from that shortlist. When the model is confident, the list is short. When it's uncertain, it's longer.
+
+It's easy to misuse alongside temperature. One team debugging odd product descriptions found someone had set temperature high and top-p low, trying to be creative but safe. The settings fought each other, and the text came out repetitive in places and bizarre in others. Resetting top-p and tuning only temperature fixed it.
+
+For most work, leave top-p at the default and adjust temperature. Neither setting fixes accuracy, though. If the output is making things up, the problem is context or retrieval, not the sampler.

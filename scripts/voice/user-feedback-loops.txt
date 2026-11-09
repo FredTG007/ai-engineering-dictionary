@@ -1,0 +1,5 @@
+A user feedback loop captures what real users think of your system's output, from what they say and what they do, and feeds it back into how it's built. It's only closed when a production signal actually changes something.
+
+Explicit ratings alone are usually too thin. One team added thumbs up and down, and got ratings on under one percent of conversations. The useful signal was behaviour: regenerating an answer three times, rewriting a draft, or asking for a human right after a reply. Tied to traces, those showed the worst failures without waiting for clicks.
+
+Review signals before treating them as truth, because a thumbs-down can mean many things. Label the real failure, add confirmed cases to your golden dataset, and watch for bias in who gives feedback.

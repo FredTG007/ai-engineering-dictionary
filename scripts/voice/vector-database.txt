@@ -1,0 +1,5 @@
+A vector database stores embeddings and quickly finds the ones closest to a query. It keeps the original text or an I D next to each vector, and usually supports filtering.
+
+You don't always need a dedicated product. For a few hundred thousand vectors, an extension to the database you already run is often enough. The real problems are about keeping the index in step with the source. One assistant kept quoting a pricing page that had changed two months earlier, because the ingestion job added new pages but never re-embedded edited ones.
+
+Enforce tenant filters in the query itself, on every call. And plan for re-indexing from the start: keep the raw text, record which embedding model made each vector, and be able to rebuild everything.

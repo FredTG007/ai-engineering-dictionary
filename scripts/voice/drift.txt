@@ -1,0 +1,5 @@
+Drift is the slow gap that opens between the conditions your system was tested for and the ones it actually faces. The model can change under you, your users can start asking different things, or the data you retrieve from can change. Nothing visibly breaks. Quality just erodes.
+
+One team used a provider alias meaning "latest". One Tuesday their extraction pipeline started returning dates in a different format, because the provider had moved the alias to a new snapshot. Nothing had been deployed on their side, so the change log showed nothing.
+
+Pin an explicit model version, and treat upgrades as deliberate releases gated by regression evals. Then watch production itself: sample live traffic into evals, look for new topics, and refresh your golden dataset so offline scores keep tracking reality.

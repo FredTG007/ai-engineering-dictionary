@@ -1,0 +1,5 @@
+The context window is the hard limit on how much a model can see in a single call. It's measured in tokens, and it covers everything: the system prompt, the conversation history, retrieved documents, tool results, and the reply the model is about to write.
+
+Running out of room can fail loudly, with an error, or quietly, which is worse. One team's assistant started ignoring a user's dietary restrictions late in long conversations. The restriction was stated in turn two, and the history trimmer dropped it once the chat grew long enough. No request ever failed.
+
+A bigger window isn't a free fix either. It costs more, slows the first token, and material in the middle gets less attention. Treat the window as a budget, pin key facts, and log what gets dropped.

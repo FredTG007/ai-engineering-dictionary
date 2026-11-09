@@ -1,0 +1,5 @@
+Red teaming means trying to break your own AI system on purpose. A red team, whether staff, outside specialists or automated attack generators, attempts jailbreaks, prompt injection, data extraction and tool misuse, then reports what worked.
+
+Its value is what it catches before launch. A bank preparing an account-assistant agent ran a two-week exercise. Testers found that asking it to summarize recent activity, including linked accounts, revealed transactions from a spouse's joint account the user wasn't authorized to see. The bug was in tool permissions, not the model, but only adversarial use exposed it.
+
+Combine human testers, who find creative multi-step attacks, with automated variations for coverage. Turn every successful attack into a regression test. And run another pass after any new tool, model swap or data source.

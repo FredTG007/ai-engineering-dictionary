@@ -1,0 +1,5 @@
+Retrieval metrics measure the search half of a RAG system on its own. You take queries where you know the relevant documents, run retrieval, and score how many came back and how high they ranked.
+
+The most useful is usually recall at k: the share of relevant chunks in the top k, where k is how many you actually send to the model. One team saw answer quality drop after changing their chunking. When they finally measured, recall at five had fallen from eighty-two to sixty-four percent. The new chunks had split tables from their headings.
+
+Add a ranking-aware metric, like mean reciprocal rank, to see whether good results come first. And report numbers per query type, because a better average can hide a worse category.

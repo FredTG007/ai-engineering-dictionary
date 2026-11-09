@@ -1,0 +1,5 @@
+P I I redaction means finding personally identifiable information in text and masking or removing it before the text goes somewhere it shouldn't. In LLM systems, that means the model provider, your logs, your vector database, and any future training data.
+
+The trigger is often an audit, not an outage. A healthcare scheduling assistant had logged full prompts and responses for debugging. A compliance review found two years of patient names, birth dates and medications in a third-party logging tool with broad internal access.
+
+Combine detection methods, because each has blind spots. A common pattern swaps real values for placeholders, sends the masked text, and restores them in the reply. Don't mask so aggressively the model loses what it needs, and test with messy, realistic input.

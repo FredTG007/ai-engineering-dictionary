@@ -1,0 +1,5 @@
+Few-shot prompting means showing the model a few examples of the task before asking it to do the real one. You include two to five pairs of input and ideal output, then the new input, and the model continues the pattern.
+
+Examples show things instructions struggle to describe, like format, length and borderline cases. One team building a ticket classifier spent days rewording category definitions and still saw billing and account mixed up. Adding six labelled examples, including two ambiguous ones, lifted accuracy by twelve points in an afternoon.
+
+Choose examples carefully, because they shape the output more than you'd expect. If every example is short, answers will be short. If most share one label, the model leans that way. Cover the real range of inputs, balance the labels, and include a tricky case.

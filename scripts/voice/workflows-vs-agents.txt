@@ -1,0 +1,5 @@
+In a workflow, your code decides the order of model calls and tools. In an agent, the model decides what to do next as it runs. The difference is who holds the control flow, and that shapes cost, latency and how easy it is to test.
+
+Teams often start with an agent when a workflow would do. One support team gave a model a dozen tools. Each ticket took eight to fifteen calls, and no two runs looked alike. Almost every ticket followed one of five paths, so they rebuilt it as a workflow: classify, then route to a fixed handler. Cost fell by roughly seventy percent.
+
+Start with fixed steps, and give the model control only where the fixed path keeps failing. Autonomy should earn its place.

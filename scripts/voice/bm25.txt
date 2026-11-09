@@ -1,0 +1,5 @@
+B M twenty-five is a classic ranking function for keyword search. It scores each document by how often the query's words appear, how rare those words are across the collection, and how long the document is.
+
+It matters in AI systems because embeddings are weak at exact strings. One support team's RAG assistant explained billing concepts well, but returned unrelated pages whenever a customer pasted an error code or a product number. Keyword search matched the code exactly, and its rarity pushed the right page to the top.
+
+Before tuning anything, check how your text is split into terms. An analyzer that breaks a part number at a hyphen can quietly destroy the matches you wanted. In practice, pair it with vector search as hybrid search.

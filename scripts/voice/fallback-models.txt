@@ -1,0 +1,5 @@
+A fallback model is a second option your system uses when the first one can't answer. If the main model errors, times out or hits a rate limit, the request goes to another model, region or provider. The goal is to keep the feature working, even at slightly lower quality.
+
+Teams usually add fallbacks after an outage. One meeting-notes product went dark for ninety minutes when its only provider had an incident. They added a chain: the same model in another region, then a smaller model from a second provider. The next incident caused a brief quality dip instead.
+
+But models aren't drop-in substitutes. A prompt tuned for one can break formatting or tool calls on another, so run your evals against every model in the chain. And log which model served each request.

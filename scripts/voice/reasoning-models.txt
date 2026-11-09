@@ -1,0 +1,5 @@
+A reasoning model is trained to work through a problem step by step before answering. It does this by default, producing thinking tokens that may be hidden or summarized, and many let you set how much effort to spend.
+
+They help most on problems with many dependent steps. One insurance-claims assistant kept missing exclusions buried in policy clauses. Switching its analysis step to a reasoning model roughly halved the error rate, with no prompt changes. But the time to first token jumped from under a second to over fifteen, cost per claim rose about fourfold, and old timeouts started killing good requests.
+
+So use them where they measurably help. Route simple tasks like classification to a fast standard model. And skip detailed step-by-step instructions; state the goal, the constraints and the output format clearly.

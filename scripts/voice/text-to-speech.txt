@@ -1,0 +1,5 @@
+Text-to-speech turns written text into synthetic audio. In a voice agent, it's the final stage, turning the model's reply into something the caller hears. Modern voices can sound close to human, but the quality people perceive depends on the text you feed in, and how fast speech starts.
+
+The most common problems come from text that reads fine but sounds wrong. A pharmacy assistant wrote dosages with abbreviations and symbols, and the voice read them out letter by letter and symbol by symbol. Callers were confused. The fix was a step that rewrote units and symbols into speakable words, plus telling the model to write for the ear.
+
+Stream the reply and send it to the voice one sentence at a time. Stop playback the moment the user speaks. And keep replies short.

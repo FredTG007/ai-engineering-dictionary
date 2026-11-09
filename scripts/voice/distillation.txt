@@ -1,0 +1,5 @@
+Distillation means using a large, capable model as a teacher to train a smaller student. You run the teacher on many real inputs, collect its outputs, and fine-tune the student on those pairs. The student learns to copy the teacher on that task, usually far cheaper and faster.
+
+The usual trigger is a feature that works but costs too much at scale. One team tagging millions of documents had an inference bill larger than the feature's revenue. They ran the large model on twenty thousand samples and trained a small one on the results. Quality dropped about two points. Cost dropped over ninety percent.
+
+It works best on narrow tasks like classification and extraction. Filter the teacher's outputs first, because its mistakes become the student's mistakes. And check the provider's terms before you start.

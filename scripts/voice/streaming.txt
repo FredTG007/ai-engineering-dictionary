@@ -1,0 +1,5 @@
+Streaming means returning model output piece by piece while it's still being generated. The client shows each chunk as it arrives.
+
+The main benefit is perceived speed. Total generation time doesn't change, but the user sees the first words almost right away, instead of after the whole reply.
+
+It adds work in unexpected places. Proxies can buffer responses, so streaming works locally and then arrives all at once in production. One team spent two days before finding the gateway setting responsible. A stream can also fail halfway, so the client needs to show a partial answer and offer a retry. And output checks get harder, because text reaches the user before you've seen it all.

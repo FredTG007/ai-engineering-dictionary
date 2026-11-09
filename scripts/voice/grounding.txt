@@ -1,0 +1,5 @@
+Grounding means tying a model's answer to specific evidence you supplied, so each claim can be traced to a source instead of the model's general training. A grounded answer is one you can check line by line against the documents.
+
+The need is clearest after an embarrassing mistake. A benefits assistant told an employee that dental coverage included orthodontics for adults. The retrieved policy was right there in the context, and it said the opposite. Retrieval worked. Grounding failed.
+
+So tell the model to answer only from the sources, cite the passage behind each claim, and say when the answer isn't there. Then verify: check the citations exist, and use a judge model to flag unsupported claims. Track a groundedness rate in your evals, alongside correctness.

@@ -1,0 +1,5 @@
+ReAct, short for reasoning and acting, is a pattern where the model alternates between a short thought, an action like a search, and the result that action returns. Most agent frameworks still follow it.
+
+It fixes a model guessing facts in the middle of a task. One research assistant was asked which of two suppliers delivered faster to a city. In one shot, it made up a delivery estimate for one supplier and compared it with a real figure for the other. Run as ReAct, it searched for each supplier's terms first, and reasoned from what it had just read.
+
+It can still loop on the same search or follow a bad result. So set a step limit and detect repeats. Use it only when the task needs information it can't know upfront.

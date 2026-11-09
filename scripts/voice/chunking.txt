@@ -1,0 +1,5 @@
+Chunking is splitting documents into smaller pieces before you embed and index them. A retrieval system rarely wants a whole fifty-page manual. It wants the two paragraphs that answer the question.
+
+Chunk size is a balancing act, and lost context causes wrong answers. One team's assistant told customers their data was kept for thirty days, when the real figure for their plan was ninety. The thirty-day sentence was retrieved on its own, cut off from the heading saying it only applied to the free tier.
+
+A good starting point is splitting on document structure, a few hundred tokens at a time, with the title and heading added to each chunk. Then test retrieval on real questions, because changing chunking later means re-embedding everything.

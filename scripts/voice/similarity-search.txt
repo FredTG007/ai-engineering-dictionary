@@ -1,0 +1,5 @@
+Similarity search finds the items in a collection closest to a query, measured by the distance between their vectors. You embed the query, compare it against stored embeddings, and return the top few. It's how RAG finds relevant passages that share no exact words with the question.
+
+At scale, systems use approximate indexes, trading a little accuracy for a lot of speed. But most similar isn't the same as relevant. One team's HR assistant answered questions about the UK parental leave policy using the US document, because the two were worded almost identically. Search did its job. The system just didn't know which country the user was in.
+
+Filtering on region fixed it. Measure retrieval directly, and consider a reranker to reorder candidates.

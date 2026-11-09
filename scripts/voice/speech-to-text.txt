@@ -1,0 +1,5 @@
+Speech-to-text, also called automatic speech recognition, turns audio into a transcript. In a voice agent, it's the first stage, and whatever it writes down is all the language model knows about what the caller said. If recognition is wrong, the model will confidently answer the wrong question.
+
+Errors cluster around names, product codes, account numbers, accents and noise. An insurance claims line kept mishearing its policy prefix, Q X, so lookups failed and callers were told their policy didn't exist. Adding vocabulary hints and checking the number's format cut failed lookups by more than half.
+
+Measure word error rate on your own audio, because phone lines sound nothing like vendor benchmarks. Watch the delay from end of speech to final transcript. And redact transcripts, because people read card numbers aloud.

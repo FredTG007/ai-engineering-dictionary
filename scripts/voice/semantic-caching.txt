@@ -1,0 +1,5 @@
+Semantic caching returns a stored answer when a new question is close in meaning to one already seen, even if the wording differs. You embed the query, search past queries, and if the closest match clears a threshold, you skip the model.
+
+The appeal is the hit rate. One help bot went from about three percent with exact matching to around thirty-five percent. Then it served the answer for "how do I delete my account" to someone asking how to delete their team account, a different and far more destructive process. The embeddings were close. The right answers weren't.
+
+So tune the threshold on real query pairs labelled same or different. Scope the cache by product, language or tenant, and leave out personal or time-sensitive questions. Track wrong hits, not just hit rate.

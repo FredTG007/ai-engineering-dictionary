@@ -1,0 +1,5 @@
+Rate limits are the ceilings a provider puts on how much you can send in a window of time, usually requests and tokens per minute. Cross one and the call is rejected with a four twenty-nine error.
+
+Most teams discover their limits at launch. One summarization feature worked fine in staging, then failed for about a third of users on the first Monday morning. A nightly batch job shared the same key and had already used most of the token budget.
+
+Token limits usually bite before request limits, because long prompts are expensive. Pace calls with a client-side queue, back off with jitter on rejections, and give batch work its own key. And surface those errors in your dashboards, so a quota problem looks like one.

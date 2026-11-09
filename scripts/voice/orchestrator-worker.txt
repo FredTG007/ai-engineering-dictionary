@@ -1,0 +1,5 @@
+Orchestrator-worker is a pattern with a planner at the top. One model call reads the request and writes a plan of subtasks, each subtask goes to its own worker call, and a final step merges the results. The plan is made fresh each time, so two competitors get two workers, and ten get ten.
+
+It usually solves a coverage problem. A competitive-analysis tool used one long prompt to cover ten competitors, and reports regularly skipped two or three of them. Splitting the job, with one focused worker per competitor, fixed the gaps.
+
+Check first whether a fixed chain or simple routing would do, because it often will. If you do use it, cap how many workers the plan can create, run them in parallel with timeouts, and check the merge step doesn't quietly drop one.

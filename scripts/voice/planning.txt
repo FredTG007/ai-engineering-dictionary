@@ -1,0 +1,5 @@
+Planning, in agent systems, means having the model lay out the steps of a task explicitly, instead of choosing each action only in reaction to the last result. The plan becomes something the agent can follow, check off and revise.
+
+It matters on longer tasks, where purely reactive agents lose the thread. One agent migrating customer records handled the first few well, then got absorbed fixing a formatting issue in one record and never came back to the rest. A written plan, updated after every step, made the remaining work visible.
+
+Keeping an explicit plan that the model revises when results contradict it is usually the best balance. Show it to a user before sensitive work starts. But for a two or three step task, skip it, because it's pure overhead.

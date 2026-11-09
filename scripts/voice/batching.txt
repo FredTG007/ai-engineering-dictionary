@@ -1,0 +1,5 @@
+Batching means processing several requests together instead of one at a time. On a server, it means running many users' requests through the GPU at once. On the client side, it means sending a file of offline jobs to a provider's batch API, which is slower but cheaper.
+
+Without it, self-hosted models struggle. One team launched with batching turned off. A single user got decent speed, but once a dozen users arrived, queues grew to minutes. Turning on continuous batching raised tokens per second several-fold on the same hardware.
+
+Batch size is a trade-off. Bigger batches use the GPU better, but each response gets slower, so cap concurrent sequences to hold your latency target. And only send work to a batch API if nobody is sitting there waiting for it.

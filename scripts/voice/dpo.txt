@@ -1,0 +1,5 @@
+Direct preference optimization, or D P O, trains a model on pairs of answers to the same prompt, where one is marked chosen and the other rejected. It reaches a similar goal to reinforcement learning from human feedback, but without a separate reward model, so training looks much like ordinary fine-tuning.
+
+The catch is that it learns whatever separates chosen from rejected, including things you didn't intend. One team ran it on support replies where raters had usually picked the longer answer. The tuned model became much wordier, and on a fresh comparison, people preferred the original. Length was the strongest signal, so that's what it learned.
+
+Check your pairs for length and other shortcuts before training. Keep labelling guidelines consistent, and run evals after every run to catch regressions you didn't target.

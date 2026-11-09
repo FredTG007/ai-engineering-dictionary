@@ -1,0 +1,5 @@
+Offline evals run your system over a fixed dataset before a change ships. Online evals measure how it behaves on real traffic afterwards. Offline tells you a change is safe to release. Online tells you whether it actually helped.
+
+The gap shows up as a release that passed everything and still hurt. One team's new prompt beat the old one on their golden dataset, shipped, and a week later escalations to human agents were up fifteen percent. Their test set was tidy single-question tickets. Real users pasted long email threads with three questions in them.
+
+So run both and connect them. Gate every change with offline evals, roll out gradually while watching live signals, and score a sample of production traces. Then turn each real failure into a new offline case.

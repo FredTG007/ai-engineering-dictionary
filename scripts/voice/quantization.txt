@@ -1,0 +1,5 @@
+Quantization reduces the numeric precision used to store a model's weights, for example from sixteen bits down to eight or four. That cuts memory by half or more, so the model fits on fewer GPUs and usually generates faster.
+
+Teams reach for it when a model doesn't fit their hardware. One team self-hosting a seventy-billion-parameter model needed about a hundred and forty gigabytes of GPU memory, which meant two expensive cards. A four-bit version fit on one, halving serving cost. Later they found it made more arithmetic mistakes in their invoice-checking flow.
+
+The quality cost is real but uneven. Eight-bit is usually close to lossless. Four-bit can hurt math, code and strict formats, and small models suffer more. So run your evals on both versions, focusing on the tasks most sensitive to precision.

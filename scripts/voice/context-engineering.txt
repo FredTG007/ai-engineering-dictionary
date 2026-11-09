@@ -1,0 +1,5 @@
+Context engineering is deciding what goes into the model's context window on every call: which instructions, documents, history and tool results, and in what order. Most of it is the code that assembles everything around the prompt.
+
+It becomes its own discipline once several sources compete for space. One assistant worked well in demos, then started ignoring its formatting rules in long sessions. Thirty turns of history and four large tool outputs had pushed the system prompt far from the end, and the rules were drowned out. The prompt never changed. The context around it did.
+
+So summarize old turns, strip tool responses down to the fields that matter, and log the exact context for each request. Then run evals whenever you change what goes in, not just the wording.

@@ -1,0 +1,5 @@
+Memory, in an LLM application, is any way the system keeps information and brings it back later. Models are stateless, so everything they remember has to be sent again on each request. Memory is really a question of what you store and what you send back.
+
+Teams usually hit one of two problems. Forgetting: a user tells a travel assistant they're vegetarian, and three sessions later it suggests a steakhouse. Or overloading: one team kept every message in the prompt, and long-time users hit context limits, costs climbed, and months-old details that were no longer true resurfaced.
+
+Store short, explicit facts with timestamps rather than raw transcripts, and retrieve only what's relevant. Let users see and delete what's kept. And test both that important facts are recalled and that stale ones aren't.

@@ -1,0 +1,5 @@
+Reinforcement learning from human feedback, or R L H F, is a training stage that shapes a model's behaviour using human judgments of which answers are better. People compare pairs of responses, those preferences train a reward model, and the model is tuned to score well.
+
+Most engineers never run it, but they live with its effects. Politeness, hedging and refusals come largely from preference training. One team found their customer bot adding cheerful apologies to error messages that should have been terse. The cause was trained-in preference, not their system prompt.
+
+It also explains some failures. Reward models can favour answers that sound confident over ones that are correct, and models may agree with a user's wrong claim. So test explicitly for cases where the user is wrong, or the answer is unknown.

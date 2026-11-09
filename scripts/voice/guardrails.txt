@@ -1,0 +1,5 @@
+Guardrails are checks you wrap around a model call to enforce rules the model can't be trusted to follow every time. They inspect what goes in and what comes out, and can block, rewrite, redact, retry or escalate.
+
+They're needed because instructions in a system prompt are suggestions, not constraints. A retail support bot was told never to promise delivery dates. Pushed by an insistent customer, it said an order would definitely arrive Friday, and the company honoured that at a loss. An output check for date commitments would have caught it.
+
+Every guardrail adds latency and false positives, so run cheap rule-based checks first, and save model-based checks for riskier paths. If you stream, decide when you check. And test your guardrails as seriously as the model itself.

@@ -1,0 +1,5 @@
+A multi-agent system splits work across more than one agent, each with its own instructions and tools. A common shape is an orchestrator that breaks a request into subtasks, hands them to specialist workers, and merges the results.
+
+The usual motivation is a single agent that's grown too big. One due-diligence assistant had twenty-five tools and a four-page system prompt, and it picked the wrong search tool about one time in six. Splitting it into a planner and three narrow workers, each with five tools, brought those errors close to zero.
+
+Most bugs live in the handoffs, where a constraint the user stated gets dropped. Pass structured briefs, not loose summaries, and invest early in tracing so you can see which agent said what.

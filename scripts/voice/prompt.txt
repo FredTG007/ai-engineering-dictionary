@@ -1,0 +1,5 @@
+A prompt is everything you send to a model in one request. Casually, it means the user's question. In a real system, it's a structured document: instructions, retrieved context, examples, history, and finally the user's message, all read as one sequence of tokens.
+
+It's your main lever over behaviour without retraining, and small changes matter. One team changed "answer briefly" to "answer in one sentence" to tidy up a summarizer. A downstream parser expecting bullet points started failing on a third of requests. It looked cosmetic, so nobody tested it.
+
+So treat prompts like code. Keep them in files, review changes, version them, and run evals before shipping. Be specific about the task, the format, and what to do when the answer isn't known.

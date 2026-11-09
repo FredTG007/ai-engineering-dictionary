@@ -1,0 +1,5 @@
+Caching means saving the result of expensive work so the next identical or similar request can reuse it. Model calls are slow and billed per token, so even a modest hit rate helps both latency and spend. You can cache full responses, a processed prompt prefix at the provider, or retrieval results.
+
+Stale answers are the classic failure. An e-commerce assistant cached common answers for twenty-four hours. When the returns policy changed from thirty days to fourteen, the bot kept saying thirty for a full day, and support had to honour the old window.
+
+So tie invalidation to content updates, and keep lifetimes short for anything policy related. Never serve one user's personal details to another. And track how often cached answers turn out wrong, not just how much money they save.

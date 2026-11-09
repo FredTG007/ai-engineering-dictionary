@@ -1,0 +1,5 @@
+A jailbreak is an input designed to make a model break its own safety behaviour, and produce something it was trained or told to refuse. Common tricks include role-play, hypothetical framing, splitting a request into innocent pieces, and long conversations that slowly shift what seems acceptable.
+
+The production symptom is usually a screenshot. A company's customer-facing assistant was coaxed, over about fifteen turns of creative writing, into detailed instructions for picking a specific brand of lock. Someone posted it publicly, logo and all. Nothing in the system prompt was wrong.
+
+You can't rely on the base model alone. Check outputs with moderation, whatever the input looked like, and keep the assistant narrowly scoped. Keep known attacks in your evals, and rerun them whenever you change models.

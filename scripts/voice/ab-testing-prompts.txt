@@ -1,0 +1,5 @@
+A-B testing prompts means splitting live traffic between two prompt versions and comparing how real users respond. It is the last step after offline evals say a change is safe to try.
+
+Offline scores and live behaviour can disagree. One team's new onboarding prompt scored higher with their judge model, so they shipped it to everyone. Conversion to a paid plan dropped over the next week. The new answers were longer and more thorough, and users skimmed past them. A fifty-fifty split would have shown the drop within days.
+
+To run a fair test, assign each user to one variant consistently, tie every response to an exact prompt version, and pick your main metric before you start. Watch cost and latency too. And don't stop early because the dashboard looks good on day two.

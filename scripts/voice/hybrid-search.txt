@@ -1,0 +1,5 @@
+Hybrid search runs a keyword search and a vector search over the same documents, and merges the results into one ranked list. Each method misses things the other finds. Combining them is a cheap way to improve retrieval.
+
+Pure vector search struggles with exact identifiers. A user pastes an error code or a product number, and gets pages about vaguely similar errors instead of the one page with that exact string. The reverse is true too: a keyword search for "cancel my subscription" misses a page called "Ending your membership".
+
+The main design choice is how to merge. Scores from each method sit on different scales, so reciprocal rank fusion, which uses positions instead of scores, is a common choice. Then measure recall separately for each query type.

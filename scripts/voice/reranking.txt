@@ -1,0 +1,5 @@
+Reranking is a second pass over retrieved results, where a more precise model scores each candidate against the query and reorders the list. The first retriever is built for speed across millions of documents. The reranker is built for accuracy across a few dozen.
+
+The usual symptom is that the right document was retrieved but never used. Logs show the correct chunk sitting at position fourteen, while only the top five reach the prompt. A reranker reads the query and each candidate together, so it catches what the fast retriever missed.
+
+Retrieve wide and rerank narrow: pull fifty to a hundred candidates, then pass the best five to ten. Watch latency, though. One team's tail latency nearly doubled with a hundred candidates, and cutting to forty recovered most of it with almost no quality loss.

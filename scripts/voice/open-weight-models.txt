@@ -1,0 +1,5 @@
+An open-weight model is one whose trained parameters are released for anyone to download and run. You can host it yourself, fine-tune it, and keep all your data inside your network. It's narrower than open source, because the training data and code often aren't released.
+
+Teams usually choose them for data control, cost at high volume, or customization. One healthcare company couldn't send patient notes to an external API, so it ran an open-weight model in its own cloud account, and passed its compliance review in weeks rather than months.
+
+The trade-off is that you take on the operations: serving, capacity, patching and on-call. Confirm quality with your own evals, not public leaderboards. And read the license, because some restrict commercial use or apply to fine-tunes too.

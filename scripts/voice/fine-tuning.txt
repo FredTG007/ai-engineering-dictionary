@@ -1,0 +1,5 @@
+Fine-tuning means continuing to train an existing model on your own examples, so its weights shift toward the behaviour you want. You provide pairs of inputs and ideal outputs, and you get a new model version that behaves that way by default.
+
+The most common mistake is using it to teach facts. One team trained a model on their internal wiki, hoping it would answer policy questions. It confidently blended old and new policies, and every wiki change meant retraining. Retrieval suited the problem better, because it updates in minutes and cites its sources.
+
+Use fine-tuning for consistent form and narrow skills: a strict output format, a house style, a fixed set of labels. A few hundred clean examples beat thousands of noisy ones. And always compare against your best prompt-only baseline first.

@@ -1,0 +1,5 @@
+Time to first token is how long it takes from sending a request until the model produces its first piece of output. It covers network time, queueing, and the model reading your entire prompt.
+
+It's the speed users feel most. A reply that starts quickly and finishes in six seconds often feels faster than one that appears all at once after four. One team watched this creep from under a second to nearly four over a quarter. The system prompt had grown, retrieval had gone from three chunks to twelve, and long chats sent the full history every turn.
+
+The biggest lever is prompt length. Trim retrieval, summarize older turns, and use prompt caching. Then track the ninety-fifth percentile, not just the average.

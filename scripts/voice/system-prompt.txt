@@ -1,0 +1,5 @@
+A system prompt is a block of instructions at the start of every request that frames how the model should behave: its role, rules, tone and format. Most APIs give it a dedicated slot, and models are trained to give it extra weight.
+
+It's where product decisions become behaviour. One retail team found their assistant happily recommending competitors' products, because nothing in the system prompt said otherwise. A single line fixed it.
+
+It isn't a security boundary, though. Users can often get a model to reveal or ignore it, so never put secrets in it, and enforce critical rules in code. System prompts also grow with every incident, from two hundred words to three thousand. Review them regularly, and keep the most important rules near the top.

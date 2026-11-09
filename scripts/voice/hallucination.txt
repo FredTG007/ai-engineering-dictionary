@@ -1,0 +1,5 @@
+A hallucination is output that sounds plausible but isn't true, or isn't supported by what the model was given. A made-up statistic, a paper that doesn't exist, a policy nobody wrote. The model says it in the same confident tone as everything else.
+
+It happens because a model generates likely text, not verified text. When the answer is missing, it still produces the most plausible continuation. In one widely reported airline case, a bot described a bereavement refund policy that didn't exist, and a tribunal ordered the airline to honour it.
+
+You can't remove it entirely, but you can make it rarer. Give the model the source material, tell it to answer only from that, let it say it doesn't know, and check its citations. Then test with questions whose correct answer is "not covered".

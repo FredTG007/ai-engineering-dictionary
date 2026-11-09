@@ -1,0 +1,5 @@
+GPU serving means hosting a model on GPUs you control and exposing it as an API. Instead of calling a provider, you pick the hardware, run an inference engine, and handle scaling, monitoring and upgrades yourself.
+
+The motivation is usually cost, data control or latency. The surprise is usually the operational work. One team moved a high-volume summarization job off a hosted API to save money. The GPU bill was lower, but the first month brought two out-of-memory outages, twelve-minute cold starts on new nodes, and an engineer spending most of their time tuning the engine.
+
+Plan around memory: the weights, plus cache space for every concurrent sequence. Keep warm replicas, scale on queue depth rather than CPU, and keep checking that self-hosting still beats the API price.

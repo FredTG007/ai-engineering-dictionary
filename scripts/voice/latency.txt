@@ -1,0 +1,5 @@
+Latency is the time between sending a request and getting the response you need. In LLM systems it's rarely one number, because a request can pass through retrieval, reranking, several model calls and post-processing. Measure it end to end, and per stage.
+
+Look at percentiles, not averages. A median of two seconds can hide a ninety-fifth percentile of fifteen, and those users give up. Regressions are usually accidental. One team added a reranker and saw that tail latency double overnight. Another added a check-the-answer call and turned three seconds into seven. Neither had a latency budget.
+
+To bring it down, do less: shorter prompts, shorter outputs, fewer sequential calls. Do it faster, with smaller models or caching. Or stream, so the first words appear while the rest is still being written.

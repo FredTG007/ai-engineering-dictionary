@@ -1,0 +1,5 @@
+Error analysis means reading a sample of your system's real failures, noting what went wrong in each, and counting how often each kind appears. It sounds too simple to need a name, but it's the step teams skip most, and that's how they end up fixing the wrong thing.
+
+After one launch, a support assistant's thumbs-down rate doubled, and the first idea was a bigger model. Someone read a hundred bad conversations. Forty-one failed because the right article was never retrieved. Twenty-two used an outdated pricing page. Only nine looked like reasoning mistakes a bigger model might fix.
+
+So pull fifty to two hundred failing traces, note the first thing that went wrong in each, and group the notes into a few categories. Fix the biggest one, then add its cases to your evals.

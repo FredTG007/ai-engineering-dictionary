@@ -1,0 +1,5 @@
+Prompt versioning means giving every prompt a tracked history, with an I D for each version, a record of who changed what, and a way to tell which version produced any output. It treats prompts as deployable artifacts, not strings edited in place.
+
+The pain is usually an unexplained change in behaviour. One team's classification accuracy dropped from ninety-four to eighty-seven percent over a month. The system prompt lived in a database row that three people edited through an admin panel, with no history. Nobody knew what it had said when accuracy was good.
+
+At minimum, attach a version I D to every logged request, keep diffs, store the model and its settings with the prompt, and make rollback instant. Without that, your evals and A-B tests describe a prompt that may no longer exist.

@@ -1,0 +1,5 @@
+Model routing means choosing which model handles each request based on what it needs. Instead of sending everything to one large model, a router sends easy requests to a small, cheap model and hard ones to a capable one.
+
+The usual trigger is a bill full of work that never needed a big model. One internal assistant sent every message, even "thanks", to the most expensive model available. Over sixty percent of traffic was simple lookups or small talk. Routing those to a small model cut monthly spend by more than half.
+
+Start with simple rules, and only add a classifier when the rules clearly miss. Log the chosen model on every request, and run evals per route, because misroutes look like random drops in quality.

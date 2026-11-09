@@ -1,0 +1,5 @@
+Temperature controls how much randomness goes into choosing each next token. Low values make the most likely token almost always win. High values give less likely tokens more of a chance.
+
+In practice it's a dial between consistency and variety. A frequent symptom is flaky behaviour nobody can reproduce. One team's extraction pipeline failed to return valid JSON about one time in forty. The prompt was fine. Temperature had been left at the default of one. Dropping it to zero removed most failures.
+
+But low temperature doesn't make a model correct. It makes it consistent, including consistently wrong. If it's making things up at zero, the fix is better context, not a different setting. And adjust either temperature or top-p, not both.

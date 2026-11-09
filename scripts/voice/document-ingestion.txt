@@ -1,0 +1,5 @@
+Document ingestion is everything between a source file and a searchable index: fetching documents, parsing them into text, cleaning it, attaching metadata, and handing it on to chunking and embeddings. In a RAG system it's the least glamorous stage, and often the one causing wrong answers.
+
+Parsing is where most quality is lost. A PDF stores characters and positions, not paragraphs or tables. One team's assistant quoted wrong prices because the price table came out as one long run of numbers. The right chunk was retrieved. It just wasn't readable.
+
+So keep structure like headings and table rows, and capture metadata here, including access permissions, or internal documents end up in customer answers. Before blaming the embeddings, open the parsed text and read it. And re-check retrieval after any parser upgrade.

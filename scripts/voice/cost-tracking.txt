@@ -1,0 +1,5 @@
+Cost tracking means recording what each model call costs and tying that spend to the feature, customer and workflow that caused it. The invoice tells you the total. Cost tracking tells you why.
+
+The usual wake-up call is a bill. One startup's monthly spend jumped from about four thousand dollars to thirty-one thousand, with no matching growth in users. It took a week to find the cause: a summarize button that sent the entire conversation, sometimes eighty thousand tokens, to their largest model, and a few power users clicked it constantly.
+
+So log the model, the input, output and cached tokens, and the cost for every call, tagged with the feature and tenant. Then the levers become clear: trim context, route simple tasks to cheaper models, cache, and cap output length.

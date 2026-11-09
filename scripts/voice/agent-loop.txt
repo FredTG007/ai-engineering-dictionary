@@ -1,0 +1,5 @@
+The agent loop is the plain code that drives an agent. It calls the model, runs any tools the model asked for, adds the results to the conversation, and calls the model again, until there's a final answer or a limit is hit. The model makes the decisions. The loop carries them out and decides when to stop.
+
+Most agent incidents are really loop incidents. A research assistant was asked to find a paper that didn't exist. It searched, rephrased and searched again. With no step limit and no budget, it made a hundred and fifty calls before someone killed it.
+
+So give every loop a step cap and a token budget, time out slow tools, and catch repeated calls. Return tool errors to the model so it can adapt, and trace every step.

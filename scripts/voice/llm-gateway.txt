@@ -1,0 +1,5 @@
+An L L M gateway is a service that sits between your applications and the model providers. Instead of every team holding its own keys, all traffic goes through one proxy that handles access, routing, limits, logging and spend in one place.
+
+The need usually shows up as a bill nobody can explain. One company had five teams calling three providers with their own keys. The bill doubled, and nobody could say why. A batch job had been retrying failed calls in a tight loop for a week. With a gateway, every request carried a team tag, and the next runaway job was throttled within minutes.
+
+Build it like critical infrastructure, with redundancy, and make sure it streams without buffering. Keep it thin: identity, limits, routing, logging and cost, but no business logic.
