@@ -616,27 +616,9 @@ kbd {
 /* ---------- Footer ---------- */
 
 .footer { margin-top: 12px; padding-top: 10px; border-top: 1px dashed color-mix(in srgb, var(--ink) 35%, transparent); font-size: 0.88rem; }
-.footer__credit { margin: 0 0 8px; color: var(--ink-soft); }
-.newsletter__label { display: block; font-style: italic; margin-bottom: 4px; }
-.newsletter__row { display: flex; gap: 6px; }
-.newsletter__input {
-  flex: 1;
-  min-width: 0;
-  padding: 4px 2px;
-  background: transparent;
-  border: none;
-  border-bottom: 1.2px solid var(--ink);
-  outline: none;
-}
-.newsletter__button {
-  padding: 3px 10px;
-  background: var(--ink);
-  color: var(--page);
-  border: none;
-  border-radius: 2px;
-  cursor: pointer;
-}
-.newsletter__message { margin: 6px 0 0; font-style: italic; color: var(--ink-soft); }
+.footer__credit { margin: 0 0 4px; color: var(--ink-soft); }
+.footer__follow { margin: 0; font-style: italic; }
+.footer__follow a { color: var(--accent); }
 
 /* ---------- Header view toggle ---------- */
 
