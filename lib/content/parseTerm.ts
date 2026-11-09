@@ -1,5 +1,6 @@
 import matter from "gray-matter";
 import { DIFFICULTIES, type Difficulty, type Term } from "./types";
+import { parseOptionalBuildThis } from "./buildThis";
 import { extractLinkedSlugs } from "./termLinks";
 import { parseQuotes, splitUsageSection } from "./usageSection";
 
@@ -18,6 +19,7 @@ export function parseTerm(slug: string, rawFile: string): Term {
     quotes: usageMarkdown ? parseQuotes(usageMarkdown) : [],
     outgoingSlugs: extractLinkedSlugs(content).filter((target) => target !== slug),
     hasUsageSection: usageMarkdown !== null,
+    buildThis: parseOptionalBuildThis(data.buildThis),
   };
 }
 

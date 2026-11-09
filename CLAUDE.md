@@ -38,7 +38,9 @@ _Usage:_
 11. **Link new entries back into older ones.** When you add a term, edit the existing entries that should mention it so the graph stays connected in both directions.
 12. **Frontmatter includes `difficulty`, `interview` and `interviewAnswer`.** The interview question is original and tied to a real scenario, and the answer note lists what a good answer covers without becoming an essay.
 
-Run `npm run validate` before committing. It enforces rules 5, 6, 7 (missing targets), 9, 10 and 12, and checks that no map label overlaps another label, a station or a line.
+13. **Frontmatter includes a `buildThis` project card** with `title`, `goal` (one line), `steps` (3–5), `skills` (1–6 short labels), `time` (`under an hour` | `an afternoon` | `a day` | `a weekend`), and `stretch` (one stretch goal). Projects are original, plain English, free/cheap tools, and varied — not 91 chatbots. Generate or update the catalog in `internal/build-this.json`, then run `npx tsx scripts/apply-build-this.ts` to write the cards into each term file.
+
+Run `npm run validate` before committing. It enforces rules 5, 6, 7 (missing targets), 9, 10, 12 and 13, and checks that no map label overlaps another label, a station or a line.
 
 ## Code rules
 

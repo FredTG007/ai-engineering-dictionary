@@ -77,7 +77,18 @@ export function validateDictionary(terms: Term[], curriculum: string[], tracks: 
   const termErrors = terms.flatMap((term) =>
     TERM_RULES.flatMap((rule) => rule(term, context)).map((message) => ({ slug: term.slug, message })),
   );
-  return [...termErrors, ...findOrphanCurriculumEntries(curriculum, context.knownSlugs)];
+  return [
+    ...termErrors,
+    ...findOrphanCurriculumEntries(curriculum, context.knownSlugs),
+    ...findBuildThisProblems(terms),
+  ];
+}
+
+/** Pure: every term needs a Build This project card. */
+export function findBuildThisProblems(terms: Term[]): ValidationError[] {
+  return terms
+    .filter((term) => term.buildThis === null)
+    .map((term) => ({ slug: term.slug, message: "buildThis project card is missing" }));
 }
 
 function findOrphanCurriculumEntries(curriculum: string[], knownSlugs: Set<string>): ValidationError[] {

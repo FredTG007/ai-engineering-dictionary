@@ -6,6 +6,7 @@ import type { PublishedTerm } from "@/lib/content/types";
 import type { Track } from "@/lib/map/types";
 import type { TrackProgress } from "@/lib/progress/trackProgress";
 import { RoughUnderline } from "../sketch/RoughUnderline";
+import { BuildThisCard } from "./BuildThisCard";
 import { ConnectionChips } from "./ConnectionChips";
 import { CurriculumNav } from "./CurriculumNav";
 import { DefinitionBody } from "./DefinitionBody";
@@ -66,6 +67,7 @@ export function TermPanel(props: TermPanelProps) {
         </div>
         {expanded && <DefinitionBody html={term.definitionHtml} onTermLink={onSelect} />}
         <InterviewCard question={term.interview} answer={term.interviewAnswer} onReveal={onExpand} />
+        {term.buildThis && <BuildThisCard card={term.buildThis} onOpen={onExpand} />}
         <HeardInTheWild quotes={term.quotes} />
         <ConnectionChips term={term} titleOf={titleOf} onSelect={onSelect} />
       </div>

@@ -1,3 +1,7 @@
+import type { BuildThis } from "./buildThis";
+
+export type { BuildThis } from "./buildThis";
+
 export const DIFFICULTIES = ["beginner", "intermediate", "advanced"] as const;
 export type Difficulty = (typeof DIFFICULTIES)[number];
 
@@ -19,6 +23,8 @@ export interface Term {
   /** Slugs this entry links to, in order of first appearance, without duplicates. */
   outgoingSlugs: string[];
   hasUsageSection: boolean;
+  /** Portfolio project card; null until authored. */
+  buildThis: BuildThis | null;
 }
 
 /** A term prepared for the browser: definition already rendered to HTML. */
@@ -35,4 +41,6 @@ export interface PublishedTerm {
   quotes: string[];
   outgoingSlugs: string[];
   incomingSlugs: string[];
+  /** Present once authored; the validator requires it for release. */
+  buildThis: BuildThis | null;
 }

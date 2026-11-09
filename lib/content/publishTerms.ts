@@ -21,6 +21,7 @@ export function publishTerms(terms: Term[], curriculum: string[], trackIdsOf: (s
     quotes: term.quotes,
     outgoingSlugs: term.outgoingSlugs,
     incomingSlugs: incoming.get(term.slug) ?? [],
+    buildThis: term.buildThis,
   }));
 }
 

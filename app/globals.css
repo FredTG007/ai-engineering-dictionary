@@ -511,6 +511,87 @@ kbd {
 .interview-card__answer-title { margin: 0 0 4px; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); }
 @keyframes fade { from { opacity: 0; } }
 
+.build-this-card {
+  position: relative;
+  margin: 18px 0 8px;
+  padding: 14px 16px 14px;
+  background: color-mix(in srgb, #cfe8ff 50%, var(--page-raised));
+  border: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
+  box-shadow: 2px 3px 0 color-mix(in srgb, var(--ink) 10%, transparent);
+  transform: rotate(0.5deg);
+}
+[data-palette="kraft"] .build-this-card { background: color-mix(in srgb, #b9d6c2 45%, var(--page-raised)); }
+[data-palette="night"] .build-this-card { background: color-mix(in srgb, #2a3f55 55%, var(--page-raised)); }
+.build-this-card::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 28%;
+  width: 64px;
+  height: 18px;
+  transform: rotate(-3deg);
+  background: color-mix(in srgb, var(--page) 60%, rgba(255, 255, 255, 0.4));
+  border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.build-this-card__eyebrow {
+  margin: 0 0 6px;
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.build-this-card__title {
+  margin: 0 0 6px;
+  font-family: var(--serif-display);
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+.build-this-card__goal { margin: 0 0 10px; line-height: 1.45; }
+.build-this-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin: 0 0 10px;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+.build-this-card__time {
+  font-family: var(--serif-display);
+  font-style: italic;
+}
+.build-this-card__reveal {
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  text-align: left;
+  font-style: italic;
+  text-decoration: underline dashed;
+  text-underline-offset: 3px;
+}
+.build-this-card__body {
+  border-top: 1px dashed color-mix(in srgb, var(--ink) 35%, transparent);
+  padding-top: 8px;
+  animation: fade 0.3s;
+}
+.build-this-card__section-title {
+  margin: 0 0 4px;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.build-this-card__steps {
+  margin: 0 0 10px;
+  padding-left: 1.2em;
+  line-height: 1.45;
+}
+.build-this-card__steps li { margin: 0 0 4px; }
+.build-this-card__stretch { margin: 0; line-height: 1.45; }
+
+
 .panel-section { margin-top: 18px; }
 .panel-section__title {
   margin: 0 0 6px;
@@ -765,4 +846,94 @@ kbd {
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* --- Ask the dictionary --- */
+.app[data-view="ask"] { overflow: auto; }
+.ask-view {
+  max-width: 720px;
+  margin: 24px auto 48px;
+  padding: 0 18px 40px;
+}
+.ask-view__card {
+  background: var(--page-raised);
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  box-shadow: var(--shadow);
+  padding: 22px 24px 26px;
+}
+.ask-view__eyebrow { margin: 0 0 6px; font-family: var(--serif-display); font-style: italic; color: var(--ink-soft); }
+.ask-view__title { margin: 0 0 8px; font-family: var(--serif-display); font-size: 1.6rem; line-height: 1.25; }
+.ask-view__underline { display: block; width: min(100%, 240px); height: 10px; color: #2763b0; margin-bottom: 12px; }
+.ask-view__lede { margin: 0 0 16px; line-height: 1.55; color: var(--ink-soft); }
+.ask-view__label { display: block; margin-bottom: 6px; font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-soft); }
+.ask-view__input {
+  width: 100%;
+  resize: vertical;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--ink);
+  background: var(--page);
+  border: 1.2px solid color-mix(in srgb, var(--ink) 35%, transparent);
+  border-radius: var(--radius);
+}
+.ask-view__actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 12px; }
+.ask-view__submit { padding: 6px 14px; }
+.ask-view__status { font-size: 0.9rem; color: var(--ink-soft); }
+.ask-result {
+  margin-top: 18px;
+  padding: 14px 16px;
+  background: color-mix(in srgb, #cfe8ff 40%, var(--page));
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+[data-palette="night"] .ask-result { background: color-mix(in srgb, #2a3f55 50%, var(--page)); }
+.ask-result--error { background: color-mix(in srgb, #f3c1b0 45%, var(--page)); }
+.ask-result__answer { margin: 0 0 10px; line-height: 1.55; font-size: 1.05rem; }
+.ask-result__citations { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.ask-result__meta { margin: 0 0 8px; font-size: 0.85rem; color: var(--ink-soft); }
+.ask-result__how {
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-style: italic;
+  text-decoration: underline dashed;
+  text-underline-offset: 3px;
+}
+.ask-how { margin-top: 12px; border-top: 1px dashed color-mix(in srgb, var(--ink) 30%, transparent); padding-top: 10px; }
+.ask-how__title { margin: 0 0 6px; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); }
+.ask-how__hits { margin: 0 0 12px; padding-left: 1.2em; }
+.ask-how__passage, .ask-how__prompt {
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  background: var(--page);
+  padding: 8px;
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  max-height: 220px;
+  overflow: auto;
+}
+.view-toggle {
+  display: inline-flex;
+  gap: 0;
+  border: 1.2px solid color-mix(in srgb, var(--ink) 45%, transparent);
+  border-radius: 14px;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+}
+.view-toggle__btn {
+  padding: 4px 10px;
+  background: none;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.92rem;
+}
+.view-toggle__btn[aria-pressed="true"] { background: var(--highlight); }
+@media (max-width: 720px) {
+  .ask-view { margin-top: 12px; padding: 0 12px 28px; }
+  .ask-view__card { padding: 16px; }
 }
