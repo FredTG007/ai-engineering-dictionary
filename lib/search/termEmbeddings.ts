@@ -47,7 +47,7 @@ export function findStaleEmbeddings(expected: ExpectedEmbedding[], file: TermEmb
 }
 
 function staleError(slug: string, hasEmbedding: boolean): ValidationError {
-  const problem = hasEmbedding ? "embedding is out of date with the entry" : "has no embedding";
+  const problem = hasEmbedding ? "embedding is out of date with the entry or its search hint" : "has no embedding";
   return { slug: `embeddings:${slug}`, message: `${problem}; ${REBUILD_HINT}` };
 }
 
