@@ -7,7 +7,8 @@ import { useTermSelection } from "@/hooks/useTermSelection";
 import { useUiSound } from "@/hooks/useUiSound";
 import { useView } from "@/hooks/useView";
 import { audioUrl } from "@/lib/audio/audioManifest";
-import { progressByTrack } from "@/lib/progress/trackProgress";
+import { parseLearnedSlugs, progressByTrack } from "@/lib/progress/trackProgress";
+import type { ProgressSnapshot } from "@/lib/progress/progressSnapshot";
 import { createTermSearch } from "@/lib/search/termSearch";
 import type { SiteData } from "@/lib/siteData";
 import { Footer } from "./chrome/Footer";
@@ -19,6 +20,7 @@ import { SubwayMapView } from "./map/SubwayMapView";
 import { TermPanel } from "./panel/TermPanel";
 import { WelcomeCard } from "./panel/WelcomeCard";
 import { AskView } from "./ask/AskView";
+import { ClearProgressControl } from "./progress/ClearProgressControl";
 import { SearchBox } from "./search/SearchBox";
 import { StudyView } from "./study/StudyView";
 import { LinesCard } from "./tracks/LinesCard";
@@ -38,8 +40,10 @@ export function DictionaryApp({ terms, tracks, map, audioSlugs }: SiteData) {
   const { view, setView } = useView();
   const { palette, setPaletteId } = usePalette();
   const { muted, toggleMuted, play } = useUiSound();
-  const { learned, toggleLearned } = useLearnedTerms(isKnownSlug);
+  const { learned, toggleLearned, clearLearned, restoreLearned } = useLearnedTerms(isKnownSlug);
   const [focusedTrackId, setFocusedTrackId] = useState<string | null>(null);
+  const [resetEpoch, setResetEpoch] = useState(0);
+  const [searchEpoch, setSearchEpoch] = useState(0);
   const progress = useMemo(() => progressByTrack(tracks, learned), [tracks, learned]);
   const progressById = useMemo(() => new Map(progress.map((entry) => [entry.trackId, entry])), [progress]);
 
@@ -61,6 +65,25 @@ export function DictionaryApp({ terms, tracks, map, audioSlugs }: SiteData) {
 
   const hoverWithSound = useCallback((slug: string | null) => slug && play("hover"), [play]);
 
+  const resetView = useCallback(() => {
+    setView("map");
+    selectTerm(null);
+    setFocusedTrackId(null);
+    setSearchEpoch((epoch) => epoch + 1);
+    setResetEpoch((epoch) => epoch + 1);
+  }, [setView, selectTerm]);
+
+  const restoreProgress = useCallback(
+    (snapshot: ProgressSnapshot) => {
+      restoreLearned(new Set(parseLearnedSlugs(snapshot.learnedJson, isKnownSlug)));
+    },
+    [restoreLearned, isKnownSlug],
+  );
+
+  const progressActions = (
+    <ClearProgressControl learnedCount={learned.size} onCleared={clearLearned} onRestored={restoreProgress} />
+  );
+
   const selectedTerm = selectedSlug ? termsBySlug.get(selectedSlug) : undefined;
   const linesList = (
     <TrackProgressList
@@ -74,7 +97,7 @@ export function DictionaryApp({ terms, tracks, map, audioSlugs }: SiteData) {
 
   const header = (
     <Header>
-      <SearchBox search={search} onSelect={openOnMap} />
+      <SearchBox key={searchEpoch} search={search} onSelect={openOnMap} />
       <ViewToggle view={view} onChange={setView} />
       <PaletteSwitcher activeId={palette.id} onChange={setPaletteId} />
       <SoundToggle muted={muted} onToggle={toggleMuted} />
@@ -100,7 +123,7 @@ export function DictionaryApp({ terms, tracks, map, audioSlugs }: SiteData) {
   }
 
   return (
-    <div className="app" data-view="map" data-panel-open={Boolean(selectedTerm)}>
+    <div className="app" data-view="map" data-panel-open="true">
       <SubwayMapView
         map={map}
         startSlug={orderedSlugs[0]}
@@ -108,13 +131,15 @@ export function DictionaryApp({ terms, tracks, map, audioSlugs }: SiteData) {
         selectedSlug={selectedSlug}
         learned={learned}
         focusedTrackId={focusedTrackId}
+        resetEpoch={resetEpoch}
         onSelect={selectWithSound}
         onHover={hoverWithSound}
+        onResetView={resetView}
       />
       {header}
       {selectedTerm ? (
         <>
-          <LinesCard learnedCount={learned.size} total={terms.length}>
+          <LinesCard learnedCount={learned.size} total={terms.length} progressActions={progressActions}>
             {linesList}
           </LinesCard>
           <TermPanel
@@ -141,6 +166,7 @@ export function DictionaryApp({ terms, tracks, map, audioSlugs }: SiteData) {
           firstTitle={titleOf(orderedSlugs[0])}
           onStart={selectWithSound}
           lines={linesList}
+          progressActions={progressActions}
           footer={<Footer />}
         />
       )}

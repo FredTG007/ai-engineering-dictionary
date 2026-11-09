@@ -123,6 +123,18 @@ kbd {
   line-height: 1;
 }
 .ink-button:hover { background: var(--highlight); }
+.ink-button--label {
+  width: auto;
+  min-width: 0;
+  height: auto;
+  padding: 7px 10px;
+  font-size: 0.82rem;
+  font-style: italic;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.ink-button--danger { border-color: #a33; color: #a33; }
+[data-palette="night"] .ink-button--danger { border-color: #e88; color: #e88; }
 
 /* ---------- App frame ---------- */
 
@@ -836,7 +848,19 @@ kbd {
   }
   .panel--welcome { height: auto; max-height: 45vh; }
   @keyframes sheet-up { from { transform: translateY(20px); opacity: 0; } }
-  .zoom-controls { display: none; }
+  /* Keep map controls clear of the bottom sheet / welcome card. */
+  .zoom-controls {
+    gap: 5px;
+    top: 108px;
+    right: var(--edge-gap);
+    bottom: auto;
+  }
+  .app[data-panel-open="true"] .zoom-controls {
+    right: var(--edge-gap);
+    top: 108px;
+    bottom: auto;
+  }
+  .ink-button--label { font-size: 0.75rem; padding: 6px 8px; }
   .lines-card { width: auto; right: var(--edge-gap); top: 104px; bottom: auto; max-height: 50vh; z-index: 25; }
   .study { padding-top: 112px; }
   .study__sheet { padding: 14px 14px 18px 46px; background-position: -6px 0, 0 0, 0 0; }
@@ -846,6 +870,73 @@ kbd {
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+
+/* ---------- Clear progress ---------- */
+
+.clear-progress { margin-top: 10px; }
+.clear-progress__trigger {
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 0.88rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.clear-progress__trigger:hover { color: var(--ink); }
+.clear-progress__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.clear-progress__dialog {
+  width: min(420px, 100%);
+  padding: 18px 18px 14px;
+  background: var(--page-raised);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.clear-progress__title {
+  margin: 0 0 8px;
+  font-family: var(--serif-display);
+  font-size: 1.25rem;
+}
+.clear-progress__body { margin: 0 0 16px; color: var(--ink-soft); }
+.clear-progress__actions { display: flex; justify-content: flex-end; gap: 8px; }
+.clear-progress__toast {
+  position: fixed;
+  left: 50%;
+  bottom: var(--edge-gap);
+  transform: translateX(-50%);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--page-raised);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-size: 0.95rem;
+}
+.clear-progress__undo {
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-weight: 650;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* --- Ask the dictionary --- */

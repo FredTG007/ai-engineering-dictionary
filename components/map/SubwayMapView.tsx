@@ -23,11 +23,25 @@ interface SubwayMapViewProps {
   selectedSlug: string | null;
   learned: ReadonlySet<string>;
   focusedTrackId: string | null;
+  /** Bumped by the parent to refit the whole map after a Reset view. */
+  resetEpoch: number;
   onSelect: (slug: string) => void;
   onHover: (slug: string | null) => void;
+  onResetView: () => void;
 }
 
-export function SubwayMapView({ map, startSlug, colourOf, selectedSlug, learned, focusedTrackId, onSelect, onHover }: SubwayMapViewProps) {
+export function SubwayMapView({
+  map,
+  startSlug,
+  colourOf,
+  selectedSlug,
+  learned,
+  focusedTrackId,
+  resetEpoch,
+  onSelect,
+  onHover,
+  onResetView,
+}: SubwayMapViewProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const size = useElementSize(svgRef);
   const { viewport, setViewport, flyTo, zoomBy, wasDragged, handlers } = usePanZoom(svgRef, { x: 0, y: 0, scale: 1 });
@@ -41,6 +55,7 @@ export function SubwayMapView({ map, startSlug, colourOf, selectedSlug, learned,
   );
 
   useViewportFollowsSelection(size, selectedStation, viewport.scale, fitView, setViewport, flyTo);
+  useResetViewport(resetEpoch, size, fitView, flyTo);
 
   const activate = useCallback((slug: string) => !wasDragged() && onSelect(slug), [wasDragged, onSelect]);
   const isDimmed = (trackIds: string[]) => focusedTrackId !== null && !trackIds.includes(focusedTrackId);
@@ -73,6 +88,7 @@ export function SubwayMapView({ map, startSlug, colourOf, selectedSlug, learned,
         onZoomIn={() => zoomBy(BUTTON_ZOOM_STEP)}
         onZoomOut={() => zoomBy(1 / BUTTON_ZOOM_STEP)}
         onFit={() => size && flyTo(fitView(size))}
+        onResetView={onResetView}
       />
     </div>
   );
@@ -108,4 +124,19 @@ function useViewportFollowsSelection(
     // Only a new selection (or the first measurement) should move the camera.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [station, size === null]);
+}
+
+/** When the parent bumps resetEpoch, fly back to a full-map fit. */
+function useResetViewport(
+  resetEpoch: number,
+  size: Size | null,
+  fitView: (view: Size) => Viewport,
+  flyTo: (viewport: Viewport) => void,
+) {
+  const previous = useRef(resetEpoch);
+  useEffect(() => {
+    if (!size || resetEpoch === previous.current) return;
+    previous.current = resetEpoch;
+    flyTo(fitView(size));
+  }, [resetEpoch, size, fitView, flyTo]);
 }

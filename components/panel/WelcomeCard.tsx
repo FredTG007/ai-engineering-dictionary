@@ -10,10 +10,22 @@ interface WelcomeCardProps {
   onStart: (slug: string) => void;
   /** The Lines list, shown under the introduction. */
   lines: ReactNode;
+  /** Clear-progress control under the lines list. */
+  progressActions?: ReactNode;
   footer: ReactNode;
 }
 
-export function WelcomeCard({ termCount, trackCount, learnedCount, firstSlug, firstTitle, onStart, lines, footer }: WelcomeCardProps) {
+export function WelcomeCard({
+  termCount,
+  trackCount,
+  learnedCount,
+  firstSlug,
+  firstTitle,
+  onStart,
+  lines,
+  progressActions,
+  footer,
+}: WelcomeCardProps) {
   return (
     <aside className="panel panel--welcome" aria-label="Welcome">
       <div className="panel__scroll">
@@ -35,6 +47,7 @@ export function WelcomeCard({ termCount, trackCount, learnedCount, firstSlug, fi
             Your lines · {learnedCount} / {termCount} learned
           </h3>
           {lines}
+          {progressActions}
         </section>
         {footer}
       </div>
