@@ -9,7 +9,7 @@ Version 2 draws the dictionary as a **subway map** printed in a field notebook. 
 ## Features
 
 - **Subway map (SVG).** Hand-tuned octilinear layout: lines run horizontally, vertically or at 45°. `npm run validate` fails if any label would overlap another label, a station or a line. Drag to pan, scroll or pinch to zoom, `+` / `−` / fit buttons, keyboard-focusable stations.
-- **Side panel** (a bottom sheet on mobile): difficulty badge, the track(s) a term sits on, the description, "Read more" for the full definition, an **interview question** whose "what a good answer covers" note is revealed on click, "Heard in the wild" quotes, "Connects to" chips, and prev/next through the curriculum with `N / 91`, and a **Listen** button that plays the term's narration when it has one (otherwise it is disabled and reads "Audio coming soon").
+- **Side panel** (a bottom sheet on mobile): difficulty badge, the track(s) a term sits on, the description, "Read more" for the full definition, an **interview question** whose "what a good answer covers" note is revealed on click, "Heard in the wild" quotes, "Connects to" chips, and prev/next through the curriculum with `N / 91`, and a **Listen** button that plays the term's narration (Kokoro `af_heart`).
 - **Progress.** Mark a term as learned; each line shows a hand-drawn progress bar and a "start/continue" link to the next unlearned station. Click a line name to highlight it on the map. Progress is saved in localStorage.
 - **Study mode.** The header's **Study** button (or `?view=study`) opens flashcards: a term → definition card and an interview question → "what a good answer covers" card for every term. Reviews are scheduled with SM-2 (Again / Hard / Good / Easy, each showing when the card comes back) and stored in localStorage. Filter by track and card type, see due / new / well-known counts and how much of the deck you've seen. Keys: <kbd>Space</kbd> flips, <kbd>1</kbd>–<kbd>4</kbd> grade. **Export** downloads the filtered deck as an Anki-importable TSV (`File → Import`, with deck, note type and tags set by header lines) or a plain CSV, generated in the browser.
 - **Search.** Instant keyword search (MiniSearch) plus search by meaning: precomputed term embeddings and an in-browser MiniLM model, lazy-loaded on first use, so "why does my bot make things up" finds Hallucination. No server. Press `/` to focus it, then use ↑/↓ and Enter. After adding or editing terms run `npm run search:embeddings`.
@@ -61,7 +61,7 @@ The full writing rules are in [CLAUDE.md](./CLAUDE.md).
 ## Add narration
 
 1. Write the spoken script in `scripts/voice/<slug>.txt`: plain spoken English, 90–140 words (about 30–60 seconds), no markdown or URLs. `npm run validate` checks all three.
-2. Record or generate `public/audio/<slug>.mp3`.
+2. Record or generate `public/audio/<slug>.mp3` (current voice: Kokoro `af_heart`, local).
 3. Run `npm run audio:manifest`. The term panel's **Listen** button is enabled only for slugs listed in `public/audio/manifest.json`, which is read at build time.
 
 ## Project layout
