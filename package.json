@@ -11,9 +11,12 @@
     "validate": "tsx scripts/validate-content.ts",
     "audio:manifest": "tsx scripts/build-audio-manifest.ts",
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test \"lib/**/*.test.ts\""
+    "test": "node --import tsx --test \"lib/**/*.test.ts\"",
+    "search:assets": "tsx scripts/fetch-search-assets.ts",
+    "prebuild": "npm run search:assets"
   },
   "dependencies": {
+    "@huggingface/transformers": "^4.3.2",
     "gray-matter": "^4.0.3",
     "minisearch": "^7.2.0",
     "next": "^16.4.5",
