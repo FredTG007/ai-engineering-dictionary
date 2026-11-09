@@ -4,6 +4,20 @@ description: Restricting a vector search to documents whose attributes, like ten
 difficulty: intermediate
 interview: "A multi-tenant RAG app occasionally shows one customer a snippet from another customer's documents. How would you fix retrieval to stop this?"
 interviewAnswer: "Covers attaching tenant and permission metadata at indexing time, applying filters inside the vector query rather than after it, pre-filter versus post-filter trade-offs on recall and latency, enforcing access server-side, and tests that assert no cross-tenant results."
+buildThis:
+  title: Build a filtered vector search tool
+  goal: Combine hard attribute constraints with semantic similarity to narrow down retrieval results.
+  steps:
+    - Create a small document collection tagged with categories and dates.
+    - Index documents and metadata into a local vector store like Chroma.
+    - Write a query function that applies a metadata filter before similarity search.
+    - Verify that restricted queries exclude records outside the filter criteria.
+  skills:
+    - ChromaDB
+    - Vector Search
+    - Python
+  time: an afternoon
+  stretch: Build a parser that extracts filter tags directly from user prompts using a small regex or LLM classifier.
 ---
 
 Metadata filtering means narrowing a search to documents whose structured attributes match explicit conditions, such as `tenant_id = 42` or `published_after = 2025-01-01`, before or during the vector lookup. Every chunk you store carries a small set of fields next to its embedding, and the filter turns those fields into rules that similarity alone cannot express.

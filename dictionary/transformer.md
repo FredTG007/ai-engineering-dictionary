@@ -4,6 +4,20 @@ description: The neural network architecture behind modern LLMs, built around at
 difficulty: intermediate
 interview: "A teammate asks why doubling the prompt length made your self-hosted model more than twice as slow to start answering. How would you explain it using the transformer architecture?"
 interviewAnswer: "Covers self-attention comparing every token with every earlier token, so the attention part of prefill grows quadratically with prompt length on top of linear work in the rest of each layer, the KV cache growing linearly during decoding, and mitigations such as shorter prompts, prefix caching and optimized attention kernels."
+buildThis:
+  title: Build a tiny self-attention module
+  goal: Implement scaled dot-product attention from scratch using NumPy to understand how tokens interact.
+  steps:
+    - Create random query, key, and value matrices for a small sequence of token vectors.
+    - Compute the dot product of queries and keys to get raw attention scores.
+    - Scale the scores by the square root of the head dimension and apply softmax.
+    - Multiply the attention weights by the value matrix to produce context-aware vectors.
+  skills:
+    - NumPy
+    - Linear Algebra
+    - Neural Networks
+  time: a day
+  stretch: Extend the single-head attention function into multi-head attention by splitting the hidden dimension.
 ---
 
 A transformer is the neural network architecture almost every modern [LLM](./llm.md) is built on. It processes a sequence of [tokens](./tokens.md) through a stack of identical layers, and each layer has two main parts: an attention block that lets each token gather information from other tokens, and a feed-forward block that transforms each token's representation on its own.

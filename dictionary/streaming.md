@@ -4,6 +4,20 @@ description: Sending a model's output to the client token by token as it is gene
 difficulty: beginner
 interview: "Streaming works on your laptop, but in production the whole reply shows up at once after eight seconds. Where do you look?"
 interviewAnswer: "Covers proxies, gateways or load balancers buffering server-sent events, checking those settings, and the wider changes streaming brings: handling streams that fail midway, timeouts for stalled streams, partial JSON, and output moderation before text reaches the user."
+buildThis:
+  title: Build a real-time streaming text client
+  goal: Build a web app that displays model responses token by token as they arrive over the network.
+  steps:
+    - Set up a basic FastAPI backend that calls an LLM API with streaming enabled.
+    - Create a minimal HTML and JavaScript frontend that reads the server-sent events stream.
+    - Update the DOM incrementally as each text chunk arrives from the server.
+    - Measure and display the total generation time once the stream completes.
+  skills:
+    - FastAPI
+    - JavaScript
+    - Server-Sent Events
+  time: an afternoon
+  stretch: Add a typing indicator that fades out once the first token arrives and a smooth auto-scroll effect.
 ---
 
 Streaming is returning model output incrementally while it is still being generated. Instead of one HTTP response after the model finishes, the server sends a sequence of small chunks, usually over server-sent events, and the client renders them as they arrive. Most LLM APIs support it with a single flag.

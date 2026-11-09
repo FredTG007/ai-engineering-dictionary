@@ -4,6 +4,21 @@ description: A cheap fine-tuning method that trains small add-on matrices instea
 difficulty: advanced
 interview: "You need distinct tone and terminology for twenty enterprise customers on one self-hosted model. How would LoRA adapters fit, and what are the operational trade-offs?"
 interviewAnswer: "Covers training small low-rank matrices on a frozen base, so each customer gets a compact adapter instead of a full model copy. Discusses serving many adapters on one base, rank and data quality, retraining when the base changes, and evaluating each adapter against the base."
+buildThis:
+  title: Fine-tune a small model on custom text using a LoRA adapter
+  goal: Train a low-rank adaptation matrix on a custom dataset without modifying the base model weights.
+  steps:
+    - Prepare a JSONL dataset containing fifty examples of a specific writing style.
+    - Load an open-weight base model and apply PEFT LoRA configuration settings.
+    - Run the training script using Hugging Face TRL or Unsloth on a free cloud GPU.
+    - Save the resulting adapter weights separately from the base model.
+  skills:
+    - PEFT
+    - Hugging Face
+    - Fine-Tuning
+    - Python
+  time: an afternoon
+  stretch: Compare the generation output of the base model against the LoRA-adapted model using identical prompts.
 ---
 
 LoRA is a way to fine-tune a large model by training only a small number of extra parameters. Instead of updating every weight in the network, it freezes the original model and learns pairs of thin matrices that are added alongside selected layers. The result is an adapter that is often a few megabytes to a few hundred megabytes, compared with many gigabytes for a full copy of the model.

@@ -4,6 +4,20 @@ description: When a model states something false or unsupported with full confid
 difficulty: beginner
 interview: "Your support bot told a customer about a refund policy your company does not have. How would you reduce the chance of that happening again?"
 interviewAnswer: "Covers grounding answers in retrieved policy documents, instructing the model to say it does not know when sources are silent, requiring citations, checking answers against sources with evals or a judge, and routing policy commitments through guardrails or human review."
+buildThis:
+  title: Detect Unsupported Claims in Generated Summaries
+  goal: Write a script that catches when an LLM invents facts not found in the source text.
+  steps:
+    - Generate a summary of a factual article using a high-temperature LLM setting to force errors.
+    - Write a prompt for a separate verification model asking it to break the summary into individual claims.
+    - Check each individual claim against the original source text to see if it is supported.
+    - Output a hallucination score based on the percentage of unsupported claims.
+  skills:
+    - Hallucination
+    - Evals
+    - Fact-Checking
+  time: an afternoon
+  stretch: Automatically highlight unsupported sentences in red using a simple command-line interface.
 ---
 
 A hallucination is output that sounds plausible but is not true or not supported by the information the model was given. It might be a made-up statistic, a citation to a paper that does not exist, an API method that was never shipped, or a company policy nobody wrote. The defining feature is confidence: the model presents the invented detail in the same tone as everything else.

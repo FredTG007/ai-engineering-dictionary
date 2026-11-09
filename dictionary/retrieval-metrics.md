@@ -4,6 +4,20 @@ description: Scores such as recall@k, MRR and nDCG that measure whether retrieva
 difficulty: intermediate
 interview: "After a chunking change, your RAG answer scores dropped but nobody can say whether retrieval or generation got worse. Which retrieval metrics would you compute, and on what data?"
 interviewAnswer: "Covers a labeled set of queries with known relevant chunks, recall@k at the cutoff actually sent to the model, MRR for how high the first relevant result ranks, nDCG for graded relevance, comparing before and after, and slicing by query type."
+buildThis:
+  title: "Calculate MRR and Recall@K for a mini RAG pipeline"
+  goal: Write a evaluation script that computes retrieval performance metrics against a labeled ground-truth dataset.
+  steps:
+    - Create a test set of five queries, each paired with the exact ID of the correct document that should be retrieved.
+    - Run your retrieval system to return the top 5 document IDs for each test query.
+    - "Write functions to calculate Recall@5 and Mean Reciprocal Rank (MRR) across your test queries."
+    - Print the final metric scores to the console.
+  skills:
+    - RAG
+    - Metrics
+    - Python
+  time: under an hour
+  stretch: Plot a graph showing how Recall changes as you increase K from 1 to 10.
 ---
 
 Retrieval metrics measure the search half of a [RAG](./rag.md) system on its own, separate from what the model writes. You need a set of queries where you know which documents or chunks are relevant, then you run retrieval and score how many of them came back and how high they ranked.

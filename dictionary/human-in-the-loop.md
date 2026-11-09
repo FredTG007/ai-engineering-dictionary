@@ -4,6 +4,20 @@ description: A design where a person reviews, approves or corrects an AI system'
 difficulty: intermediate
 interview: "Your procurement agent can now place orders directly, and leadership wants a human check. Where would you put it so it actually catches mistakes?"
 interviewAnswer: "Covers gating irreversible or high-value actions with approval, routing only low-confidence or flagged cases to reviewers, showing reviewers the evidence, watching for rubber-stamp approval rates, and logging reviewer edits as labeled data for evals."
+buildThis:
+  title: Create an Approval Workflow for AI Drafts
+  goal: Pause an automated email generator so a human can edit and approve drafts before sending.
+  steps:
+    - Write a script that generates a customer outreach email draft using an LLM.
+    - "Save the generated draft to a local JSON file with a status of 'pending_approval'."
+    - Build a simple command-line prompt that lets a user edit the text or approve it.
+    - "Update the status to 'approved' and simulate dispatching the final version."
+  skills:
+    - Human-in-the-Loop
+    - Workflows
+    - CLI
+  time: under an hour
+  stretch: Build a minimalist local web UI using Streamlit to make reviewing and editing drafts easier.
 ---
 
 Human-in-the-loop means a person sits at a defined checkpoint in an AI workflow and must approve, edit or reject what the system proposes. The checkpoint might be before an [agent](./agent.md) sends an email, before a refund over a threshold is issued, or when the model's confidence is low. The point is to keep consequential or irreversible decisions under human control while still letting automation handle the routine bulk.

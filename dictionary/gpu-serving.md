@@ -4,6 +4,21 @@ description: Running model inference on your own GPU infrastructure, including t
 difficulty: advanced
 interview: "Your team wants to move a high-volume workload from a hosted API to self-hosted GPUs to save money. How would you plan capacity and scaling, and what costs would you count?"
 interviewAnswer: "Covers memory budget for weights plus KV cache, quantization and parallelism across GPUs, continuous batching engines, load testing throughput and latency, slow cold starts, scaling on queue depth with warm replicas and API fallback, and comparing cost per million tokens including ops time."
+buildThis:
+  title: Serve an Open Model Locally with vLLM
+  goal: Spin up a local high-throughput inference server for a 7B parameter open-weights model.
+  steps:
+    - Set up a Python virtual environment and install vLLM alongside PyTorch.
+    - Download a compact open model like Llama-3-8B-Instruct from Hugging Face.
+    - Launch the vLLM server with PagedAttention enabled on your local GPU.
+    - Send an OpenAI-compatible API request from a local Python script to test generation speed.
+  skills:
+    - GPU Serving
+    - vLLM
+    - Infrastructure
+    - Inference
+  time: an afternoon
+  stretch: Benchmark the tokens-per-second throughput under concurrent requests using Apache Bench.
 ---
 
 GPU serving is the work of hosting a model on GPUs you control and exposing it as an API to your applications. Rather than calling a provider, you choose hardware, run an inference engine that loads the weights and schedules requests, and handle scaling, monitoring, and upgrades yourself. It is how teams run [open-weight models](./open-weight-models.md), custom [fine-tuned](./fine-tuning.md) models, or workloads that cannot leave their network.

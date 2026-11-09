@@ -4,6 +4,20 @@ description: The practice of deciding exactly what information goes into a model
 difficulty: intermediate
 interview: "Your agent's answers got worse after you added more retrieved documents, tool outputs and history to every call. How do you decide what goes into the context?"
 interviewAnswer: "Covers treating context as a limited budget, ranking and trimming retrieved chunks, summarizing old turns and verbose tool results, placing key instructions and evidence where the model attends well, and measuring quality, cost and latency per context change with evals."
+buildThis:
+  title: Assemble a dynamic context window builder
+  goal: Write a script that gathers system prompts, user history, and retrieved facts into an optimized prompt payload.
+  steps:
+    - Create modular text templates for system instructions, few-shot examples, and retrieved context.
+    - "Write a function that calculates total token counts using a tokenizer library like `tiktoken`."
+    - Build a trimming routine that drops the oldest conversation messages if the total token count exceeds a limit.
+    - Assemble the final ordered dictionary payload ready for the LLM API call.
+  skills:
+    - Tokenization
+    - Python
+    - Architecture
+  time: an afternoon
+  stretch: Add priority weighting so critical system rules are never dropped when trimming context.
 ---
 
 Context engineering is the work of deciding what goes into the model's [context window](./context-window.md) on every call: which instructions, which retrieved documents, which conversation history, which tool results, and in what order and format. Prompt writing is one part of it. The larger part is the code that assembles everything around the prompt.

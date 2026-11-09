@@ -4,6 +4,20 @@ description: The component that splits text into the token IDs a model reads, us
 difficulty: intermediate
 interview: "Your cost model, built on one provider's tokenizer, underestimated the bill by 30 percent after you switched model families, and Thai users cost more than English ones. What is going on?"
 interviewAnswer: "Covers each model family having its own tokenizer and vocabulary, BPE merging frequent byte sequences so well-represented languages compress better than others, code, numbers and whitespace tokenizing differently, and counting with the target model's tokenizer per language and feature."
+buildThis:
+  title: Build a custom byte-pair encoding tokenizer
+  goal: Write a Python script from scratch that trains a simple BPE tokenizer on a small text file and encodes new text.
+  steps:
+    - Count character pair frequencies in a sample text corpus.
+    - Merge the most frequent pair into a new vocabulary token.
+    - Repeat the merge process until reaching a target vocabulary size.
+    - Write encode and decode functions to convert strings to integer ID arrays.
+  skills:
+    - Python
+    - BPE
+    - Text Processing
+  time: an afternoon
+  stretch: Add regex pre-tokenization rules to prevent the tokenizer from merging across punctuation marks, matching real-world behavior.
 ---
 
 A tokenizer converts text into the sequence of integer IDs a model actually processes, and converts the model's output IDs back into text. It is fixed when the model is trained, so every [LLM](./llm.md) family ships with its own, and the same sentence can become a different number of [tokens](./tokens.md) depending on which model you call.

@@ -4,6 +4,20 @@ description: Deciding when a speaker has finished their turn so a voice agent kn
 difficulty: intermediate
 interview: "Your voice agent cuts callers off while they read out card numbers in groups of four. How would you change turn detection without adding dead air everywhere?"
 interviewAnswer: "Covers the trade-off between cutting people off and adding latency, why a fixed silence threshold fails, voice activity detection plus semantic endpointing on transcript partials, adjusting timeouts by what the agent just asked, and handling barge-in versus backchannels."
+buildThis:
+  title: Build an audio silence turn detector
+  goal: Write a Python script that monitors a microphone stream and flags when a user stops speaking.
+  steps:
+    - Capture live audio chunks in Python using a basic audio library.
+    - Calculate the Root Mean Square amplitude for each incoming audio buffer.
+    - Track consecutive silent chunks against a threshold time limit.
+    - Trigger a callback function once the silence duration confirms a completed turn.
+  skills:
+    - Audio Processing
+    - Streaming
+    - Python
+  time: an afternoon
+  stretch: Integrate a lightweight Voice Activity Detection library to distinguish human speech from background noise.
 ---
 
 Turn detection, sometimes called endpointing, is how a [voice agent](./voice-agents.md) decides that the person has finished speaking and it is time to reply. Humans do this effortlessly using pauses, intonation, grammar and context. Machines have to infer it from an audio stream and partial transcripts, and getting it wrong is one of the most noticeable failures in voice products.

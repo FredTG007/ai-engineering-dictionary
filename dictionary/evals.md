@@ -4,6 +4,19 @@ description: Repeatable tests that score an LLM system's outputs against expecta
 difficulty: beginner
 interview: "An engineer made the bot friendlier, spot-checked five chats and shipped, and a week later replies were missing order numbers. What process would have caught this?"
 interviewAnswer: "Covers a fixed, representative dataset scored automatically, choosing scoring per task (programmatic checks, reference similarity, LLM-as-judge, human review), measuring components separately, running in CI, and adding production failures as new cases."
+buildThis:
+  title: Write unit tests for a prompt template
+  goal: Create an automated test suite that checks LLM outputs against required keywords and length constraints.
+  steps:
+    - Write a list of test cases with inputs and expected assertions (e.g., contains keyword X).
+    - Send the inputs to your prompt template via an API call.
+    - Assert that the outputs pass the programmatic checks and print a test summary.
+  skills:
+    - Testing
+    - Assertions
+    - Python
+  time: under an hour
+  stretch: Add an LLM-as-a-judge check to evaluate the semantic correctness of the output.
 ---
 
 Evals are repeatable tests that run an LLM system over a fixed set of inputs and score the outputs, so that you can compare one version of the system against another with numbers rather than impressions. They play the role unit and integration tests play in ordinary software, adapted for outputs that are probabilistic and often free-form.

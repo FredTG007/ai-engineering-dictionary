@@ -4,6 +4,20 @@ description: Comparing two outputs for the same input and recording which is bet
 difficulty: intermediate
 interview: "Your 1-to-10 judge scores barely move between two prompt versions, yet reviewers say version B is clearly better. How would you set up an eval that can detect the difference?"
 interviewAnswer: "Covers switching to pairwise comparison on the same inputs, running each pair in both orders to cancel position bias, allowing ties, reporting win rate with a confidence interval, controlling for length bias, and checking judge agreement with human picks."
+buildThis:
+  title: Build a side-by-side model comparison tool
+  goal: Compare two model outputs for the same prompt and record a preference vote to rank them.
+  steps:
+    - Write a script that sends a single prompt to two different model configurations.
+    - Build a simple command-line or web interface that displays both anonymous answers.
+    - Prompt the user or an LLM judge to pick the better response and state why.
+    - Save the win-loss records to a CSV file to determine the preferred variant.
+  skills:
+    - LLM-as-a-Judge
+    - CLI
+    - Data Collection
+  time: an afternoon
+  stretch: Implement the Bradley-Terry statistical model to calculate dynamic Elo ratings for each model configuration.
 ---
 
 Pairwise evals show a judge two outputs for the same input, usually from two versions of your system, and ask which one is better. The result is a win rate rather than an average score. Picking the better of two answers is an easier and more consistent judgment than placing one answer on a scale, for humans and models alike.

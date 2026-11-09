@@ -4,6 +4,20 @@ description: Finding the stored items whose vectors are closest to a query vecto
 difficulty: intermediate
 interview: "Your vector search returns documents that look related but rarely contain the answer. How do you diagnose and improve it?"
 interviewAnswer: "Covers checking the embedding model fits the domain, chunk size and boundaries, the distance metric, top-k choice, and approximate index recall settings, measuring recall on labeled queries, and adding reranking or hybrid keyword search for exact terms."
+buildThis:
+  title: Build a local semantic search engine from scratch
+  goal: Index a folder of text files and search them by meaning using local embeddings and cosine similarity.
+  steps:
+    - Write a script to read text files from a local folder and split them into paragraph chunks.
+    - Generate vector embeddings for each chunk using a free local embedding model.
+    - Store the vectors and text chunks in a simple numpy array or a local vector database.
+    - Take a text query, embed it, compute cosine similarity against all chunks, and print the top matches.
+  skills:
+    - Embeddings
+    - Vector DB
+    - Python
+  time: under an hour
+  stretch: Add a command-line interface so you can query your document folder interactively in your terminal.
 ---
 
 Similarity search is the process of finding the items in a collection that are most similar to a query, measured by the distance between their vectors. You turn the query into an [embedding](./embeddings.md), compare it against stored embeddings using a measure such as cosine similarity or dot product, and return the top k closest results. It is how a [RAG](./rag.md) system finds passages relevant to a question that may not share any exact words with them.

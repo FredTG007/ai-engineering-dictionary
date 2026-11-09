@@ -4,6 +4,20 @@ description: A curated, versioned set of inputs with known-good expected outputs
 difficulty: intermediate
 interview: "Your team wants to start running evals before each release but has no test data yet. How would you build a golden dataset?"
 interviewAnswer: "Covers sampling real production inputs including hard and edge cases, writing expected outputs or grading criteria with domain experts, and versioning the set. Mentions keeping it representative as usage shifts, adding past failures, and avoiding leakage into prompts."
+buildThis:
+  title: Curate a Golden Dataset for a Support Bot
+  goal: Build a versioned CSV reference file of tricky customer questions and verified ideal answers.
+  steps:
+    - Collect 20 historical customer support tickets along with their verified correct resolutions.
+    - Format the inputs and expected outputs into a clean, version-controlled JSON or CSV file.
+    - Write a quick evaluation script that checks new model answers against this reference file.
+    - Calculate a baseline correctness score using exact match or semantic similarity.
+  skills:
+    - Evals
+    - Dataset Curation
+    - Testing
+  time: an afternoon
+  stretch: Automate the evaluation script to run in GitHub Actions every time the reference file changes.
 ---
 
 A golden dataset is a curated collection of inputs paired with expected outputs, or with clear criteria for a good output, that you treat as the reference standard for [evals](./evals.md). It is the fixed ruler you measure every version of your system against.

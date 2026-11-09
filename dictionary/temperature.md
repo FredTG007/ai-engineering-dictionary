@@ -4,6 +4,20 @@ description: A sampling setting that controls how random a model's word choices 
 difficulty: beginner
 interview: "Your extraction pipeline returns different field values for the same document on repeated runs. How do you think about temperature here?"
 interviewAnswer: "Covers temperature scaling the randomness of token sampling, using zero or near-zero for extraction and classification, keeping higher values for creative tasks, noting that low temperature reduces but does not fully guarantee determinism, and pairing it with structured output and validation."
+buildThis:
+  title: Build a temperature comparison visualizer
+  goal: Generate the same creative sentence at various temperature settings to visualize output variance.
+  steps:
+    - Write a Python script that calls an LLM API multiple times with a creative prompt.
+    - Iterate temperature values from 0.0 to 1.5 in fixed increments.
+    - Collect responses for each temperature setting and print them side by side.
+    - Observe how low values repeat deterministic text while high values introduce novel phrasing.
+  skills:
+    - Python
+    - API Integration
+    - Sampling
+  time: under an hour
+  stretch: Calculate and plot the token overlap or embedding distance between outputs across different temperatures.
 ---
 
 Temperature is a parameter that controls how much randomness goes into choosing each next token. At every step the model produces a probability for every possible next [token](./tokens.md). Temperature reshapes that distribution before sampling: low values sharpen it so the most likely token almost always wins, high values flatten it so less likely tokens get picked more often.

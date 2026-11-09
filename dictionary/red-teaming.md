@@ -4,6 +4,20 @@ description: Deliberately attacking your own LLM system to find safety, security
 difficulty: intermediate
 interview: "Your team is about to launch an agent that can read account data and issue refunds. How would you plan a red-team exercise before release?"
 interviewAnswer: "Covers testing safety, security, privacy, policy and abuse areas, attempting prompt injection and tool-permission escalation, combining human testers with automated attack generation, turning each successful attack into a regression eval, and repeating after major changes."
+buildThis:
+  title: Build an automated prompt injection red teamer
+  goal: Create a script that bombards a custom assistant prompt with adversarial inputs to find safety bypasses.
+  steps:
+    - List ten common jailbreak and prompt injection patterns (e.g., ignore previous instructions, roleplay overrides).
+    - Write a test harness that feeds these adversarial strings into your target LLM application.
+    - Use a secondary judge LLM to evaluate whether the target model successfully resisted the attack.
+    - Output a simple vulnerability report showing which injection styles successfully leaked system instructions.
+  skills:
+    - Security
+    - Prompt Engineering
+    - LLM Evals
+  time: an afternoon
+  stretch: Incorporate a self-mutating attack loop where the script uses failure outputs to generate smarter follow-up attacks.
 ---
 
 Red teaming is the practice of trying to break your own AI system on purpose. A red team, whether internal staff, outside specialists or automated attack generators, plays the adversary: they attempt [jailbreaks](./jailbreak.md), [prompt injection](./prompt-injection.md), data extraction, policy violations and misuse of tools, then report what worked so it can be fixed. It is the security mindset applied to model behavior.

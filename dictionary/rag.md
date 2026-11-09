@@ -4,6 +4,21 @@ description: A pattern where you fetch relevant documents at request time and pl
 difficulty: beginner
 interview: "Your support bot invented a 60-day refund window when the real policy is 30 days. How would you use retrieval to fix it and confirm the fix holds?"
 interviewAnswer: "Covers retrieving the actual policy at request time and instructing the model to answer only from it, logging retrieved chunk IDs to check retrieval before touching the prompt, and evaluating retrieval and answer quality separately, with the token and latency cost of context."
+buildThis:
+  title: Build a Local Mini-RAG System
+  goal: Answer questions over a local text file using vector embeddings and an LLM.
+  steps:
+    - Chunk a local text document into smaller paragraphs using Python.
+    - Generate embeddings for each chunk using a free local embedding model or lightweight API.
+    - Store embeddings in an in-memory vector index like FAISS or Chroma.
+    - Retrieve top matching chunks for a user question and format them into an LLM prompt.
+  skills:
+    - embeddings
+    - vector database
+    - Chroma
+    - Python
+  time: a weekend
+  stretch: Implement a sliding-window chunking strategy with overlap and measure its effect on answer accuracy.
 ---
 
 Retrieval-augmented generation (RAG) is the pattern of looking up relevant information when a request arrives and putting it into the [prompt](./prompt.md) so the model can answer from it instead of from memory alone. The model's weights stay the same; what changes is the context it sees on each call.

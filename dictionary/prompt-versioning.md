@@ -4,6 +4,21 @@ description: Tracking every change to a prompt with an identifier, history and a
 difficulty: intermediate
 interview: "Answer quality dropped last Tuesday and nobody can say which prompt change caused it. How would you set up prompt versioning to prevent this?"
 interviewAnswer: "Covers storing prompts outside scattered code strings with an ID, history and author, logging the prompt version on every request, and running evals before a version ships. Mentions quick rollback, linking versions to model and settings, and diffing outputs between versions."
+buildThis:
+  title: Build a Git-Backed Prompt Registry
+  goal: Store prompts in a version-controlled directory and load them via unique IDs in code.
+  steps:
+    - Create a repository folder structure to store prompts as individual markdown or JSON files.
+    - Write a small Python loader utility that reads a prompt file by its version tag.
+    - Log the loaded prompt version ID alongside model outputs in your application database.
+    - Make a change to a prompt, commit it, and verify the app uses the new version.
+  skills:
+    - Git
+    - Python
+    - configuration management
+    - traceability
+  time: under an hour
+  stretch: Add a metadata header to each prompt file tracking author, description, and performance evaluation scores.
 ---
 
 Prompt versioning is the practice of giving every [prompt](./prompt.md) a tracked history, with an identifier for each version, a record of who changed what, and a way to tell which version produced any given output. It treats prompts as the deployable artifacts they are, rather than strings edited in place.

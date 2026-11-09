@@ -4,6 +4,21 @@ description: An attack where text supplied by a user or external source override
 difficulty: beginner
 interview: "Your email assistant summarizes inbound messages and can also send replies. How would an attacker abuse it through prompt injection, and how do you defend it?"
 interviewAnswer: "Covers indirect injection via instructions hidden in email content that the model treats as commands. Defenses include least-privilege tools, human confirmation for sending, separating trusted and untrusted text, output checks, and accepting that prompt wording alone cannot fully stop it."
+buildThis:
+  title: Build a Prompt Injection Sandbox
+  goal: Demonstrate how untrusted user input can hijack an LLM application and test a defense.
+  steps:
+    - Build a simple customer support bot that reads untrusted user review data.
+    - Craft a malicious review input that instructs the bot to reveal its system instructions.
+    - Implement a delimiter separation or two-model defense to isolate untrusted data.
+    - Verify that the malicious input is treated as raw data rather than instructions.
+  skills:
+    - security
+    - sandboxing
+    - defensive design
+    - testing
+  time: an afternoon
+  stretch: Implement a secondary classification model that screens incoming text for injection patterns before processing.
 ---
 
 Prompt injection happens when untrusted text gets into a model's input and the model treats it as instructions rather than data. Because an [LLM](./llm.md) sees the system prompt, user message and retrieved documents as one stream of tokens, it has no reliable built-in way to tell "rules from the developer" apart from "text that happens to look like rules". An attacker exploits that by writing instructions where the model will read them.

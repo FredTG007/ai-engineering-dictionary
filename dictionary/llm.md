@@ -4,6 +4,21 @@ description: A neural network trained on huge amounts of text to predict the nex
 difficulty: beginner
 interview: "A product manager asks why the support assistant gave two different answers to the same question an hour apart. How do you explain what the LLM is doing?"
 interviewAnswer: "Covers next-token prediction over a probability distribution, sampling settings like temperature, and that the model keeps no memory between calls. Notes knowledge cutoffs, fluent but unverified output, and pinning the model version and settings to narrow variation."
+buildThis:
+  title: Build a tiny character-level language model from scratch
+  goal: Train a minimal neural network in PyTorch that predicts the next character in a text file.
+  steps:
+    - "Load a small text file like Shakespeare's works and convert characters to integer indices."
+    - Define a simple embedding and linear layer stack using PyTorch.
+    - Write a training loop with cross-entropy loss to optimize next-character prediction.
+    - Generate new text by sampling characters autoregressively from the trained model.
+  skills:
+    - PyTorch
+    - Foundations
+    - Neural Networks
+    - Python
+  time: a day
+  stretch: Upgrade the model architecture from a simple feedforward network to a tiny single-head attention block.
 ---
 
 A large language model is a neural network, almost always a [transformer](./transformer.md), trained to predict the next piece of text given everything before it. That objective, repeated over trillions of [tokens](./tokens.md) and followed by post-training on instructions and human feedback, produces a system that can summarize, translate, classify, write code and hold a conversation. Nothing in the model "knows" facts the way a database does; it has learned statistical patterns that usually line up with facts, and sometimes do not.

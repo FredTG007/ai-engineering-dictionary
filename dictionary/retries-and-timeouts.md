@@ -4,6 +4,20 @@ description: Rules for how long to wait on a model call and when to try again, s
 difficulty: intermediate
 interview: "When your LLM provider degraded, your entire web app stopped responding, including pages that never call the model. How would you redesign timeouts and retries?"
 interviewAnswer: "Covers replacing long library-default timeouts, a short time-to-first-token limit plus a longer total limit for streaming, retrying 429 and 5xx with exponential backoff and jitter but not 400s, retry budgets, isolating LLM worker pools, idempotent tools and fallback models."
+buildThis:
+  title: Build a resilient API wrapper with retries and timeouts
+  goal: Write a Python client wrapper that safely handles rate limits, network timeouts, and transient server errors.
+  steps:
+    - Write a wrapper function around an LLM API call that enforces a hard timeout limit.
+    - Implement exponential backoff logic to catch rate limit errors and wait before trying again.
+    - Add a maximum retry count to stop infinite loops when the API is completely down.
+    - Test your wrapper by mocking network failures and verifying it recovers cleanly.
+  skills:
+    - Production
+    - Error Handling
+    - Python
+  time: under an hour
+  stretch: Add a fallback mechanism that switches to a secondary backup model provider if the primary provider fails all retries.
 ---
 
 Retries and timeouts decide what your application does when a model call is slow or fails. A timeout sets the maximum time you will wait before giving up; a retry policy decides which failures are worth trying again, how many times, and with what delay. LLM calls fail more often and vary in duration more than typical API calls, so these settings matter more than usual.

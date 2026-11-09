@@ -4,6 +4,21 @@ description: A proxy between your services and model providers that centralizes 
 difficulty: intermediate
 interview: "Five teams call three model providers directly with their own keys, and finance cannot explain a doubled bill. How would you introduce an LLM gateway, and what would you be careful not to break?"
 interviewAnswer: "Covers a single proxy that holds provider keys, tags each request by team and feature for cost tracking, enforces quotas and rate limits, handles retries and fallbacks, and logs requests with PII controls; plus the gateway's added latency, streaming support, and avoiding a single point of failure."
+buildThis:
+  title: Build a lightweight proxy gateway for API key management
+  goal: Route model requests through a custom local proxy that handles logging and fallback providers.
+  steps:
+    - Write a basic FastAPI server that accepts standard chat completion payloads.
+    - Implement a routing layer that forwards requests to either OpenAI or Anthropic based on config.
+    - Add request and response logging to a local SQLite database with timestamps.
+    - Handle API rate limit errors by automatically retrying with an alternative provider.
+  skills:
+    - FastAPI
+    - Python
+    - Proxies
+    - Reliability
+  time: a weekend
+  stretch: Add a simple token bucket rate limiter to protect your downstream application from exceeding budget limits.
 ---
 
 An LLM gateway is a service that sits between your applications and the model providers they call. Instead of every team holding its own API keys and calling providers directly, all traffic goes through one proxy that handles authentication, routing, limits, logging and billing data in one place. Applications usually talk to it through one common API, so switching providers becomes a configuration change.

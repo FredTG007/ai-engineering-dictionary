@@ -4,6 +4,21 @@ description: Detecting and removing or masking personal data such as names, emai
 difficulty: intermediate
 interview: "A compliance review found patient names and birth dates in your third-party prompt logs. How would you redesign redaction for the LLM pipeline?"
 interviewAnswer: "Covers redacting before the provider call, trace exporter, vector store and training data, combining regex, NER and LLM detection, reversible placeholders restored on output, the risk of stripping context the model needs, and testing for false negatives on messy input."
+buildThis:
+  title: Build a Local PII Scrubber
+  goal: Filter names, emails, and phone numbers out of text before sending it to an external API.
+  steps:
+    - Set up a Python script using regex or spaCy for named entity recognition.
+    - "Write a function to mask detected entities with placeholder tokens like [EMAIL]."
+    - Test the scrubber on a dummy dataset containing sensitive sentences.
+    - Integrate the redaction step into an existing API logging pipeline.
+  skills:
+    - regex
+    - spaCy
+    - data privacy
+    - Python
+  time: an afternoon
+  stretch: Handle edge cases like obfuscated email addresses and international phone numbers without ruining the rest of the text.
 ---
 
 PII redaction is the process of finding personally identifiable information in text and replacing it with placeholders or removing it before that text goes somewhere it should not. In LLM systems the risky destinations are the model provider's API, your logs and [observability](./observability.md) tools, your [vector database](./vector-database.md), and any dataset you might later use for [fine-tuning](./fine-tuning.md).

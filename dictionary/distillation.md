@@ -4,6 +4,19 @@ description: Training a smaller, cheaper model to imitate a larger model's outpu
 difficulty: advanced
 interview: "A large model tags millions of documents well but costs more than the feature earns. How would you distill it, and how would you know the student is good enough?"
 interviewAnswer: "Covers sampling inputs that match production, curating teacher outputs with validators or a judge, fine-tuning a small student, evaluating on an independently labeled golden set, task suitability for narrow tasks, license terms, and routing low-confidence cases back to the teacher."
+buildThis:
+  title: Generate a synthetic dataset from a large model
+  goal: Use a powerful model to generate answers for your prompts, then format them for training a smaller model.
+  steps:
+    - Write a script to send 100 domain-specific prompts to a high-end model and save the outputs.
+    - Format the prompt-response pairs into JSONL files suitable for fine-tuning.
+    - Validate the file structure against a lightweight open-source training tool format.
+  skills:
+    - Dataset Prep
+    - Synthetic Data
+    - JSONL
+  time: an afternoon
+  stretch: Fine-tune a small local model using Hugging Face TRL on your generated dataset.
 ---
 
 Distillation is the process of using a large, capable model as a teacher to train a smaller student model. You run the teacher on many representative inputs, collect its outputs, and [fine-tune](./fine-tuning.md) the student on those input and output pairs. The student learns to reproduce the teacher's behavior on that task, usually at a fraction of the cost and with much lower latency.

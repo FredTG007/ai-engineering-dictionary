@@ -4,6 +4,20 @@ description: A prompting pattern where the model alternates short reasoning step
 difficulty: intermediate
 interview: "Your research agent answers multi-step questions in one shot and often guesses intermediate facts it could have looked up. How would restructuring it around ReAct change its behavior, and what new failure modes would you watch for?"
 interviewAnswer: "Covers interleaving a brief thought, an action such as a search, and the observed result in a loop so later steps depend on real data, plus step limits, repeated-action detection, the extra latency and tokens per step, and tracing the thoughts and observations to debug runs."
+buildThis:
+  title: Build a ReAct loop with a calculator tool
+  goal: Code a minimal ReAct agent that loops between reasoning steps and calculator tool calls until it solves a math query.
+  steps:
+    - Set up a local Python script using a base LLM and a simple add/multiply Python function as a tool.
+    - Write a prompt template that forces the model to output a Thought, an Action, and wait for an Observation.
+    - "Parse the model's text output to extract tool names and arguments, then execute the function."
+    - Feed the tool result back into the conversation history and run the loop until the final answer appears.
+  skills:
+    - Prompt Engineering
+    - Function Calling
+    - Python
+  time: an afternoon
+  stretch: Add a web search API tool and let the agent handle multi-step questions that require both math and external facts.
 ---
 
 ReAct, short for "reasoning and acting", is a pattern where the model works through a task by alternating between a short piece of reasoning, an action such as a search or an API call, and the observation that action returns. It was described by Yao and colleagues in 2022, and most modern [agent](./agent.md) frameworks still follow its basic shape, even when they no longer print the reasoning as plain text.

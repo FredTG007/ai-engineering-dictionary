@@ -4,6 +4,20 @@ description: Storing and reusing results of earlier LLM work, from full response
 difficulty: beginner
 interview: "Your LLM bill doubled, and logs show many near-identical questions. What caching would you add, and what are the risks?"
 interviewAnswer: "Covers exact-match response caching, provider prompt caching for shared prefixes, and semantic caching on embedding similarity. Risks include stale or wrong answers for slightly different questions, leaking data across users, and needing TTLs and invalidation when sources or prompts change."
+buildThis:
+  title: Cache LLM responses with a local SQLite database
+  goal: Save model outputs to disk so identical queries return instantly without calling the paid API.
+  steps:
+    - Set up a local SQLite database table with columns for query hash, prompt text, and response.
+    - Write a wrapper function that checks the database for an existing query hash before calling the LLM.
+    - Store new model outputs in the database immediately after receiving them.
+    - Test the wrapper by running the same query twice and verifying zero network calls on the second run.
+  skills:
+    - SQLite
+    - Python
+    - Optimization
+  time: under an hour
+  stretch: Add a Time-To-Live (TTL) expiration timestamp so cached entries automatically invalidate after 24 hours.
 ---
 
 Caching in LLM systems means saving the result of expensive work so the next identical or similar request can reuse it instead of paying for it again. Model calls are slow and billed per token, so even a modest hit rate can make a noticeable difference to both [latency](./latency.md) and spend. The question is always what to cache, how to decide two requests are "the same", and when a cached result has gone stale.

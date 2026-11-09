@@ -4,6 +4,20 @@ description: A serving technique where a small draft model guesses several token
 difficulty: advanced
 interview: "Your self-hosted model streams too slowly for a chat product at low traffic, but GPUs are mostly idle. Would speculative decoding help, and how would you know it is working?"
 interviewAnswer: "Covers decoding being memory-bandwidth bound so one verification pass over several drafted tokens costs little more than one token, acceptance rate determining speedup, output distribution being preserved, smaller gains at high batch sizes, and measuring tokens per second and acceptance on real traffic."
+buildThis:
+  title: Build a mini speculative decoding script
+  goal: Write a script that uses a small draft model to guess tokens and a large model to verify them in one pass.
+  steps:
+    - Load a tiny language model and a base language model using Hugging Face transformers.
+    - Write a loop where the small model generates a short draft of upcoming tokens.
+    - Pass the draft sequence through the large model in a single forward pass to check acceptance.
+    - Compare output speeds against standard autoregressive generation.
+  skills:
+    - Python
+    - Hugging Face
+    - Inference Optimization
+  time: an afternoon
+  stretch: Implement a threshold check to dynamically adjust draft length based on how often the draft model guesses correctly.
 ---
 
 Speculative decoding speeds up generation by letting a cheap model guess ahead and an expensive model check the guesses. A small draft model proposes the next few [tokens](./tokens.md), say four or five, and the large target model runs a single forward pass over all of them at once. Every proposed token the target agrees with is kept; at the first disagreement, the target's own choice replaces it and drafting starts again from there.

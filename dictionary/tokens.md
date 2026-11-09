@@ -4,6 +4,20 @@ description: The chunks of text a language model actually reads and writes, and 
 difficulty: beginner
 interview: "Your LLM bill tripled this month with flat traffic, and the only recent change was a feature that adds API data to prompts. How do you investigate?"
 interviewAnswer: "Covers measuring input and output tokens per feature, noting that JSON keys, braces and quotes tokenize poorly, trimming fields or reformatting data compactly, output being priced higher than input, and adding per-feature cost tracking so spikes surface in days."
+buildThis:
+  title: Build a token-budget cost calculator
+  goal: Create a command-line tool that estimates API costs and tracks character-to-token ratios across different model tokenizers.
+  steps:
+    - Install official tokenizers libraries for popular open and proprietary models.
+    - Write a function to count tokens for any input text file.
+    - Calculate estimated input and output costs based on current pricing tiers.
+    - Output a summary table comparing token counts across different models.
+  skills:
+    - Python
+    - API Pricing
+    - CLI
+  time: under an hour
+  stretch: Build a local web UI using Streamlit that highlights individual tokens with alternating background colors as you type.
 ---
 
 Tokens are the units of text a language model processes. A [tokenizer](./tokenizer.md) splits input into pieces that are often whole common words, fragments of rarer words, punctuation or whitespace. As a rough rule, one token is about four characters of English, but code, numbers and non-English text usually take more tokens per character.

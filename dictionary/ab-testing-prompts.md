@@ -4,6 +4,20 @@ description: Serving two prompt versions to different slices of live traffic and
 difficulty: intermediate
 interview: "Offline evals say your new prompt is better, but leadership wants proof in production. How would you design the A/B test?"
 interviewAnswer: "Covers randomizing at the user or session level, choosing a primary metric such as resolution or task success plus guardrail metrics like cost and latency, sizing the sample for significance, logging prompt version per request, and watching for novelty effects."
+buildThis:
+  title: Split traffic between two prompt variants
+  goal: Route incoming requests to two different prompts and log user ratings to find the better one.
+  steps:
+    - Set up a simple router script to randomly assign incoming user queries to Prompt A or Prompt B.
+    - Call the LLM using both prompts and capture the generated outputs.
+    - Collect a thumbs-up or thumbs-down feedback score from the user interface for each response.
+    - Calculate the win rate for each prompt variant using a basic metrics aggregation script.
+  skills:
+    - Python
+    - Routing
+    - Analytics
+  time: an afternoon
+  stretch: Add automated statistical significance testing to stop the test early when one prompt clearly wins.
 ---
 
 A/B testing prompts means splitting live traffic between two or more prompt versions and comparing how real users respond, so the decision about which version to keep rests on production outcomes rather than [offline scores](./online-vs-offline-evals.md) alone. It is the last step after offline [evals](./evals.md) say a change is safe to try.

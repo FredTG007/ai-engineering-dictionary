@@ -4,6 +4,20 @@ description: Recording every step behind one LLM request, such as model calls, r
 difficulty: intermediate
 interview: "Your agent's p95 latency climbed from four to eleven seconds and the dashboards only show that it is slow. How would you use tracing to find the cause?"
 interviewAnswer: "Covers a span tree per request for model calls, retrievals and tool calls with durations and token counts, opening slow traces to spot repeated tool calls or slow rerankers, propagating trace IDs across services, and tagging prompt version and model on spans."
+buildThis:
+  title: Build a lightweight request tracer
+  goal: Write a Python wrapper that logs timing, inputs, and outputs of nested function calls to a local SQLite database.
+  steps:
+    - Create a SQLite table to store span names, start times, durations, and payloads.
+    - Write a context manager or decorator that measures elapsed time for any block of code.
+    - Wrap a multi-step LLM workflow with your decorator to capture inner steps.
+    - Query the database to print a formatted execution tree of a run.
+  skills:
+    - Python
+    - SQLite
+    - Logging
+  time: an afternoon
+  stretch: Render the recorded execution traces as an interactive collapsible tree view in a local HTML page.
 ---
 
 Tracing captures everything that happened while serving one request as a connected tree of spans. The root span is the user's request; child spans are each model call, retrieval, reranking step, tool call and guardrail check it triggered, each with its own start time, duration, inputs, outputs and metadata like token counts. It is the most useful single tool in LLM [observability](./observability.md).

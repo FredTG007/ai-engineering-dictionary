@@ -4,6 +4,20 @@ description: An architecture where several LLM agents with separate roles, promp
 difficulty: advanced
 interview: "A teammate proposes splitting your single agent into five specialized agents. What would make you agree, and what failure modes would you watch for?"
 interviewAnswer: "Agrees only if roles need different tools, context or permissions and a single agent measurably fails. Watches for lost context in handoffs, agents looping or contradicting each other, multiplied cost and latency, and harder debugging, so traces across agents and clear ownership matter."
+buildThis:
+  title: Build a writer and editor agent pair
+  goal: Coordinate two distinct LLM roles where one drafts content and the other reviews and refines it.
+  steps:
+    - Define system prompts and task boundaries for a writer agent and an editor agent.
+    - "Write a Python script that passes the writer's draft to the editor."
+    - Allow the editor to send revision requests back to the writer in a loop.
+    - Print the final output and the message history between agents.
+  skills:
+    - Multi-Agent
+    - Prompt Engineering
+    - Python
+  time: a weekend
+  stretch: Add a third critic agent that scores the draft and terminates the loop when the score clears a threshold.
 ---
 
 A multi-agent system splits work across more than one [agent](./agent.md), each with its own instructions, tools and often its own model. A common shape is an [orchestrator](./orchestrator-worker.md) that breaks a request into subtasks and hands them to specialist workers, such as a researcher, a coder and a reviewer, then merges their results. Other shapes include peer agents passing messages or a pipeline where each agent transforms the previous one's output.

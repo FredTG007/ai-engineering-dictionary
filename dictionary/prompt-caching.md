@@ -4,6 +4,21 @@ description: Reusing the model's processed state for a repeated prompt prefix so
 difficulty: intermediate
 interview: "You enabled prompt caching on a long system prompt but input costs barely moved. What would you check?"
 interviewAnswer: "Covers caching needing an exact prefix match, volatile content such as timestamps or user data placed early and invalidating the cache, ordering stable material first, cache expiry on low-traffic endpoints, and tracking hit rate instead of assuming savings."
+buildThis:
+  title: Benchmark Prompt Caching Costs
+  goal: Measure how prompt caching reduces latency and token costs for a large system prompt.
+  steps:
+    - Send a large context document (e.g., a software codebase) to an LLM provider multiple times.
+    - Configure the API request headers or parameters to enable prompt caching.
+    - Measure and log the time-to-first-token and cost difference between cached and uncached calls.
+    - Write a brief summary report of your findings.
+  skills:
+    - API headers
+    - cost optimization
+    - benchmarking
+    - latency
+  time: under an hour
+  stretch: Calculate the cache expiration TTL break-even point for your specific request frequency.
 ---
 
 Prompt caching lets a provider skip reprocessing the part of a prompt it has already seen. When many requests share a long, identical prefix, such as a large [system prompt](./system-prompt.md), a block of tool definitions, or a reference document, the provider stores the computed state for that prefix and reuses it on the next call. You still pay for the new tokens at the end, but the cached portion is billed at a steep discount and processed far faster.

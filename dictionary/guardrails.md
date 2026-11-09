@@ -4,6 +4,20 @@ description: Checks placed around an LLM's inputs and outputs to block, fix or f
 difficulty: beginner
 interview: "Your support bot promised a customer a delivery date despite a system prompt telling it never to. What guardrails would you add and where in the request path?"
 interviewAnswer: "Covers why prompt instructions are not enforcement, input and output checks that block, rewrite or escalate, layering cheap rule and schema checks before classifiers or LLM judges, latency and false-positive costs, and how streaming affects when output can be checked."
+buildThis:
+  title: Build an Input and Output Safety Filter
+  goal: Intercept malicious user prompts and toxic model outputs before they reach the user.
+  steps:
+    - Write a lightweight keyword and regex check to flag prompt injections and common attacks.
+    - Implement a secondary classifier call using a small model to check for toxic language.
+    - Wrap your main LLM application logic inside a pipeline that runs these checks before and after.
+    - Return a polite refusal message whenever a guardrail trips.
+  skills:
+    - Guardrails
+    - Safety
+    - Content Moderation
+  time: an afternoon
+  stretch: Log all blocked prompts and responses to a local SQLite database for auditing.
 ---
 
 Guardrails are the checks you wrap around a model call to enforce rules the model itself cannot be trusted to follow every time. They run on the way in, inspecting user input and retrieved context, and on the way out, inspecting the model's response or proposed action before it reaches a user or a system. A guardrail can block, rewrite, redact, retry or escalate.

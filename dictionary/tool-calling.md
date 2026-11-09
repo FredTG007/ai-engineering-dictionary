@@ -4,6 +4,20 @@ description: A model capability where it returns a structured request to run a n
 difficulty: beginner
 interview: "Your agent sometimes calls the refund tool with an order ID it made up. How do you make tool calling safe?"
 interviewAnswer: "Explains that the model only proposes a call and your code runs it. Covers validating arguments against the schema and real data, clear tool descriptions, permission checks and confirmation for risky actions, returning errors to the model, and logging each call."
+buildThis:
+  title: Build a CLI assistant with a calculator tool
+  goal: Create a Python script where an LLM decides when to call a local math function to answer user questions.
+  steps:
+    - Define a Python function for safe arithmetic evaluation.
+    - Configure the LLM client schema with the function definition.
+    - "Send a user prompt, parse the model's tool call JSON response, and run your function."
+    - Send the function result back to the model to generate the final answer.
+  skills:
+    - Python
+    - JSON Schema
+    - Function Calling
+  time: an afternoon
+  stretch: Add a second tool that fetches current weather from a free public API and let the model choose between tools.
 ---
 
 Tool calling is the capability that lets a model respond with a structured request to run a specific function, with specific arguments, instead of plain text. Your application executes the function, sends the result back to the model, and the model continues with that new information. The model never runs anything itself; it only asks.

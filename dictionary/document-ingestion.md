@@ -4,6 +4,19 @@ description: The pipeline that turns PDFs, web pages and other sources into clea
 difficulty: intermediate
 interview: "Your RAG bot gives wrong prices because answers come from a PDF price list whose tables were extracted as jumbled text. How would you redesign ingestion and catch this earlier?"
 interviewAnswer: "Covers choosing parsers that keep layout and tables, or OCR and vision models for scanned pages, preserving headings and table structure into chunks, attaching metadata such as source, date and permissions, deduplication and incremental re-indexing, and spot-checking parsed output with retrieval evals."
+buildThis:
+  title: Parse messy PDFs into clean chunks with metadata
+  goal: Extract text from raw PDF files, strip unwanted headers and footers, and split them into structured chunks.
+  steps:
+    - Use a PDF parser library to extract raw text and page numbers from sample documents.
+    - Write cleaning functions to remove repeated headers, footers, and page numbers.
+    - Split the cleaned text into paragraphs with associated source metadata.
+  skills:
+    - PDF Parsing
+    - Regex
+    - Data Cleaning
+  time: an afternoon
+  stretch: Export the chunks into a structured JSON format ready for vector database insertion.
 ---
 
 Document ingestion is everything that happens between a source file and a searchable index: fetching documents, parsing them into text, cleaning that text, attaching metadata and handing it to [chunking](./chunking.md) and [embeddings](./embeddings.md). In a [RAG](./rag.md) system it is the least glamorous stage and often the one causing the wrong answers.

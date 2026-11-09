@@ -4,6 +4,19 @@ description: Measuring and attributing LLM spend per request, feature, user and 
 difficulty: beginner
 interview: "Your monthly LLM bill went from about 4k to 31k dollars with flat user growth. How do you find the cause and stop it happening again?"
 interviewAnswer: "Covers logging per call the model, input, output and cached tokens and computed cost, tagged by feature, tenant and trace ID, drilling from costly features to requests, and levers like trimming context, model routing, caching, output caps, per-user budgets and watching reasoning tokens."
+buildThis:
+  title: Build a simple API wrapper that logs cost per call
+  goal: Log prompt tokens, completion tokens, and estimated cost to a local database every time an LLM is called.
+  steps:
+    - Write a wrapper function around the OpenAI or Anthropic API client.
+    - Extract usage metadata (prompt and completion token counts) from the API response.
+    - Calculate cost using standard pricing rates and save the record to a SQLite table.
+  skills:
+    - API Wrappers
+    - SQLite
+    - Logging
+  time: an afternoon
+  stretch: Create a lightweight dashboard view using Streamlit to display spend by user ID.
 ---
 
 Cost tracking is the practice of recording what each LLM call costs and attributing that spend to the features, customers and workflows that caused it. Model providers bill by [tokens](./tokens.md), with different prices for input and output and for each model, so the cost of a request depends on prompt length, response length, model choice and how many calls a workflow makes. A monthly invoice tells you the total; cost tracking tells you why.

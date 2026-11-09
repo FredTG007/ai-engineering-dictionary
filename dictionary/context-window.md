@@ -4,6 +4,19 @@ description: The maximum number of tokens a model can consider in one request, c
 difficulty: beginner
 interview: "Users say your assistant forgets constraints they gave early in long chats, yet no request ever errors. What is likely happening and how would you fix it?"
 interviewAnswer: "Covers silent truncation of history to stay under the token limit, logging what gets dropped and how full the window gets, and fixes such as pinning key facts, summarizing older turns or retrieving on demand, noting that bigger windows cost more and dilute attention."
+buildThis:
+  title: Visualize context window limits on a long text file
+  goal: Write a script that measures token count per section and flags text that overflows a target limit.
+  steps:
+    - Load a multi-page text file or document.
+    - Use a tokenizer library like tiktoken to count tokens section by section.
+    - Print a breakdown showing which paragraphs fit and which exceed the limit.
+  skills:
+    - Tokenization
+    - Python
+    - Text Processing
+  time: under an hour
+  stretch: Add a sliding window chunker that splits the text into safe overlapping segments.
 ---
 
 The context window is the hard limit on how much text a model can see in a single call. It is measured in [tokens](./tokens.md) and includes everything: the [system prompt](./system-prompt.md), conversation history, retrieved documents, tool results and the response the model is about to generate. Anything outside the window simply does not exist for that request.

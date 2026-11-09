@@ -4,6 +4,21 @@ description: Memory where a model stores attention data for tokens already proce
 difficulty: advanced
 interview: "Your self-hosted model handles forty concurrent short chats but fails at eight when users paste long documents. Why, and how would you raise capacity?"
 interviewAnswer: "Covers KV cache memory growing with sequence length times concurrent requests, out-of-memory errors and queuing, paged cache management, grouped-query attention and cache quantization, capping context length, prefix caching for shared prompts, and prefill versus decode behavior."
+buildThis:
+  title: Measure generation speedup gained by using a KV cache
+  goal: Demonstrate how storing attention states accelerates token generation in autoregressive models.
+  steps:
+    - Write a basic next-token prediction loop in PyTorch from scratch for a tiny transformer.
+    - Run generation without caching and measure the compute time for each additional token.
+    - Implement a basic key-value cache array that stores previous attention states.
+    - Compare the total execution time of the cached loop against the un-cached loop.
+  skills:
+    - PyTorch
+    - Transformers
+    - Performance
+    - Linear Algebra
+  time: a weekend
+  stretch: Calculate the exact RAM usage difference between cached and non-cached states as sequence length scales up.
 ---
 
 The KV cache is the memory a [transformer](./transformer.md) model uses to avoid redoing work during generation. Each layer computes key and value vectors for every token it has seen; rather than recomputing these for the whole sequence each time a new token is produced, the model stores them and only computes the new token's entries. This is what makes token-by-token generation affordable.

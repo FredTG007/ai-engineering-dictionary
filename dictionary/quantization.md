@@ -4,6 +4,21 @@ description: Storing model weights with fewer bits, such as 8 or 4 instead of 16
 difficulty: advanced
 interview: "Your 70B model barely fits on your GPUs and you want to quantize it to 4-bit. How would you decide whether the quality loss is acceptable?"
 interviewAnswer: "Covers memory and speed gains from fewer bits per weight, choosing methods like 8-bit versus 4-bit, and running the golden eval set on both versions. Watches for losses on reasoning, long context or non-English tasks, and checks real throughput on the target hardware."
+buildThis:
+  title: Run a Quantized Local Model
+  goal: Compare the RAM usage and generation speed of a 4-bit model versus a 16-bit model.
+  steps:
+    - Download a small open-source model in GGUF format using a tool like Ollama or llama.cpp.
+    - Monitor your system RAM and GPU VRAM usage while running an inference pass.
+    - Download a heavier unquantized version of the same model size.
+    - Compare output quality and hardware resource consumption between the two formats.
+  skills:
+    - GGUF
+    - Ollama
+    - hardware optimization
+    - inference
+  time: an afternoon
+  stretch: Plot a latency-versus-perplexity curve for 2-bit, 4-bit, 8-bit, and 16-bit versions of the same base model.
 ---
 
 Quantization reduces the numeric precision used to store and compute a model's weights, and sometimes its activations and [KV cache](./kv-cache.md). A model trained in 16-bit floating point can be converted to 8-bit or 4-bit representations, cutting its memory footprint by half or more. Less memory means a model fits on smaller or fewer GPUs, and less data to move per token usually means faster generation.

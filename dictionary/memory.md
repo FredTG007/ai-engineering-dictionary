@@ -4,6 +4,20 @@ description: Mechanisms that let an LLM application keep and recall information 
 difficulty: intermediate
 interview: "Your assistant keeps forgetting user preferences between sessions, but storing everything makes it act on outdated facts. How would you design its memory?"
 interviewAnswer: "Covers separating short-term conversation context from long-term stored facts, deciding what to extract and save, retrieving only relevant memories per turn, updating or expiring stale entries, letting users view and delete memories, and privacy controls."
+buildThis:
+  title: Build a SQLite conversation memory layer
+  goal: Store and retrieve past chat turns to give your assistant persistent context across sessions.
+  steps:
+    - Set up a local SQLite database with tables for threads and messages.
+    - Write a function that appends user and assistant turns after each call.
+    - Inject the last N relevant messages into the system prompt context.
+    - Test recall by starting a new session and asking about earlier details.
+  skills:
+    - Python
+    - SQLite
+    - Prompt Engineering
+  time: an afternoon
+  stretch: Add a background summarization step that compresses old messages into a running profile when history grows too long.
 ---
 
 Memory, in LLM applications, is any mechanism that lets the system keep information and bring it back later, beyond what fits in or survives a single call. Models are stateless; everything they "remember" must be sent again in the [context window](./context-window.md) on each request, so memory is really a question of what you store and what you choose to send back.

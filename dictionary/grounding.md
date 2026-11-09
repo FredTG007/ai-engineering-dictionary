@@ -4,6 +4,21 @@ description: Making a model base its answer on specific supplied sources, and ch
 difficulty: intermediate
 interview: "Your policy assistant cited a refund rule that does not exist in any document you gave it. How would you design the system to stay grounded?"
 interviewAnswer: "Covers supplying retrieved sources, instructing the model to answer only from them and say when it cannot, and requiring citations per claim. Adds automated checks that each claim maps to a source, refusal when retrieval is weak, and evals that measure unsupported claims."
+buildThis:
+  title: Build a Source-Cited Answer Generator
+  goal: Force an LLM to output inline citations pointing back to supplied reference text paragraphs.
+  steps:
+    - Provide three reference paragraphs about a niche historical event in the prompt.
+    - "Instruct the model to answer a question using *only* the text and append bracketed source IDs."
+    - Write a regex validator that checks if every citation in the response matches a provided source ID.
+    - Test the validator with a question that requires information not present in the sources.
+  skills:
+    - Grounding
+    - RAG
+    - Citations
+    - Validation
+  time: under an hour
+  stretch: Automatically reject answers that reference source IDs that do not exist in the context.
 ---
 
 Grounding means tying a model's output to specific evidence you supplied, so that each claim in the answer can be traced to a source rather than to the model's general training. A grounded answer is one you can check line by line against the documents in the context.

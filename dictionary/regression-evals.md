@@ -4,6 +4,20 @@ description: Evals run automatically on every change to catch cases where someth
 difficulty: intermediate
 interview: "A prompt change to make answers concise also dropped a required medical disclaimer, and nobody noticed for two weeks. How would you design a suite to block that at merge time?"
 interviewAnswer: "Covers a CI suite built from past bugs, compliance cases and key intents with clear pass conditions, handling non-determinism with low temperature, repeats and pass rates, comparing per-category scores to a baseline, and tying results to prompt and model versions."
+buildThis:
+  title: Set up automated regression evals for prompt updates
+  goal: Build a CI-style eval script that prevents prompt updates from breaking previously passing test cases.
+  steps:
+    - Create a JSON file containing ten input queries and their corresponding golden reference answers.
+    - Write a Python script that runs the current prompt against all ten test cases.
+    - Use an LLM-as-a-judge score function to check if the new output matches or exceeds the required quality threshold.
+    - Exit with a non-zero error code if any test case score drops below the historical baseline.
+  skills:
+    - Evals
+    - CI/CD
+    - Python
+  time: an afternoon
+  stretch: Hook the script into a GitHub Action so it automatically runs and comments on pull requests that modify prompt files.
 ---
 
 Regression evals are evals that run automatically whenever the system changes, with the specific job of catching anything that used to work and no longer does. They are the LLM equivalent of a regression test suite in CI: less about measuring overall quality and more about guarding what you have already fixed.

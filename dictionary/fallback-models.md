@@ -4,6 +4,19 @@ description: A backup model or provider your system switches to when the primary
 difficulty: intermediate
 interview: "You are adding a second provider as a fallback after an outage. What would you do so the fallback actually works when the primary fails?"
 interviewAnswer: "Covers defining triggers such as exhausted retries, repeated 5xx or long 429 waits, per-model prompt variants for format and tool-schema differences, running each fallback through evals, logging which model served each request, and weighing same-region versus cross-provider options."
+buildThis:
+  title: Implement an automatic retry and fallback proxy
+  goal: Write a client wrapper that catches API rate limits and errors, switching to a backup model automatically.
+  steps:
+    - Write a function that calls your primary model provider.
+    - Wrap the call in a try-except block that catches timeout and rate-limit errors.
+    - Route the request to a cheaper backup model if the primary call fails.
+  skills:
+    - Error Handling
+    - API Design
+    - Resilience
+  time: an afternoon
+  stretch: Add exponential backoff delays before triggering the fallback model.
 ---
 
 A fallback model is a second option your system uses when the first one cannot answer. If the primary model returns errors, times out, or hits [rate limits](./rate-limits.md), the request is resent to a different model, a different region, or a different provider. The goal is to keep the feature working, possibly at slightly lower quality, rather than showing users an error page.

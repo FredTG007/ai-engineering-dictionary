@@ -4,6 +4,20 @@ description: Getting a model to return data in a fixed machine-readable shape, s
 difficulty: intermediate
 interview: "About 2% of your extraction responses fail JSON parsing and crash a downstream job. How would you make the output reliable?"
 interviewAnswer: "Covers provider JSON or schema-constrained modes and tool schemas, validating every response against the schema, bounded retries with the error fed back, and safe fallbacks. Notes that valid JSON can still hold wrong values, so field-level checks and evals still matter."
+buildThis:
+  title: Build an invoice data extractor
+  goal: Extract vendor names, dates, and line items from messy invoices into a strict JSON schema.
+  steps:
+    - Define a Pydantic model representing the expected schema for the invoice data.
+    - Configure an LLM client to enforce structured output using the Pydantic schema.
+    - Write a script that sends sample invoice text to the model.
+    - Validate that the returned JSON matches the required schema without parsing errors.
+  skills:
+    - Python
+    - Pydantic
+    - JSON Schema
+  time: under an hour
+  stretch: Handle schema validation failures gracefully by feeding the error back to the model for self-correction.
 ---
 
 Structured output means constraining a model to produce data your code can parse reliably, usually JSON that matches a defined schema. Instead of asking for a paragraph and scraping it with regular expressions, you specify the fields, types and allowed values, and the model fills them in. Many APIs now support this natively, either through a JSON mode or by enforcing a schema during generation.

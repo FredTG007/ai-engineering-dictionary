@@ -4,6 +4,20 @@ description: The ability to understand what an LLM system is doing in production
 difficulty: beginner
 interview: "A customer reports the assistant gave a wrong answer yesterday afternoon. What would your observability setup need to let you find out why?"
 interviewAnswer: "Covers traces per request linking the exact prompt, prompt and model versions, retrieved context, tool calls and output, plus token counts, latency and cost. Mentions searchable logs with privacy controls, quality metrics and user feedback tied to the same trace ID."
+buildThis:
+  title: Build an LLM call logger and tracer
+  goal: Capture prompt tokens, latency, costs, and outputs for every LLM interaction in a local dashboard.
+  steps:
+    - Write a wrapper function around your LLM calls to measure execution time and token usage.
+    - Store each trace record in a local SQLite database with a unique run ID.
+    - Build a minimal web view using Streamlit to display recent traces and costs.
+    - Trigger errors deliberately to confirm exception traces are recorded correctly.
+  skills:
+    - Streamlit
+    - Logging
+    - Tracing
+  time: an afternoon
+  stretch: Add nested span tracing so you can inspect individual steps inside multi-step workflows.
 ---
 
 Observability is how well you can answer "what happened and why" about your LLM system after the fact, using the data it emits. For traditional services that means logs, metrics and traces. For LLM applications it also means capturing the actual prompts, retrieved context, model responses, tool calls, token counts and user feedback, because the interesting failures are usually about content, not crashes.

@@ -4,6 +4,21 @@ description: Prompt injection where the attacker's instructions arrive through c
 difficulty: intermediate
 interview: "Your sales research agent summarized a prospect's pricing page and then opened a link on that site with private CRM notes in the URL. What likely happened, and what would you change in the architecture?"
 interviewAnswer: "Covers instructions hidden in fetched content being read as commands, why the user never saw them, and defenses: least-privilege tools, confirmation for actions with side effects, separating untrusted content from privileged steps, blocking exfiltration channels such as URLs and images, and red-teaming with poisoned documents."
+buildThis:
+  title: Build an RSS summary reader that catches malicious prompt payloads
+  goal: Process untrusted web content containing hidden prompt instructions and stop them from executing.
+  steps:
+    - Write a python script to fetch RSS feeds from test blogs containing injected text strings.
+    - Pass the fetched text directly into an LLM summarization pipeline without sanitization.
+    - Implement a secondary guardrail parser to flag structural anomalies in the returned output.
+    - Refactor the pipeline to isolate external data inside strict system delimiters.
+  skills:
+    - Python
+    - Security
+    - Parsing
+    - Prompt Design
+  time: an afternoon
+  stretch: Add a classification step that scans inbound feeds for hidden instructional phrases before sending them to the main model.
 ---
 
 Indirect prompt injection is a form of [prompt injection](./prompt-injection.md) where the malicious instructions are not typed by the user but sit inside content the application pulls in for them: a web page, an email, a PDF, a calendar invite, a code comment or a tool result. The user may be completely honest. The attack comes from a third party who only needs to get text in front of the model.

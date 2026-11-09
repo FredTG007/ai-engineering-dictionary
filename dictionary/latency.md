@@ -4,6 +4,21 @@ description: How long a user or system waits for a response, measured end to end
 difficulty: beginner
 interview: "Users say your chat feature feels slow, but the average response time looks fine on the dashboard. Where do you look?"
 interviewAnswer: "Covers tracking p95 and p99 instead of the mean, and splitting time into retrieval, queueing, time to first token and generation. Mentions streaming to cut perceived wait, shorter outputs, smaller models for simple steps, and tracing each stage end to end."
+buildThis:
+  title: Build a latency percentile monitor for LLM API calls
+  goal: Measure and log p50, p90, and p99 response times for an LLM endpoint under load.
+  steps:
+    - Write a script that fires concurrent requests to an LLM endpoint using asyncio.
+    - Capture the start and end timestamp for every individual request.
+    - Calculate p50, p90, and p95 latency percentiles from the collected metrics.
+    - Plot the latency distribution over time using a lightweight charting library.
+  skills:
+    - Python
+    - Asyncio
+    - Metrics
+    - Benchmarking
+  time: an afternoon
+  stretch: Simulate network jitter and track how intermittent timeouts impact the p99 latency metric.
 ---
 
 Latency is the time between sending a request and getting the response you need. In LLM systems it is rarely a single number, because a request often passes through retrieval, a [reranking](./reranking.md) step, one or more model calls and post-processing. Measure it end to end, and break it down per stage so you know where the time goes.

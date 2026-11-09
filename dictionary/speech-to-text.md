@@ -4,6 +4,20 @@ description: Converting spoken audio into written text, the first stage of most 
 difficulty: beginner
 interview: "Your voice ordering bot keeps mishearing product names and customers repeat themselves. Where do you start?"
 interviewAnswer: "Covers measuring word error rate on real call audio, custom vocabulary or prompting the STT model with product names, and audio quality issues like noise and phone codecs. Mentions streaming versus batch latency, accents, and confirming critical fields back to the user."
+buildThis:
+  title: Build a local voice memo transcriber
+  goal: Create a command-line tool that turns local audio files into written transcripts using Whisper.
+  steps:
+    - Install OpenAI-Whisper and ffmpeg on your local machine.
+    - Write a Python script that accepts an audio file path as an argument.
+    - Process the audio with a local Whisper model to generate text with timestamps.
+    - Save the resulting transcript to a clean markdown file.
+  skills:
+    - Python
+    - Whisper
+    - Audio Processing
+  time: under an hour
+  stretch: Add speaker diarization using pyannote.audio to separate different voices in a meeting recording.
 ---
 
 Speech-to-text, also called automatic speech recognition or ASR, turns audio into a transcript that downstream systems can read. In a [voice agent](./voice-agents.md), it is the first stage: whatever the STT model writes down is all the [LLM](./llm.md) knows about what the caller said. If recognition is wrong, the most capable model in the world will confidently answer the wrong question.

@@ -4,6 +4,20 @@ description: Reusing a stored LLM response when a new query means roughly the sa
 difficulty: intermediate
 interview: "You want a semantic cache in front of your help bot to cut costs. What could go wrong and how would you guard against it?"
 interviewAnswer: "Covers embedding queries and matching by similarity threshold, wrong hits where small words like team or not change meaning, tuning the threshold on labeled pairs, scoping by tenant or product, excluding personalized or time-sensitive queries, and tracking wrong-hit rate."
+buildThis:
+  title: Build a semantic cache to save API costs
+  goal: Create a caching layer that returns previous LLM answers when a new prompt is semantically similar to an old one.
+  steps:
+    - Set up a local vector store or SQLite database to hold queries, embeddings, and responses.
+    - When a new user query arrives, generate its embedding vector.
+    - Search your cache for an existing query with a cosine similarity score above 0.92.
+    - Return the cached response if a match is found; otherwise, call the LLM and save the new pair.
+  skills:
+    - Embeddings
+    - Caching
+    - Vector Search
+  time: an afternoon
+  stretch: Track and log the estimated dollar amount saved by the cache across fifty repeated or rephrased test queries.
 ---
 
 Semantic caching serves a previously generated answer when a new request is close in meaning to one already seen, even if the wording differs. Instead of keying the cache on the exact prompt text, you compute an [embedding](./embeddings.md) of the query, run a [similarity search](./similarity-search.md) against embeddings of past queries, and if the closest match is above a similarity threshold, return its stored response without calling the model.

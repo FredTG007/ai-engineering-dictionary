@@ -4,6 +4,20 @@ description: Offline evals score a fixed dataset before release; online evals me
 difficulty: intermediate
 interview: "A prompt change passed every offline eval, but a week after release escalations to human agents rose 15 percent. How would you explain the gap and change your eval setup?"
 interviewAnswer: "Covers offline sets missing real traffic patterns, online signals such as escalations, feedback and sampled judge scores on production traces, staged rollouts or A/B tests to compare versions live, and feeding production failures back into the offline set."
+buildThis:
+  title: Build an offline test runner and online logger
+  goal: Compare evaluation results from a static test dataset against feedback logged from live runs.
+  steps:
+    - Create a JSON file with 10 test prompts and expected output keywords.
+    - Write an offline script that scores model responses against this test set.
+    - Add a live logging hook that saves production inputs and user thumbs-up or down signals.
+    - Compare the offline accuracy score against the ratio of positive online feedback.
+  skills:
+    - Evals
+    - Testing
+    - Python
+  time: a weekend
+  stretch: Automate the offline test runner to execute every time you update your prompt templates.
 ---
 
 Offline evals run your system over a fixed dataset before a change ships; online evals measure how the system behaves on real traffic after it ships. Offline evals tell you whether a change is safe to release, and online evals tell you whether it actually helped. Each one covers the other's blind spot.

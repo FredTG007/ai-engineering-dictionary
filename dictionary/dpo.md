@@ -4,6 +4,19 @@ description: A preference-training method that tunes a model directly on chosen-
 difficulty: advanced
 interview: "After DPO on support preference pairs, your model's answers got noticeably longer and wordier, and humans no longer prefer them. What are the likely causes and what would you change?"
 interviewAnswer: "Covers length bias in the chosen answers, inconsistent or noisy labels, too low a beta or too many epochs drifting from the reference model, checking pairs for length and quality, and measuring with pairwise evals plus regression checks after each run."
+buildThis:
+  title: Format preference data for direct optimization
+  goal: Create and validate a JSONL preference dataset containing chosen and rejected model outputs.
+  steps:
+    - Gather a list of common user prompts in your domain.
+    - Write a script to pair each prompt with one clearly better answer (chosen) and one flawed answer (rejected).
+    - Validate the schema to ensure it matches standard DPO training requirements.
+  skills:
+    - Data Engineering
+    - Preference Tuning
+    - JSON Schema
+  time: under an hour
+  stretch: Write a script that tests dataset balance by checking average response lengths for both choices.
 ---
 
 Direct preference optimization (DPO) is a way to train a model on preference data, pairs of answers to the same prompt where one is marked chosen and the other rejected, without training a separate reward model or running reinforcement learning. Introduced by Rafailov and colleagues in 2023, it reaches a similar goal to [RLHF](./rlhf.md) with a training loop that looks much more like ordinary [supervised fine-tuning](./supervised-fine-tuning.md).

@@ -4,6 +4,20 @@ description: Classifying user inputs and model outputs for harmful or off-policy
 difficulty: intermediate
 interview: "Your moderation filter blocks too many harmless medical questions but still misses some abusive ones. How do you tune it?"
 interviewAnswer: "Covers checking both inputs and outputs, per-category thresholds instead of one global cutoff, and measuring precision and recall on a labeled set of real traffic. Mentions domain-specific policy, human review for borderline cases, and the latency cost of each check."
+buildThis:
+  title: Build a pre-flight content moderation filter
+  goal: Create a lightweight script that screens user inputs for toxic or unsafe language before sending them to an LLM.
+  steps:
+    - Write a Python function that calls a free moderation endpoint or uses a small local classifier model.
+    - Define trigger categories such as hate speech, self-harm, or prompt injection attempts.
+    - Wrap your main LLM application entry point with a check against this moderation function.
+    - Return a polite refusal message to the user if the input trips the safety classifier.
+  skills:
+    - Safety
+    - Python
+    - API Security
+  time: an afternoon
+  stretch: Log flagged inputs to a local CSV file with timestamps for manual review later.
 ---
 
 Content moderation in an LLM application means checking text, and sometimes images or audio from [multimodal](./multimodal.md) inputs, against a set of harm categories and deciding what to do when something matches. It runs in both directions: on user input, to catch abuse or requests you will not serve, and on model output, to catch anything harmful the model produced despite its training. It is one specific kind of [guardrail](./guardrails.md), focused on harm categories rather than business rules.

@@ -4,6 +4,20 @@ description: Collecting signals from real users, explicit ratings and implicit b
 difficulty: intermediate
 interview: "Your assistant has a thumbs-up/down button that almost nobody clicks, and the few ratings are mostly angry. How would you build a feedback loop that actually improves the product?"
 interviewAnswer: "Covers combining sparse explicit ratings with implicit signals such as retries, edits, copy actions and escalations, linking each signal to the full trace, reviewing and labeling the failures, turning confirmed failures into eval cases, and watching for bias in who leaves feedback."
+buildThis:
+  title: Build an LLM output thumbs rating app
+  goal: Create a minimal web app that logs user thumbs-up and thumbs-down feedback alongside prompt inputs.
+  steps:
+    - Build a simple web interface with an input box and output display.
+    - Add thumbs-up and thumbs-down buttons next to each generated response.
+    - Save the prompt, response, rating, and timestamp to a local JSON file.
+    - Write a summary script that prints out prompts that received negative ratings.
+  skills:
+    - FastAPI
+    - HTML
+    - Data Logging
+  time: an afternoon
+  stretch: Add a text input field for optional user comments when a negative rating is submitted.
 ---
 
 A user feedback loop is the process of capturing what real users think of a model's output, in what they say and in what they do, and feeding that back into how the system is built. The loop only counts as closed when a signal from production ends up changing something: an eval case, a prompt, a retrieval fix or training data.

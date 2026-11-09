@@ -4,6 +4,20 @@ description: A pattern where a planning call decides the subtasks for each reque
 difficulty: advanced
 interview: "Your report generator uses one giant prompt to research and write about ten competitors, and it keeps dropping some of them. How would you restructure it with orchestrator-worker or simpler routing patterns, and what would you monitor?"
 interviewAnswer: "Covers an orchestrator that plans one subtask per competitor, parallel workers with focused context, and a synthesis step, compared with simpler routing, chaining or fan-out where the subtasks are known; plus monitoring fan-out size, per-worker failures, total tokens and whether the synthesis drops worker results."
+buildThis:
+  title: Build a research report generator
+  goal: Use an orchestrator to break a topic into subtopics, fetch content in parallel workers, and merge results.
+  steps:
+    - Write an orchestrator prompt that splits a broad research topic into three subquestions.
+    - Run concurrent worker calls to generate text answers for each subquestion.
+    - Pass all worker outputs to a final aggregation prompt to synthesize a coherent report.
+    - Test the flow with different research topics and verify coherence.
+  skills:
+    - Concurrency
+    - Orchestration
+    - Python
+  time: an afternoon
+  stretch: Let the orchestrator dynamically decide how many workers to spawn based on topic complexity.
 ---
 
 Orchestrator-worker is a pattern with a planner at the top. One LLM call, the orchestrator, reads the request and writes a plan of subtasks; each subtask goes to its own worker call; a final step merges what the workers return. The plan is produced fresh for every request, so a question about two competitors gets two workers and a question about ten gets ten. It sits between a single prompt and a full [multi-agent](./multi-agent.md) system.

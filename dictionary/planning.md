@@ -4,6 +4,21 @@ description: Having an agent lay out the steps of a task before or while acting,
 difficulty: advanced
 interview: "Your research agent drifts after about twenty steps and repeats searches it already ran. How would you add planning, and how do you stop the plan itself going stale?"
 interviewAnswer: "Covers drafting an explicit step list, tracking progress in state outside the context window, and revising the plan when results contradict it. Discusses plan-then-execute versus interleaved replanning, step and budget limits, checkpoints, and evaluating plan quality separately."
+buildThis:
+  title: Build a Task Decomposition Agent
+  goal: Make an agent write a step-by-step execution plan before attempting a multi-part goal.
+  steps:
+    - Write a system prompt forcing the model to output a numbered JSON list of steps.
+    - Build a loop that executes the first step and passes the output to the next.
+    - Add a re-planning step if a task execution fails or returns an error.
+    - Test the agent on a complex multi-file text summarization task.
+  skills:
+    - agents
+    - JSON output
+    - control loops
+    - prompting
+  time: a weekend
+  stretch: Allow the agent to dynamically insert or remove steps from its plan as it learns new information.
 ---
 
 Planning, in agent systems, means having the model lay out the steps of a task explicitly, before or while carrying it out, instead of choosing each action only in reaction to the last result. The plan becomes something the [agent](./agent.md) can follow, check off and revise.

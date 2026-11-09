@@ -4,6 +4,21 @@ description: The full input text sent to a language model for one request, inclu
 difficulty: beginner
 interview: "Your summarizer started ignoring its formatting rules after someone pasted a long customer email into it. What would you check in the prompt?"
 interviewAnswer: "Covers the prompt as the full assembled input: system instructions, examples, context and user text. Looks at ordering, clear delimiters around untrusted content, conflicting instructions, length pushing rules out of focus, and logging the exact final prompt sent."
+buildThis:
+  title: Construct a Structured Prompt Template
+  goal: Combine system instructions, few-shot examples, and user input into a reliable prompt format.
+  steps:
+    - Define clear XML-style tags for instructions, context, and examples.
+    - Write a Python function using f-strings to inject dynamic user variables into the template.
+    - Test the template across five different edge-case inputs to check adherence.
+    - Refine the prompt layout to minimize token usage while maintaining accuracy.
+  skills:
+    - templating
+    - XML tags
+    - few-shot
+    - Python
+  time: under an hour
+  stretch: Write an automated unit test suite that validates the prompt outputs required JSON keys consistently.
 ---
 
 A prompt is everything you send to a model in a single request. In casual usage it means the user's question, but in an engineered system it is a structured document: instructions, the [system prompt](./system-prompt.md), retrieved context, examples, conversation history and finally the user's message. The model sees all of it as one sequence of [tokens](./tokens.md) and generates a continuation.

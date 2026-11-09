@@ -4,6 +4,19 @@ description: Reading a sample of real failures, labelling what went wrong, and c
 difficulty: intermediate
 interview: "Your RAG assistant's thumbs-down rate doubled after a launch and the team wants to swap the model. What would you do before agreeing to that?"
 interviewAnswer: "Covers pulling a sample of failing traces, reading them and writing open notes, grouping notes into failure categories and counting them, fixing the largest category first, and turning each category into eval cases so the fix can be measured."
+buildThis:
+  title: Tag and categorize LLM failures in a spreadsheet
+  goal: Build a systematic error categorization workflow to find out why an LLM prompt fails.
+  steps:
+    - Collect 50 prompt-response pairs where the system output was incorrect.
+    - Define 4 common failure tags (e.g., hallucination, missing context, format error).
+    - Manually tag each failure and generate a summary count of the most frequent issues.
+  skills:
+    - Debugging
+    - Data Categorization
+    - Analysis
+  time: under an hour
+  stretch: Write a Python script that parses your tagged CSV and plots a failure frequency chart.
 ---
 
 Error analysis is the habit of reading a sample of your system's actual failures, writing down what went wrong in each one, and counting how often each kind of failure appears. It sounds too simple to need a name, but it is the step teams skip most often, and skipping it is how they end up fixing the wrong thing.

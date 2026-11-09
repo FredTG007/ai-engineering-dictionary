@@ -4,6 +4,20 @@ description: How much work a model deployment completes per unit of time, measur
 difficulty: intermediate
 interview: "Your self-hosted model handles one user quickly but falls over at fifty concurrent users. How do you think about throughput versus latency?"
 interviewAnswer: "Covers tokens or requests per second across all users versus per-request speed. Discusses batching and continuous batching, GPU memory limits from the KV cache, how larger batches raise per-user latency, and load testing at realistic concurrency and prompt lengths."
+buildThis:
+  title: Build a load testing script for LLM APIs
+  goal: Measure tokens per second and requests per second under concurrent load against a local endpoint.
+  steps:
+    - Write an asynchronous Python script using asyncio and httpx to send concurrent requests.
+    - Simulate multiple users sending prompts to a local vLLM or Ollama instance.
+    - Track total generation time, output token counts, and error rates.
+    - Calculate aggregate throughput metrics across all concurrent workers.
+  skills:
+    - Python
+    - AsyncIO
+    - Benchmarking
+  time: an afternoon
+  stretch: Plot a latency-versus-throughput curve by gradually increasing the concurrency level until errors occur.
 ---
 
 Throughput is the total amount of work a system completes over time, usually measured in output tokens per second or requests per second across all concurrent users. It is a property of the whole deployment, not of a single request. [Latency](./latency.md) tells you how long one user waits; throughput tells you how many users you can serve at once with acceptable waits.

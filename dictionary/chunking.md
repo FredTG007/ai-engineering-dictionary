@@ -4,6 +4,20 @@ description: Splitting documents into smaller passages before embedding them, so
 difficulty: beginner
 interview: "Retrieval keeps returning passages that cut off halfway through the answer a user needs. How would you rethink your chunking?"
 interviewAnswer: "Covers chunk size versus focus, overlap between chunks, splitting on document structure like headings rather than fixed character counts, and keeping metadata such as title and section. Mentions measuring retrieval hit rate on real questions before and after a change."
+buildThis:
+  title: Split long documents with overlapping chunks
+  goal: Write a Python function that divides a long text file into smaller overlapping segments for retrieval.
+  steps:
+    - Write a script that reads a multi-page article or book chapter from a text file.
+    - Implement a sliding window function that splits the text into chunks of 500 characters.
+    - Add a 50-character overlap between adjacent chunks to prevent cutting sentences in half.
+    - Print the resulting chunks to verify their sizes and boundary points.
+  skills:
+    - Text Processing
+    - Python
+    - RAG
+  time: under an hour
+  stretch: Implement semantic chunking by splitting text wherever embedding distance between sentences spikes.
 ---
 
 Chunking is splitting source documents, once [document ingestion](./document-ingestion.md) has turned them into clean text, into smaller pieces before you embed and index them. A retrieval system rarely wants a whole fifty-page manual; it wants the two paragraphs that answer the question. Each chunk gets its own [embedding](./embeddings.md) and is stored in a [vector database](./vector-database.md), so the quality of your chunks sets an upper limit on what [similarity search](./similarity-search.md) can find.

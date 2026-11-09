@@ -4,6 +4,19 @@ description: Gradual change in model behavior, user inputs, or data over time th
 difficulty: intermediate
 interview: "Your extraction pipeline started returning dates in a new format with no deploy on your side, and offline evals still look fine. What is happening and how do you prevent it?"
 interviewAnswer: "Covers model drift from provider aliases moving to new snapshots, pinning explicit versions gated by regression evals, input and data drift making the golden dataset stale, sampling live traffic into evals, and alerting on shifts in format, length and refusal rates."
+buildThis:
+  title: Detect vocabulary shift in user inputs over time
+  goal: "Compare the keyword distribution of last week's user prompts against this week's prompts to spot drift."
+  steps:
+    - Collect two batches of text inputs representing different time periods.
+    - Tokenize and count word frequencies in both batches, ignoring common stop words.
+    - Calculate the difference in top terms to identify new vocabulary or topics.
+  skills:
+    - Data Analysis
+    - Text Statistics
+    - Python
+  time: an afternoon
+  stretch: Compute embedding distance between the two batches to measure semantic drift numerically.
 ---
 
 Drift is the slow divergence between the conditions your system was built and tested for and the conditions it actually faces in production. In LLM systems it shows up in three main forms: the model changes underneath you, the inputs users send change, or the data you retrieve from changes. In each case nothing visibly breaks; quality simply erodes until someone notices.

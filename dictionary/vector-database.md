@@ -4,6 +4,20 @@ description: A database built to store embeddings and quickly find the ones near
 difficulty: intermediate
 interview: "Your assistant keeps quoting a pricing page that was edited two months ago. What would you check in the retrieval index, and how do you prevent it recurring?"
 interviewAnswer: "Covers ingestion that only adds new documents and never re-embeds edited or deleted ones, change detection and re-indexing pipelines, keeping raw text and tracking the embedding model per vector, plus enforcing metadata filters like tenant inside the query itself."
+buildThis:
+  title: Build a pure Python vector search engine
+  goal: Write a lightweight script that stores float vectors and performs cosine similarity search without external DB software.
+  steps:
+    - Generate or load a set of sample text embeddings.
+    - Write a cosine similarity function using basic vector math.
+    - Implement a search function that compares a query vector against all stored vectors.
+    - Return the top K closest vectors along with their similarity scores.
+  skills:
+    - Python
+    - Vector Math
+    - Search
+  time: under an hour
+  stretch: Add metadata filtering so you can restrict searches to items matching a specific category tag.
 ---
 
 A vector database stores [embeddings](./embeddings.md) and answers the question "which stored vectors are closest to this one?" quickly, even across millions or billions of items. It builds approximate nearest neighbor indexes for [similarity search](./similarity-search.md), stores the original text or an ID alongside each vector, and usually supports [metadata filtering](./metadata-filtering.md) so you can restrict results by tenant, date, language or document type.

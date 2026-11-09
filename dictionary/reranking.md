@@ -4,6 +4,20 @@ description: A second retrieval pass where a slower, more accurate model reorder
 difficulty: intermediate
 interview: "Logs show the correct chunk is retrieved but sits at rank 14 while only the top 5 reach the prompt. How would you fix this without blowing your latency budget?"
 interviewAnswer: "Covers retrieving wide then reranking with a cross-encoder or small model that reads query and passage together, tuning candidate count against p95 latency, batching with a timeout and fallback to original order, and using rerank scores as an abstain threshold tuned on evals."
+buildThis:
+  title: Add a cross-encoder reranker to keyword search
+  goal: Improve basic text search results by passing the top candidates through a dedicated cross-encoder reranker model.
+  steps:
+    - Retrieve the top twenty text chunks for a query using simple keyword or vector search.
+    - Load a lightweight open-source cross-encoder reranker model from Hugging Face.
+    - Score each candidate document pair-wise against the query using the reranker.
+    - Sort the documents by the new scores and output only the top five highest-ranking results.
+  skills:
+    - Information Retrieval
+    - Hugging Face
+    - Python
+  time: an afternoon
+  stretch: Measure latency trade-offs by timing how long the reranker takes compared to the initial retrieval step.
 ---
 
 Reranking is a second pass over retrieved candidates in which a more precise model scores each one against the query and reorders the list. The first-stage retriever is built for speed across millions of documents; the reranker is built for accuracy across a few dozen.

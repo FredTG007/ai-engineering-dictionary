@@ -4,6 +4,20 @@ description: An LLM system that decides its own next steps, calling tools and re
 difficulty: beginner
 interview: "Product wants an agent to resolve refund tickets end to end. How do you decide whether it should be an agent or a fixed workflow, and what controls would you require?"
 interviewAnswer: "Covers using an agent only when steps cannot be known in advance, preferring workflows for predictable paths, and controls such as step and token caps, least-privilege tools, human approval for irreversible actions like refunds, step logging, and evaluating path as well as outcome."
+buildThis:
+  title: Build a file search and summary agent
+  goal: Create a script that lists local files, reads matching documents, and answers questions about them.
+  steps:
+    - "Write three distinct Python tools: list directory, read file text, and search text."
+    - Configure an LLM client with system instructions explaining when and how to use these tools.
+    - Implement a execution loop to handle tool calls returned by the model.
+    - Test the agent with a multi-step user request like finding a specific note and summarizing it.
+  skills:
+    - Tool Use
+    - Python
+    - File I/O
+  time: a day
+  stretch: Give the agent a memory log file so it can recall findings across separate tool calls.
 ---
 
 An agent is an LLM-based system that decides for itself what to do next in pursuit of a goal, typically by choosing tools to call, observing the results, and repeating until it judges the task complete. The defining feature is that the model controls the sequence of steps, rather than following a fixed path written in code.

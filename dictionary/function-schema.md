@@ -4,6 +4,20 @@ description: The name, description and typed parameter definition that tells a m
 difficulty: intermediate
 interview: "Your agent often calls the right tool with wrong or missing arguments. How would you improve the function schema?"
 interviewAnswer: "Covers clear tool and parameter names, descriptions that say when to use the tool and what each field means, enums and required fields to constrain values, units and formats spelled out, validating arguments before execution, and returning helpful validation errors."
+buildThis:
+  title: Define Tools for a Weather and Calculator Assistant
+  goal: Write explicit JSON function schemas so an LLM can pick and call the right tool.
+  steps:
+    - Write valid JSON schemas for a weather lookup function and a basic calculator function.
+    - Pass the schemas into an LLM client call that supports native tool calling.
+    - "Send a user query like 'What is 45 times 12?' and extract the structured tool call argument."
+    - Execute the local function logic and return the result back to the model for a final response.
+  skills:
+    - Function Calling
+    - JSON Schema
+    - API Design
+  time: under an hour
+  stretch: Add strict parameter constraints and descriptions to handle missing user arguments gracefully.
 ---
 
 A function schema is the definition you give a model for each tool it can use: a name, a plain-language description, and a typed specification of the parameters, usually written in JSON Schema. It is the model's main source of information about what the tool does, when to use it and how to fill in its arguments.

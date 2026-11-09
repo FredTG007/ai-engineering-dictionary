@@ -4,6 +4,21 @@ description: Combining keyword search and vector search in one retrieval step so
 difficulty: intermediate
 interview: "Your RAG assistant fails on queries containing part numbers and error codes but handles conceptual questions well. What retrieval change would you propose and why?"
 interviewAnswer: "Covers combining keyword search such as BM25 for exact identifiers with vector search for meaning, merging results with reciprocal rank fusion or weighted scores, tuning weights on labeled queries, and the extra indexing and latency cost of running both."
+buildThis:
+  title: Combine BM25 and Vector Search in Python
+  goal: Merge keyword search results with vector embeddings to improve document retrieval accuracy.
+  steps:
+    - Load a small text corpus into a local SQLite database for keyword lookups using BM25.
+    - Generate vector embeddings for the same corpus using a free local embedding model.
+    - Write a query function that runs both searches and normalizes their scores.
+    - Combine the score lists using reciprocal rank fusion to produce a final ranked list.
+  skills:
+    - Hybrid Search
+    - RAG
+    - Vector Embeddings
+    - BM25
+  time: a weekend
+  stretch: Compare retrieval precision between pure vector search and hybrid search on a set of test queries.
 ---
 
 Hybrid search runs a keyword search and a vector search over the same corpus and merges their results into a single ranked list. Each method misses things the other finds, and combining them is one of the cheapest ways to raise retrieval recall.

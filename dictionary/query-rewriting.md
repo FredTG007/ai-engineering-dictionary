@@ -4,6 +4,21 @@ description: Using a model or rules to turn a user's raw question into one or mo
 difficulty: intermediate
 interview: "Follow-up questions like and what about the annual plan retrieve nothing useful in your RAG chatbot. How would query rewriting help, and what does it cost?"
 interviewAnswer: "Covers rewriting a follow-up into a standalone query using chat history, expanding or splitting into several queries, and handling synonyms. Trade-offs include an extra model call adding latency and cost, and rewrites that drift from what the user meant, so log and evaluate them."
+buildThis:
+  title: Build a Query Rewriting Pipeline
+  goal: Transform ambiguous user questions into clear, explicit search queries before RAG retrieval.
+  steps:
+    - Write a prompt that takes chat history and a vague follow-up question as input.
+    - Have a fast model output a standalone search query containing all necessary context.
+    - Pass the rewritten query into a vector search database lookup.
+    - Compare retrieval relevance scores between raw user queries and rewritten queries.
+  skills:
+    - RAG
+    - query transformation
+    - prompting
+    - search
+  time: an afternoon
+  stretch: Generate three diverse variations of the user query in parallel to improve multi-angle retrieval coverage.
 ---
 
 Query rewriting is the step where you transform what the user typed into a query that your retrieval system can actually match well. Users write short, ambiguous, conversational messages; search indexes respond best to explicit, self-contained phrasing. A rewriting step sits between the two.

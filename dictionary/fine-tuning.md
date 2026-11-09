@@ -4,6 +4,21 @@ description: Further training a pretrained model on your own examples so it adop
 difficulty: beginner
 interview: "A team wants to fine-tune a model on the internal wiki so it can answer policy questions. How would you respond, and where would fine-tuning fit better?"
 interviewAnswer: "Covers fine-tuning being poor at storing and updating facts, RAG suiting changing knowledge with citations, fine-tuning fitting format, style, fixed labels or replacing long few-shot prompts, data quality over volume, held-out evals against a prompt baseline, and retraining overhead."
+buildThis:
+  title: Fine-Tune a Tiny Model on Custom JSON Data
+  goal: Train a small open-weights model to consistently output jokes in a specific pirate dialect.
+  steps:
+    - Gather 50 clean prompt-completion pairs in the required chat JSONL training format.
+    - Upload the dataset and run a budget fine-tuning job using an open platform like Together AI.
+    - Download or host the resulting model weights and write a local test script.
+    - Compare the base model output against your fine-tuned model output on the same prompt.
+  skills:
+    - Fine-Tuning
+    - JSONL
+    - Model Training
+    - Python
+  time: an afternoon
+  stretch: Split your dataset into a training set and a test set to measure accuracy improvements.
 ---
 
 Fine-tuning means continuing to train an existing [LLM](./llm.md) on a dataset of your own examples so that its weights shift toward the behavior you want. In its most common form, [supervised fine-tuning](./supervised-fine-tuning.md), you provide pairs of inputs and ideal outputs, the training process adjusts the model, and you get a new model version that you call like any other. It changes how the model behaves by default, rather than relying on instructions in each [prompt](./prompt.md).

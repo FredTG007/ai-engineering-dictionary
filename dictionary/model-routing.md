@@ -4,6 +4,20 @@ description: Sending each request to the model best suited to it, so easy tasks 
 difficulty: intermediate
 interview: "Most of your traffic is simple FAQ questions, yet every request goes to your most expensive model. How would you design a router, and how would you know it works?"
 interviewAnswer: "Covers routing by rules or a small classifier, sending easy requests to a cheap fast model and escalating hard or low-confidence ones. Measures quality per route on an eval set, cost and latency savings, misroute rates, and adds fallbacks when a provider fails."
+buildThis:
+  title: Build a cost-aware model router
+  goal: Automatically direct queries to a cheap model for simple tasks and a strong model for complex ones.
+  steps:
+    - Define criteria for simple versus complex queries using length or keyword heuristics.
+    - Write a routing function that sends requests to local Ollama or cheap API endpoints based on the check.
+    - Fallback to a heavier model if the first response indicates failure.
+    - Log routing decisions and cost savings for a batch of mixed queries.
+  skills:
+    - API Routing
+    - Heuristics
+    - Cost Optimization
+  time: an afternoon
+  stretch: Train a tiny classifier model to handle routing decisions instead of relying on hardcoded heuristics.
 ---
 
 Model routing is the practice of choosing which model handles a request based on what the request needs. Instead of sending everything to one large model, a router inspects each call and directs it to a small, cheap model, a large capable model, or a specialist, depending on difficulty, task type, or customer tier. It is primarily a cost and [latency](./latency.md) tool, not a reliability mechanism.

@@ -4,6 +4,21 @@ description: Running a trained model to produce output for a given input; the pe
 difficulty: beginner
 interview: "You moved a long-document summarization job to self-hosted GPUs and throughput came in far below your estimate. What did the sizing likely miss?"
 interviewAnswer: "Covers the prefill versus decode split, with long prompts making prefill dominate and driving time to first token, sizing on output speed alone being wrong, and fixes like request batching and KV cache reuse for shared prefixes, tracked as tokens and latency per feature."
+buildThis:
+  title: Build a local token counter and cost tracker for model inference
+  goal: Track precise latency and per-token compute costs while executing a local open-weight model.
+  steps:
+    - Download a small open-weight model using Ollama or Hugging Face Transformers.
+    - Write a wrapper script to measure time-to-first-token and total generation time.
+    - Calculate cost metrics dynamically based on standard API pricing tiers.
+    - Log request parameters, tokens generated, and execution time to a local CSV file.
+  skills:
+    - Python
+    - Ollama
+    - Performance Tracking
+    - APIs
+  time: under an hour
+  stretch: Build a simple web dashboard using Streamlit to visualize inference latency across different prompt lengths.
 ---
 
 Inference is the act of running a trained model on new input to get output. Training is when the model's weights are learned; inference is everything after, every time a user sends a message and the model replies. For most AI engineering teams, inference is the only phase they touch, either by calling a hosted API or by running a model on their own hardware.

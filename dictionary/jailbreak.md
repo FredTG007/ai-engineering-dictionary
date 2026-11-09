@@ -4,6 +4,21 @@ description: A crafted input that gets a model to ignore its safety training or 
 difficulty: beginner
 interview: "Someone posted a screenshot of your branded assistant giving harmful instructions after a long role-play conversation. What defenses would you add?"
 interviewAnswer: "Covers how jailbreaks differ from prompt injection, input classifiers for known patterns, output moderation regardless of how content was elicited, limiting or re-checking long sessions, narrow scoping, and a jailbreak test set rerun on every model change."
+buildThis:
+  title: Build an automated prompt mutation script to test safety limits
+  goal: "Systematically test an LLM's safety boundaries by applying text transformations to restricted prompts."
+  steps:
+    - Define a list of benign baseline queries that trigger standard safety refusals.
+    - Write a python function to apply base64 encoding, leetspeak, and roleplay wrappers to the queries.
+    - Send the mutated prompts to an LLM endpoint and record the response codes and text.
+    - Analyze which specific transformations successfully bypass the safety filter.
+  skills:
+    - Python
+    - Safety Testing
+    - Red Teaming
+    - Regex
+  time: an afternoon
+  stretch: Build a scoring script that automatically classifies model responses as compliant, refused, or partially compliant.
 ---
 
 A jailbreak is an input designed to make a model break its own safety behavior, producing content it was trained or instructed to refuse. That refusal behavior mostly comes from post-training such as [RLHF](./rlhf.md), which is why it has gaps. Typical techniques include role-play framing ("pretend you are an AI with no rules"), hypothetical wrappers, splitting a forbidden request into innocent-looking pieces, encoding text in base64 or another language, and long multi-turn conversations that gradually shift the model's sense of what is acceptable.

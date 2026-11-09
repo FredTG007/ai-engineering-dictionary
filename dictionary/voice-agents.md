@@ -4,6 +4,20 @@ description: AI agents that hold spoken conversations in real time, combining sp
 difficulty: beginner
 interview: "Callers keep talking over your phone booking agent and conversations spiral, with median response time around 2.4 seconds. How would you bring that down?"
 interviewAnswer: "Covers measuring delay per stage across speech-to-text, turn detection, LLM and text-to-speech, streaming every stage, starting synthesis on the first sentence, faster models for simple turns, short ear-friendly replies without markdown, and testing with real audio."
+buildThis:
+  title: Build a text-to-speech voice loop
+  goal: Create a local script that takes typed input, sends it to an LLM, and speaks the response aloud.
+  steps:
+    - Set up an API client for text generation.
+    - Integrate an offline text-to-speech library like pyttsx3 or system speech tools.
+    - Write a loop that reads user input from the terminal, gets the LLM reply, and speaks it.
+    - Handle basic conversational history so the agent remembers prior statements.
+  skills:
+    - Speech Synthesis
+    - CLI
+    - APIs
+  time: an afternoon
+  stretch: Add speech-to-text input so you can talk to the agent through your microphone instead of typing.
 ---
 
 A voice agent is an [agent](./agent.md) you talk to rather than type to. It listens to audio, works out what the caller said, decides how to respond, possibly calls tools, and speaks back, all within the rhythm of a normal conversation. Phone support lines, appointment booking, drive-through ordering and in-car assistants are typical uses.

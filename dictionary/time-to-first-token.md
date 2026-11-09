@@ -4,6 +4,20 @@ description: The delay between sending a request and receiving the first generat
 difficulty: intermediate
 interview: "Users say your chat assistant feels sluggish even though total response time is unchanged since you added a long system prompt and retrieval. What do you measure and fix?"
 interviewAnswer: "Covers separating time to first token from total latency, prefill cost growing with prompt length, retrieval and reranking steps that run before generation, streaming output, prompt caching for shared prefixes, and tracking p50 and p95 TTFT separately."
+buildThis:
+  title: Build a latency tracker for LLM requests
+  goal: Measure and log the time elapsed between sending a prompt and receiving the first generated token.
+  steps:
+    - Write a script that records a high-resolution timestamp right before sending an API request.
+    - Listen to the streaming response chunk stream using an async client.
+    - Record a second timestamp upon receiving the very first text chunk.
+    - Compute the difference and print the Time to First Token (TTFT) in milliseconds.
+  skills:
+    - Python
+    - Performance Profiling
+    - Networking
+  time: under an hour
+  stretch: Compare TTFT across different input prompt lengths to see how prompt size affects prefill duration.
 ---
 
 Time to first token is how long it takes from sending a request until the model emits its first piece of output. It covers network time, queueing at the provider, and the prefill phase of [inference](./inference.md), where the model reads the entire prompt before it can write anything. When responses are [streamed](./streaming.md), TTFT is the moment the user stops staring at a spinner.

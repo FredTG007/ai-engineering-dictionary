@@ -4,6 +4,20 @@ description: Models and systems that accept or produce more than text, such as i
 difficulty: beginner
 interview: "Users want to upload photos of receipts and ask questions about them. What changes when your text-only pipeline becomes multimodal?"
 interviewAnswer: "Covers images costing many tokens and adding latency, file size and format limits, and choosing between a vision model and OCR first. Mentions errors on blurry or rotated images, validating extracted numbers, privacy of uploads, and evals built from real images."
+buildThis:
+  title: Build an automatic chart data extractor
+  goal: Send chart images to a vision model and output structured CSV data from the visual elements.
+  steps:
+    - Gather a few sample charts or graphs as image files.
+    - Write code to send these images to an open-weight vision model or API.
+    - Prompt the model to extract data points into a clean JSON format.
+    - Save the returned JSON as a downloadable CSV file.
+  skills:
+    - Vision Models
+    - Data Extraction
+    - JSON
+  time: under an hour
+  stretch: Build a simple web interface where users can drag and drop images and download the resulting CSV.
 ---
 
 A multimodal model can take in, and sometimes produce, more than one kind of data, such as text, images, audio, or video. In practice most production use today is text plus images or documents as input: screenshots, scanned forms, charts, photos of receipts, and PDFs whose layout matters. Some models also handle audio directly, which overlaps with [voice agents](./voice-agents.md) that otherwise chain [speech-to-text](./speech-to-text.md) and text models together.
