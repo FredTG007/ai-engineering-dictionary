@@ -6,15 +6,13 @@ import { usePanZoom } from "@/hooks/usePanZoom";
 import type { MapStation, SubwayMap } from "@/lib/map/types";
 import { centreOn, fitContent, type Size, type Viewport } from "@/lib/map/viewport";
 import { PaperGrid } from "./PaperGrid";
-import { overlayInsets } from "./overlayInsets";
+import { minFitScale, overlayInsets } from "./overlayInsets";
 import { StartHereNote } from "./StartHereNote";
 import { Station } from "./Station";
 import { TrackLine } from "./TrackLine";
 import { ZoomControls } from "./ZoomControls";
 
 const FOCUS_SCALE = 1.15;
-/** Below this the labels are too small to read, so fitting crops the edges instead. */
-const FIT_MIN_SCALE = 0.6;
 const BUTTON_ZOOM_STEP = 1.3;
 
 interface SubwayMapViewProps {
@@ -38,7 +36,7 @@ export function SubwayMapView({ map, startSlug, colourOf, selectedSlug, learned,
 
   const termOpen = selectedSlug !== null;
   const fitView = useCallback(
-    (view: Size) => fitContent({ width: map.width, height: map.height }, view, overlayInsets(view, termOpen), FIT_MIN_SCALE),
+    (view: Size) => fitContent({ width: map.width, height: map.height }, view, overlayInsets(view, termOpen), minFitScale(view)),
     [map.width, map.height, termOpen],
   );
 

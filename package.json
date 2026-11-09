@@ -11,7 +11,7 @@
     "validate": "tsx scripts/validate-content.ts",
     "audio:manifest": "tsx scripts/build-audio-manifest.ts",
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test \"lib/**/*.test.ts\"",
+    "test": "node --import tsx --test \"lib/**/*.test.ts\" \"components/**/*.test.ts\"",
     "search:assets": "tsx scripts/fetch-search-assets.ts",
     "prebuild": "npm run search:assets",
     "search:embeddings": "tsx scripts/build-term-embeddings.ts",

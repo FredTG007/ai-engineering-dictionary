@@ -11,6 +11,18 @@ const MOBILE_HEADER_HEIGHT = 120;
 /** On small screens the folded "Lines" tab sits just under the header. */
 const MOBILE_LINES_TAB_HEIGHT = 48;
 const MOBILE_SHEET_SHARE = 0.55;
+/**
+ * Below these the labels are too small to read. Desktop fits the whole map
+ * down to the lower bound, so no label hides behind the panel; on a phone the
+ * map would be unreadable that small, so fitting crops the edges and the user pans.
+ */
+const DESKTOP_MIN_FIT_SCALE = 0.4;
+const MOBILE_MIN_FIT_SCALE = 0.6;
+
+/** Smallest scale the default fit may use at this screen size. */
+export function minFitScale(view: Size): number {
+  return view.width >= DESKTOP_MIN_WIDTH ? DESKTOP_MIN_FIT_SCALE : MOBILE_MIN_FIT_SCALE;
+}
 
 /**
  * The parts of the map hidden behind the header, the panel (the welcome card
