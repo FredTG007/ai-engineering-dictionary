@@ -24,7 +24,7 @@ Human-in-the-loop means a person sits at a defined checkpoint in an AI workflow 
 
 The need usually becomes obvious after an incident. One company let its procurement agent place orders directly through [tool calling](./tool-calling.md). A misread unit field turned "12 boxes" into "12 pallets", and the order shipped before anyone noticed. Adding an approval step for any order above a set value cost reviewers a few minutes a day and would have caught it.
 
-Where you put the human matters more than whether you have one. Common patterns include:
+Where you put the human matters more than whether you have one, and products often expose that choice as an [autonomy slider](./autonomy-slider.md). Common patterns include:
 
 - **Approve before action:** the agent pauses and waits for sign-off on writes, payments or external messages.
 - **Review on escalation:** only low-confidence or policy-flagged cases go to a person.

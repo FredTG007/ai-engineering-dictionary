@@ -9,19 +9,29 @@ Every term must sit on at least one track (`npm run validate` checks this). When
 colour: #c8402a
 
 1. llm
-2. tokens
-3. tokenizer
-4. transformer
-5. context-window
-6. prompt
-7. system-prompt
-8. few-shot-prompting
-9. chain-of-thought
-10. temperature
-11. top-p-sampling
-12. structured-output
-13. hallucination
-14. inference
+2. next-token-prediction
+3. pretraining-vs-post-training
+4. base-vs-chat-model
+5. software-3-0
+6. tokens
+7. tokenizer
+8. byte-pair-encoding
+9. transformer
+10. context-window
+11. prompt
+12. prompt-template
+13. system-prompt
+14. message-roles
+15. chat-template
+16. few-shot-prompting
+17. in-context-learning
+18. chain-of-thought
+19. temperature
+20. top-p-sampling
+21. stop-sequences
+22. structured-output
+23. hallucination
+24. inference
 
 ## RAG
 
@@ -42,6 +52,14 @@ colour: #2763b0
 13. retrieval-metrics
 14. grounding
 15. context-engineering
+16. hyde
+17. query-decomposition
+18. parent-document-retrieval
+19. contextual-retrieval
+20. graphrag
+21. citation-verification
+22. context-rot
+23. agentic-rag
 
 ## Agents
 
@@ -53,13 +71,19 @@ colour: #3f8f3a
 4. function-schema
 5. agent-loop
 6. react-pattern
-7. planning
-8. memory
-9. mcp
-10. workflows-vs-agents
-11. orchestrator-worker
-12. multi-agent
-13. human-in-the-loop
+7. reflection
+8. planning
+9. memory
+10. skill-library
+11. mcp
+12. workflows-vs-agents
+13. orchestrator-worker
+14. multi-agent
+15. handoffs
+16. computer-use
+17. tool-result-budgets
+18. autonomy-slider
+19. human-in-the-loop
 
 ## Evals
 
@@ -77,6 +101,12 @@ colour: #7a4a9e
 10. online-vs-offline-evals
 11. drift
 12. user-feedback-loops
+13. failure-taxonomy
+14. synthetic-eval-data
+15. rubric-design
+16. assertion-based-evals
+17. canary-prompts
+18. trajectory-evals
 
 ## Safety
 
@@ -90,7 +120,10 @@ colour: #df8a1b
 6. pii-redaction
 7. content-moderation
 8. red-teaming
-9. human-in-the-loop
+9. output-filtering
+10. allowlisting
+11. reward-hacking
+12. human-in-the-loop
 
 ## Production
 
@@ -124,15 +157,16 @@ colour: #8b5a2b
 5. fine-tuning
 6. supervised-fine-tuning
 7. lora
-8. rlhf
-9. dpo
-10. distillation
-11. quantization
-12. kv-cache
-13. speculative-decoding
-14. batching
-15. throughput
-16. gpu-serving
+8. qlora
+9. rlhf
+10. dpo
+11. distillation
+12. quantization
+13. kv-cache
+14. speculative-decoding
+15. batching
+16. throughput
+17. gpu-serving
 
 ## Voice
 
@@ -143,4 +177,5 @@ colour: #cf4f8c
 3. speech-to-text
 4. turn-detection
 5. text-to-speech
-6. streaming
+6. native-audio-models
+7. streaming

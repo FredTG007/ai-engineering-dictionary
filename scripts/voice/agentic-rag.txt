@@ -1,0 +1,5 @@
+Agentic RAG means treating retrieval as a tool the model can call, rather than a fixed step that runs once before the answer. The model reads the first results, decides whether they are enough, and if not, rewrites the query, searches again, or tries another source. Classic retrieval is a pipeline. This is a loop with retrieval inside it.
+
+The cost is that the model now controls how much work happens. One e-commerce team shipped a retrieval loop that lifted multi-hop accuracy from fifty-two to seventy-nine percent, and their p ninety-five latency went from two seconds to fourteen. Even a question about opening hours triggered three searches, and cost per answer tripled.
+
+The habit is to keep the single pass as the default, escalate only when the first results look weak, cap iterations, and log every query.

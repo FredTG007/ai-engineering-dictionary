@@ -1,0 +1,5 @@
+Byte-pair encoding is the algorithm that builds a tokenizer's vocabulary. It starts from raw bytes, finds the pair of symbols that appears most often in a training corpus, merges it into a new symbol, and repeats tens of thousands of times. Frequent words end up as one token, and rare words break into pieces.
+
+Because merges come from frequency, the results can surprise you. One team broke their costs down by region and found Thai support tickets cost about three times as much as English ones with similar word counts. The tokenizer had learned few merges for Thai script, so each character fell back to several byte-level tokens. Long Thai conversations also hit the context limit much sooner.
+
+The habit is to measure, not assume. Count tokens with the exact tokenizer of your model, by language and content type.

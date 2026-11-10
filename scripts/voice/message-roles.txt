@@ -1,0 +1,5 @@
+Message roles are the labels on each message in a chat request. System for standing instructions from the developer, user for what the person said, assistant for what the model said earlier, and tool for results from a function call. The model treats each one differently: the system turn as rules, user turns as requests, tool turns as data.
+
+Putting content in the wrong role causes quiet bugs. One team wrote their bot's rules at the top of the first user message. The rules faded as conversations grew, and by turn eight the bot was ignoring its own formatting. Because the rules sat in a user turn, any later user turn could override them, which made prompt injection easy.
+
+Keep developer rules in the system message, user content in user turns, and use assistant turns for worked examples.

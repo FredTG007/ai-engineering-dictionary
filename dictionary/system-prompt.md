@@ -20,7 +20,7 @@ buildThis:
   stretch: Add automated assertions in your test script to check if model responses violate any system rules.
 ---
 
-A system prompt is a block of instructions that sits at the start of every request and frames how the model should behave. It typically defines the assistant's role, the rules it must follow, the tone, the output format and how to handle edge cases. Most chat APIs give it a dedicated slot separate from user messages, and models are trained to give it more weight.
+A system prompt is a block of instructions that sits at the start of every request and frames how the model should behave. It typically defines the assistant's role, the rules it must follow, the tone, the output format and how to handle edge cases. Most chat APIs give it a dedicated slot separate from user messages, one of the [message roles](./message-roles.md), and models are trained to give it more weight.
 
 The system prompt is where product decisions become model behavior. If the bot must never discuss pricing, always answer in the user's language, or refuse to give medical advice, those rules start here. One retail team discovered their assistant was happily recommending competitors' products because nothing in the system prompt told it otherwise. A single line fixed it, but only after a screenshot circulated internally.
 

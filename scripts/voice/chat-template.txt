@@ -1,0 +1,5 @@
+A chat template is the rule for turning a list of chat messages into the one string the model actually reads. It inserts the special tokens and role markers the model saw during post-training: where a user turn starts, where it ends, and the cue that says the assistant speaks next. Every model family has its own format.
+
+Getting it wrong is quiet. One team moved a model from a hosted endpoint to their own serving cluster and reran their evals. Accuracy fell from eighty-four to sixty-three percent with identical prompts. The server had fallen back to a generic template, so every system prompt arrived as plain text with no role markers. Nothing logged an error.
+
+Print the rendered prompt for a known conversation, compare it to the model card, and check the end-of-turn token is a stop condition.

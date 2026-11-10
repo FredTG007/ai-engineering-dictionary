@@ -1,0 +1,5 @@
+Synthetic eval data means test cases written by a model instead of a person, then filtered until they are worth keeping. You use it when real labelled examples are rare, confidential, or slow to collect, and you need a set large enough to measure with.
+
+The risk is that the generated set is easier than the real world. One team built two thousand synthetic cases in a day and celebrated a ninety-five percent pass rate. When they finally graded a hundred real tickets by hand, the pass rate was thirty percent. The generator had written tidy single questions. Real tickets were two paragraphs long with three questions at once.
+
+So seed the generator with real structure, drop cases the model gets right with no context, remove near duplicates, and hand-grade a sample before you trust any number.

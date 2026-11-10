@@ -1,0 +1,5 @@
+Output filtering is the check that runs on a model's reply after it is generated and before anyone sees it. It can block the reply, rewrite part of it, or swap in a fallback. It catches what the input side cannot know, like personal data pulled from retrieved context, or a polite policy violation.
+
+One support team had a filter for phone numbers, but it ran on the completed reply while the client was already rendering streamed tokens. A customer's number from a retrieved ticket went out in the first chunk, and the redaction arrived too late to matter.
+
+The fix was to hold back a short window of text and release it at sentence boundaries. Run cheap rules on every reply, classifiers next, and a judge model only where the stakes justify the cost.

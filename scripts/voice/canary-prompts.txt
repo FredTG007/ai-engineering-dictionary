@@ -1,0 +1,5 @@
+Canary prompts are a small fixed set of probe requests sent through your production system on a schedule, with each output checked against a recorded baseline. They are not real traffic. They exist so that when something upstream changes, you find out before users do.
+
+Silent model updates are the classic trigger. One team pointed their extraction service at a provider's floating model alias. A quiet update one night changed how the model cased JSON keys, and a fifth of responses lost fields. Every request still returned success. Their canaries, ten fixed prompts run every twenty minutes with a schema check, flagged it within one cycle.
+
+Keep the set small, run it at temperature zero, use deterministic assertions, and wire the alert to an action, such as pinning the model version.

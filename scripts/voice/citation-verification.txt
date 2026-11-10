@@ -1,0 +1,5 @@
+Citation verification is a check that runs after the model writes an answer and before anyone sees it. It takes each claim, finds the source passage the answer cites for it, and tests whether that passage really supports the claim.
+
+The reason you need it is a quiet failure. One subscription company's support bot cited the refund policy page, which was the right page, while stating a forty-five day window the page never mentioned. The real window was thirty days. Because the citation was present and correct, the people skimming transcripts trusted the number, and the error ran for three weeks.
+
+The habit is to check claim against span, not answer against corpus. Use cheap exact-match checks for numbers and names, an entailment model or judge for sentences, and measure the checker's own accuracy against hand-labelled pairs.

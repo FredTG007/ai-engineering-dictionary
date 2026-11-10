@@ -1,0 +1,5 @@
+Assertion based evals are checks on model output written as ordinary code. Does the JSON parse, is the required key present, does the regex match, is the reply under a length, does the generated code run. They are deterministic, free per case, and give the same answer every time.
+
+Judges are expensive and noisy when used for everything. One team graded every case in a three thousand item suite with a model judge on each pull request. The bill reached four hundred dollars a week and the score wobbled between identical runs. They found most failures could be stated as rules. Thirty assertions replaced the judge on eighty percent of cases and the suite ran in seconds.
+
+Run the cheapest check that can fail a case first, and save the judge for tone and faithfulness.

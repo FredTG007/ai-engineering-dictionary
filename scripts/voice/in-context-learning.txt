@@ -1,0 +1,5 @@
+In-context learning is a model picking up a task from what is in its prompt. Instructions, examples, a document to answer from. All of them change the model's behaviour for that one request, and none of them change a single weight. The learning lives in the context window and vanishes when the request ends.
+
+So you rent behaviour per request. One team classifying support tickets kept adding examples whenever they saw a mistake, until the prompt held forty. At two million tickets a month, the examples cost more than the answers. Accuracy had flattened at twelve examples, so the rest were paying for nothing. Trimming them and caching the prefix cut the bill by sixty percent.
+
+Start in-context because it is fast to change. Fine-tune when the prompt is long, the task is stable, and volume is high.

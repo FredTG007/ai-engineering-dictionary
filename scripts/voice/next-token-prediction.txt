@@ -1,0 +1,5 @@
+Next-token prediction is the one task a language model is trained on. Given all the tokens so far, it outputs a probability for every possible next token. Answering a question or calling a tool is that single step repeated until something says stop.
+
+That is why models can be confidently wrong. One team built a form-filling assistant for customer records. It kept filling in postcodes that looked right for the city but belonged to a different street, and about eight percent of a week's records were wrong. The model had learned what postcodes there usually look like, not which postcode goes with which address.
+
+The habit is simple. Never ask the model to know something it cannot know. Put the real value in the prompt, or give it a lookup tool, and validate the result.

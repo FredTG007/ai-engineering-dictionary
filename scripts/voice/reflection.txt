@@ -1,0 +1,5 @@
+Reflection is a second pass where the model reviews the draft it just wrote, checks it against stated criteria, and revises before the result reaches the user. The critic can be the same model with a different prompt, a separate model, or a tool like a test runner whose output is fed back.
+
+It helps when the criteria are checkable. One team added a self-review step to their coding agent and watched it approve every draft for a month while the bug rate did not move. The prompt asked the model to check its work. It found nothing. Replacing that with a step that ran the tests and handed back the failures cut escaped bugs by about forty percent, at roughly double the tokens.
+
+Give the critic real evidence, cap the revision rounds, and measure the lift.

@@ -29,8 +29,8 @@ Several rewriting techniques are common, and they can be combined:
 
 - **Contextualization:** rewrite a follow-up into a standalone question using prior turns.
 - **Expansion:** generate a few alternative phrasings or synonyms and search with each.
-- **Decomposition:** split a compound question into sub-questions that are retrieved separately.
-- **Hypothetical answer:** have the model draft a plausible answer and embed that, since it often sits closer to real documents than the question does.
+- **Decomposition:** split a compound question into sub-questions that are retrieved separately, see [query decomposition](./query-decomposition.md).
+- **Hypothetical answer:** have the model draft a plausible answer and embed that, since it often sits closer to real documents than the question does, see [HyDE](./hyde.md).
 - **Filter extraction:** pull structured constraints, like a date range or product name, out of the text and turn them into [metadata filtering](./metadata-filtering.md) conditions.
 
 Rewriting costs an extra model call, so it shows up directly in [latency](./latency.md) and [time to first token](./time-to-first-token.md). A small, fast model is usually enough for this job, and you can skip the rewrite entirely for first-turn questions that are already specific. Running multiple expanded queries in parallel and merging the results keeps the added delay to roughly one round trip.

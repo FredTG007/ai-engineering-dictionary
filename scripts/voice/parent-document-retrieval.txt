@@ -1,0 +1,5 @@
+Parent-document retrieval separates the text you search over from the text you give the model. You index small chunks, because small chunks match specific questions well. When one is retrieved, you swap it for the larger section it came from, because the model needs the surrounding context to answer.
+
+One fintech team cut their chunks down to two hundred tokens and recall went up, but answers got worse. A chunk saying two point one percent plus thirty cents matched fee questions perfectly, yet it had lost the table header that said whether that applied to domestic or international cards. The model guessed, and it guessed wrong about half the time.
+
+The habit is to store a pointer from each child chunk to its parent, retrieve on children, expand to parents, and tune the parent size until accuracy stops improving.

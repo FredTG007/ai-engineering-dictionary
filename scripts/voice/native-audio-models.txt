@@ -1,0 +1,5 @@
+A native audio model takes in or produces audio directly inside one model, instead of chaining speech to text, a text model, and text to speech. It hears the waveform rather than a transcript, so tone, hesitation and interruptions survive, and there are no gaps between stages.
+
+One appointment booking team measured about one point eight seconds per turn with their cascade, and callers kept talking over the bot. A native model brought the turn to around six hundred milliseconds. But their content filter now had no transcript to inspect, and compliance asked how they would prove what the bot said.
+
+The transcript is where logging, filtering and evals happen in a cascade. If you go native, plan a parallel transcription and your filtering strategy before launch, not after the first complaint.

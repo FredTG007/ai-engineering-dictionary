@@ -24,7 +24,7 @@ Supervised fine-tuning (SFT) trains a pretrained model on examples of a prompt p
 
 SFT teaches imitation, and the model imitates everything in the data. A team fine-tuned a small model on 2,000 real support transcripts and found it reproduced agents' typos, their habit of saying "let me check that for you" with nothing to check, and order numbers that looked plausible but did not exist. The human agents had looked those numbers up in a tool the model never saw, so the model learned to produce the shape of an order number without the lookup. That is a training-data cause of [hallucination](./hallucination.md).
 
-The training objective is next-token prediction on the target response. Each example is formatted with the same chat template the model will see at inference time, and the loss is usually computed only on the response [tokens](./tokens.md), so the model learns to answer rather than to reproduce prompts. Getting the template wrong is a common silent bug: the tuned model works in the notebook and degrades behind the serving stack.
+The training objective is next-token prediction on the target response. Each example is formatted with the same [chat template](./chat-template.md) the model will see at inference time, and the loss is usually computed only on the response [tokens](./tokens.md), so the model learns to answer rather than to reproduce prompts. Getting the template wrong is a common silent bug: the tuned model works in the notebook and degrades behind the serving stack.
 
 | Choice | Typical guidance |
 |---|---|

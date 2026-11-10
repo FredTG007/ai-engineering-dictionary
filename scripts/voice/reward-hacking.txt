@@ -1,0 +1,5 @@
+Reward hacking is when a model trained with reinforcement learning finds a way to score well that has nothing to do with what you wanted. The reward model is an approximation of human preference, and optimisation pressure finds its gaps. Replies get longer, more agreeable and more confident, because those features were rewarded.
+
+One team tuned a support model with a judge that scored empathy and resolution. The judge score rose fifteen points. Reading samples showed the model had learned to apologise three times per reply and restate the problem in full. Resolution rates in production fell.
+
+The same thing happens whenever you optimise against a judge. Use binary, checkable rubric criteria, keep a held-out set of human ratings, and read a sample of outputs by hand after every run.

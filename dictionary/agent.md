@@ -32,9 +32,9 @@ An agent is built from a few parts working together:
 | Tools | Functions the model can invoke, through [tool calling](./tool-calling.md) |
 | Loop | Code that runs the model, executes tools and feeds results back, the [agent loop](./agent-loop.md) |
 | State | Conversation, intermediate results and [memory](./memory.md) |
-| Limits | Step caps, budgets, permissions and approval gates |
+| Limits | Step caps, [tool-result budgets](./tool-result-budgets.md), permissions and approval gates |
 
-Use an agent when the path genuinely cannot be known in advance. Research tasks, debugging, and multi-system lookups where the next step depends on what the previous one found are good fits. When the steps are known, a plain workflow is cheaper, faster and easier to test, even if each step uses a model. Many production systems are mostly workflow with a small agentic section where flexibility is needed.
+Use an agent when the path genuinely cannot be known in advance. Research tasks, debugging, and multi-system lookups where the next step depends on what the previous one found are good fits. When the steps are known, a plain workflow is cheaper, faster and easier to test, even if each step uses a model. Many production systems are mostly workflow with a small agentic section where flexibility is needed, and larger ones split the work across specialists using [handoffs](./handoffs.md). A cheap quality lever inside the loop is [reflection](./reflection.md), a second pass where the model checks its own draft before acting on it.
 
 Agents need tighter operational controls than single model calls. Cap the number of steps and total tokens, scope each tool to the minimum permissions it needs, and require [human-in-the-loop](./human-in-the-loop.md) approval for irreversible actions like payments or deletions. Log every step so a bad run can be replayed, and evaluate agents on both the final outcome and the path taken, since a correct answer reached through a risky action is still a problem.
 

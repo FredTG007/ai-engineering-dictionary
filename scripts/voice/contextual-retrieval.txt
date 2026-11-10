@@ -1,0 +1,5 @@
+Contextual retrieval is an indexing technique. Before a chunk is indexed, a model writes a sentence or two saying what the chunk is and where it sits in its document, and that description is prepended to the chunk. Anthropic named the idea.
+
+The failure it fixes is the orphaned chunk. One finance team indexed four years of quarterly reports and found that revenue grew twelve percent appeared in sixteen chunks that never named the quarter. A question about the third quarter retrieved whichever chunk phrased things most similarly, and the bot answered with the wrong year's figure a third of the time.
+
+The habit is to generate context once per chunk with the full document in a cached prompt, index both the vector and the keywords, and re-run it whenever a document changes.

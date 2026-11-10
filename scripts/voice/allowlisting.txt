@@ -1,0 +1,5 @@
+Allowlisting means deciding in code which tools, hosts and data an agent may touch for a given task, and refusing everything else. A capability scope is the same idea applied per step or per role. The rule lives in the layer that runs tool calls, not in a sentence in the prompt.
+
+The difference matters because prompts are advice and scopes are enforcement. One team gave a research agent a general web tool and told it in the prompt to visit only documentation. A page it read told it to post data to an internal admin endpoint, and the model obeyed. An allowlist of two hosts would have refused the call before it left the process.
+
+Deny by default, make steps that read untrusted content read-only, and log every denied call so you can tune the list.

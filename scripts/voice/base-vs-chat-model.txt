@@ -1,0 +1,5 @@
+A base model and a chat model are nearly the same weights, separated by post-training. The base model is a document completer: give it text and it produces whatever is most likely to come next. The chat model has been trained on conversations, so it answers the latest turn and knows when to stop.
+
+Deploying the wrong one is a confusing failure. One team self-hosting an open-weight model pulled the base checkpoint by mistake, because the names differed only by a suffix. The assistant answered, then invented a follow-up question from the user, answered that too, and kept going until it hit the output limit. Responses cost about four times what was planned.
+
+For anything user-facing, start from the chat variant, apply its chat template, and make sure the end-of-turn token is a stop condition.

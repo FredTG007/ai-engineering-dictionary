@@ -35,7 +35,7 @@ A regression suite is built from cases you already care about. It typically draw
 
 Non-determinism makes regression checks noisier than ordinary tests. A case that passes 9 times out of 10 will eventually fail on a change that had nothing to do with it. Set [temperature](./temperature.md) low for eval runs, repeat flaky cases several times and use pass rates, and compare against the baseline's score rather than demanding 100 percent. A threshold like "no category drops more than two points" is more practical than "every case passes."
 
-Make the suite cheap enough to run on every pull request, and keep a larger nightly run for depth. Pair it with [prompt versioning](./prompt-versioning.md) so every result is tied to the exact prompt and model that produced it. When a regression slips through anyway, add that case to the suite the same day.
+Make the suite cheap enough to run on every pull request, and keep a larger nightly run for depth. For changes that happen without a pull request, such as a provider updating a model, [canary prompts](./canary-prompts.md) in live traffic fill the gap. Pair it with [prompt versioning](./prompt-versioning.md) so every result is tied to the exact prompt and model that produced it. When a regression slips through anyway, add that case to the suite the same day.
 
 _Usage:_
 

@@ -34,7 +34,7 @@ The quality cost is real but uneven. Eight-bit quantization is close to lossless
 | 4-bit | ~0.25x | Noticeable on reasoning, math, code |
 | Below 4-bit | <0.25x | Often significant degradation |
 
-The only reliable way to choose a level is to measure on your own tasks. Run your [evals](./evals.md) on both the full-precision and quantized versions, paying attention to the categories most sensitive to precision. Also measure [throughput](./throughput.md) and latency on your actual [GPU serving](./gpu-serving.md) stack, since speedups depend on whether the hardware and kernels support the chosen format efficiently. Quantization is common when serving locally, and it is also how [LoRA](./lora.md) variants like QLoRA fit large base models onto modest hardware during training.
+The only reliable way to choose a level is to measure on your own tasks. Run your [evals](./evals.md) on both the full-precision and quantized versions, paying attention to the categories most sensitive to precision. Also measure [throughput](./throughput.md) and latency on your actual [GPU serving](./gpu-serving.md) stack, since speedups depend on whether the hardware and kernels support the chosen format efficiently. Quantization is common when serving locally, and it is also how [LoRA](./lora.md) variants like [QLoRA](./qlora.md) fit large base models onto modest hardware during training.
 
 _Usage:_
 

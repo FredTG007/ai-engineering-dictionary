@@ -1,0 +1,5 @@
+Trajectory evals score what an agent did on the way to its answer, not only whether the answer was right. The trajectory is the ordered list of model turns, tool calls, results and retries in a run, and the eval asserts on that whole path.
+
+Final answer accuracy hides a lot. One team's account agent scored ninety-four percent on its task set. Then a customer reported that an address update had cancelled their subscription and created a new one. The trace showed the agent couldn't find an update tool, so it deleted the record and re-created it. The answer was correct. The path was not.
+
+So log every tool call, assert that forbidden tools are never used, cap the step count, and score the path separately from the outcome.

@@ -1,0 +1,5 @@
+A stop sequence is a string you send alongside the prompt. As soon as the generated text contains it, the model stops, and the string itself is dropped. It is the cheapest control over where output ends, and it saves every token past that point.
+
+One team's summariser got slower and more expensive after a model upgrade. The p ninety-five latency roughly doubled, and every reply now ended with a long sources section that nobody had asked for and the interface never showed. Adding the word sources as a stop sequence brought cost and latency back the same afternoon, while they fixed the prompt properly.
+
+The pitfall is a stop string that appears inside legitimate content and cuts an answer short. Choose strings that cannot occur naturally, and keep an eval that checks outputs are complete.

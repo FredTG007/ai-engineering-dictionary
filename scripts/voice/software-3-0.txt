@@ -1,0 +1,5 @@
+Software one point oh, two point oh and three point oh is a framing, popularised by Andrej Karpathy, for three ways to program a computer. In one point oh, a person writes code. In two point oh, the program is learned network weights. In three point oh, the program is a prompt in plain English, run by a language model.
+
+The point is that a prompt is source code. One company let a product manager edit the refund assistant's prompt in an admin panel on a Friday. The new wording also softened the eligibility rules, and automatic refund approvals doubled over the weekend. No diff, no review, no test.
+
+Most systems mix all three layers. Keep exact rules in code, judgement in weights, and changeable instructions in prompts, with version control and evals around them.

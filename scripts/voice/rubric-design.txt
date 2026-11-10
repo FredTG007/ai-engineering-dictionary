@@ -1,0 +1,5 @@
+Rubric design is the work of writing down exactly what a grader should check in an output and how to score it. The grader might be a person or a model acting as a judge. Either way, the rubric decides whether the score measures what you care about or something vaguer.
+
+The usual failure is one wide scale. A team asked a judge to rate support replies for helpfulness from one to ten. Every reply scored around eight, including one that quoted the wrong refund window, because it was polite and well formatted. The rubric never said the refund window had to be correct.
+
+Binary criteria beat scales. Ask yes or no questions tied to failures you have actually seen, score them separately, and check the judge against human labels before you trust it.

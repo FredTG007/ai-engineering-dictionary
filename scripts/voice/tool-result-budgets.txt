@@ -1,0 +1,5 @@
+A tool-result budget is a limit on what an agent may consume in a single run. You can count it in tool calls, tokens, seconds, or dollars, and usually all four. When the agent reaches a cap it must stop, summarise what it has, or ask before continuing.
+
+Budgets exist because an agent loop has no natural end. One team ran research agents overnight and woke to a day that cost eight times the normal amount. A single job had been asked to find a setting in a repository, could not find it, and re-read the same file about three hundred times. Nothing crashed. It just kept going until the morning deploy killed it.
+
+Set caps a little above what successful runs normally use. At the cap, have the model return a short summary, and log the reason.

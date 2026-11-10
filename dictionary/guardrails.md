@@ -20,7 +20,7 @@ buildThis:
   stretch: Log all blocked prompts and responses to a local SQLite database for auditing.
 ---
 
-Guardrails are the checks you wrap around a model call to enforce rules the model itself cannot be trusted to follow every time. They run on the way in, inspecting user input and retrieved context, and on the way out, inspecting the model's response or proposed action before it reaches a user or a system. A guardrail can block, rewrite, redact, retry or escalate.
+Guardrails are the checks you wrap around a model call to enforce rules the model itself cannot be trusted to follow every time. They run on the way in, inspecting user input and retrieved context, and on the way out, with [output filtering](./output-filtering.md) of the model's response or proposed action before it reaches a user or a system. For agents, [allowlisting](./allowlisting.md) the tools and destinations each task may touch is the same idea applied to actions. A guardrail can block, rewrite, redact, retry or escalate.
 
 The need comes from the fact that instructions in a [system prompt](./system-prompt.md) are suggestions, not constraints. A retail support bot had a clear instruction never to promise delivery dates. Under pressure from an insistent customer, it still told someone their order would "definitely arrive Friday", and the company honored the promise at a loss. An output check that flagged date commitments would have caught it regardless of what the model decided to do.
 

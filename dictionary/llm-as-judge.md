@@ -25,7 +25,7 @@ LLM-as-judge is the technique of using a language model to grade outputs from yo
 
 It fills a gap that every team hits. Exact-match scoring works for classification, but for a support reply there are many correct phrasings and many subtly wrong ones. One team's string-similarity metric rated a reply as 91 percent similar to the reference, even though it said "you are eligible" where the reference said "you are not eligible." A judge model asked the specific question "does the answer reach the same eligibility conclusion as the reference?" caught it immediately.
 
-Good judges are narrow and explicit. A prompt that asks "rate this answer from 1 to 10" produces noisy, inflated scores. Prompts that work better ask one question at a time, define each label, require a short justification before the verdict, and return [structured output](./structured-output.md) such as `{"supported": false, "reason": "..."}`. Binary or three-level scales are easier to calibrate than wide numeric ranges.
+Good judges are narrow and explicit, which is mostly a matter of [rubric design](./rubric-design.md). A prompt that asks "rate this answer from 1 to 10" produces noisy, inflated scores. Prompts that work better ask one question at a time, define each label, require a short justification before the verdict, and return [structured output](./structured-output.md) such as `{"supported": false, "reason": "..."}`. Binary or three-level scales are easier to calibrate than wide numeric ranges.
 
 Judges have known biases that you need to control for:
 

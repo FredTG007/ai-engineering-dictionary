@@ -31,7 +31,7 @@ That loss of context is a common source of wrong answers. One team's assistant t
 | Fixed size with overlap | Every N tokens, small overlap | Quick start, uniform text |
 | Structure-aware | Headings, paragraphs, list items | Docs, wikis, policies |
 | Semantic | Where the topic shifts | Long unstructured prose |
-| Parent-child | Small chunks retrieved, larger section returned | Precision plus context |
+| [Parent-child](./parent-document-retrieval.md) | Small chunks retrieved, larger section returned | Precision plus context |
 
 There is no universal best setting. Start with structure-aware splitting of a few hundred tokens, add the title and heading path to each chunk, and evaluate retrieval on real questions with known answers. Because changing your chunking means re-embedding everything, settle it early with measurements rather than guesses. Good chunks make every later stage of [RAG](./rag.md), including [reranking](./reranking.md), work better.
 

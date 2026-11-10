@@ -1,0 +1,5 @@
+GraphRAG is retrieval that builds a graph of entities and the relationships between them when documents are ingested, then answers questions by walking that graph as well as searching by vector similarity. Plain retrieval finds passages that look like the question. A graph finds passages that are connected through named things, which is what multi-hop questions need.
+
+The cost lands up front. One legal research team ran entity extraction over forty thousand contracts and received an eleven thousand dollar invoice before answering a single question. Then monthly amendments changed enough of the graph to require repeated partial re-extraction.
+
+The habit is to confirm your failing questions really span several documents before building a graph, try cheaper fixes first, and scope the graph to the few entity types that matter.

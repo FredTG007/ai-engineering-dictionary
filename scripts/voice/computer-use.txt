@@ -1,0 +1,5 @@
+Computer use is the pattern where an agent works a screen the way a person does. It looks at a screenshot, decides where to click or what to type, acts, and looks again. A browser agent is the common form. Teams reach for it when there is no API, like an old supplier portal.
+
+The costs add up per step. One finance team built a browser agent to fetch invoices. Each invoice took about forty screenshot and act cycles, around three dollars and four minutes. The portal had a direct download link the whole time. Rewriting the task as log in once, then fetch the link, cut it to three steps and a few cents.
+
+Treat every screen step as expensive, cap steps and spend, confirm anything irreversible, and record every run so you can replay the bad ones.

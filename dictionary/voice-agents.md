@@ -31,7 +31,7 @@ Most voice agents are built as a pipeline:
 | LLM | Generate the reply, maybe call tools | 300–1500 ms to first token |
 | [Text-to-speech](./text-to-speech.md) | Turn reply text into audio | 100–300 ms to first audio |
 
-Some newer systems use speech-to-speech models that skip the text stages, trading control and observability for lower delay and more natural prosody.
+Some newer systems use [native audio models](./native-audio-models.md) that skip the text stages, trading control and observability for lower delay and more natural prosody.
 
 [Latency](./latency.md) is the defining constraint. In text chat, a two-second wait is fine. On a phone call, anything above about a second feels like the line went dead, and callers start saying "hello?" which the system then treats as a new utterance. A clinic's booking agent had a median response time of 2.4 seconds; callers routinely talked over it, the agent restarted its answer, and conversations spiraled. Streaming every stage, starting speech synthesis on the first sentence and using a faster model for simple turns brought the gap under 900 milliseconds and fixed most of the overlap.
 

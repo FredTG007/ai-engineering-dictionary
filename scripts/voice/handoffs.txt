@@ -1,0 +1,5 @@
+A handoff is the moment one agent passes a task to another, with enough state for the receiver to carry on without starting over. The receiver might be a specialist with different tools, a cheaper model, or a person. The hard part is deciding what to pass along and writing it in a form the receiver will use.
+
+One support team learned this the slow way. Their triage agent collected the order number and the problem, then handed off to a billing agent with only the latest message. The billing agent opened every conversation by asking for the order number again, and a third of customers gave up right there.
+
+The fix was a small structured summary: goal, confirmed facts, actions taken, open questions. Treat that payload as an interface, log it, and test that facts survive the trip.

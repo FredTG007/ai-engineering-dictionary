@@ -20,7 +20,7 @@ buildThis:
   stretch: "Modify the model's system prompt or generation parameters via a local configuration file."
 ---
 
-An open-weight model is one whose trained parameters are released for anyone to download and run. Unlike models available only through a provider's API, you can host an open-weight model on your own hardware, modify it through [fine-tuning](./fine-tuning.md), and keep all data inside your network. "Open weight" is narrower than fully open source: the training data and code are often not released, and licenses vary from permissive to restrictive.
+An open-weight model is one whose trained parameters are released for anyone to download and run, usually as both a [base and a chat variant](./base-vs-chat-model.md). Unlike models available only through a provider's API, you can host an open-weight model on your own hardware, modify it through [fine-tuning](./fine-tuning.md), and keep all data inside your network. "Open weight" is narrower than fully open source: the training data and code are often not released, and licenses vary from permissive to restrictive.
 
 Teams usually turn to open-weight models for data control, cost at high volume, or customization. A healthcare company that could not send patient notes to an external API ran an open-weight model inside its own cloud account, which satisfied its compliance review in weeks rather than months. Another team with a narrow, high-volume classification task found a small open-weight model, adapted with [LoRA](./lora.md), cheaper than any hosted option once traffic passed a few million calls per day.
 

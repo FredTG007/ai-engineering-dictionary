@@ -33,7 +33,7 @@ Other details worth handling:
 - **Consistency:** the same voice and pacing across turns, since sudden changes feel jarring.
 - **Cost:** TTS is often billed per character, so verbose replies cost twice, once in tokens and once in audio.
 
-Good TTS cannot rescue a reply that is too long. Keeping responses brief is the single most effective way to make a voice product feel fast and natural.
+Some products skip this stage entirely with [native audio models](./native-audio-models.md) that speak directly, at the cost of less control over the text. Good TTS cannot rescue a reply that is too long. Keeping responses brief is the single most effective way to make a voice product feel fast and natural.
 
 _Usage:_
 

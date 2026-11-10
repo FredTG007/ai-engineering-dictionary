@@ -1,0 +1,5 @@
+A failure taxonomy is the short list of named ways your system breaks, each with a count of how often it happens. You build it by reading real traces, writing a one line note on what went wrong in each, and then grouping the notes into modes and counting them.
+
+Vague complaints are the symptom that calls for one. One team's assistant was described in every stand-up as just dumb, and the proposed fix was a bigger model at three times the cost. An engineer read a hundred flagged conversations. Forty percent were one mode: a retrieval index a month out of date. Only eight traces looked like reasoning failures.
+
+Write the note first and pick the category later. Fix the biggest bucket, turn each mode into an eval, and rebuild the taxonomy after every significant change.

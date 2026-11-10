@@ -1,0 +1,5 @@
+Context rot, also called lost in the middle, is the observation that a model does not use its context evenly. Facts near the start and end are recalled reliably. Facts buried in the middle are recalled less often, and it gets worse as the prompt grows.
+
+Large windows invite a shortcut. One hardware support team replaced a twenty-chunk retrieval prompt with a hundred and fifty thousand token dump of the whole documentation. Their eval score fell from eighty-eight to seventy-one percent. In most failing traces the relevant section sat around the sixty thousand token mark, and the model answered from a vaguer passage near the end instead.
+
+The habit is to keep retrieval and reranking, put the most important passages at the edges, restate the question last, and run a needle test on the model you actually ship.

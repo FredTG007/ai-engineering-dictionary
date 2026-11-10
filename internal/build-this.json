@@ -16,6 +16,23 @@
     "time": "an afternoon",
     "stretch": "Add automated statistical significance testing to stop the test early when one prompt clearly wins."
   },
+  "agent": {
+    "title": "Build a file search and summary agent",
+    "goal": "Create a script that lists local files, reads matching documents, and answers questions about them.",
+    "steps": [
+      "Write three distinct Python tools: list directory, read file text, and search text.",
+      "Configure an LLM client with system instructions explaining when and how to use these tools.",
+      "Implement a execution loop to handle tool calls returned by the model.",
+      "Test the agent with a multi-step user request like finding a specific note and summarizing it."
+    ],
+    "skills": [
+      "Tool Use",
+      "Python",
+      "File I/O"
+    ],
+    "time": "a day",
+    "stretch": "Give the agent a memory log file so it can recall findings across separate tool calls."
+  },
   "agent-loop": {
     "title": "Build a basic model reasoning and tool loop",
     "goal": "Write a Python script where an LLM calls a math tool, receives the output, and continues until finished.",
@@ -33,22 +50,93 @@
     "time": "an afternoon",
     "stretch": "Add a maximum step counter to prevent infinite loops when the model gets stuck."
   },
-  "agent": {
-    "title": "Build a file search and summary agent",
-    "goal": "Create a script that lists local files, reads matching documents, and answers questions about them.",
+  "agentic-rag": {
+    "title": "Turn a single-pass RAG script into a bounded retrieval loop",
+    "goal": "Give the model a search tool and let it decide when to look again, with hard limits on iterations and tokens.",
     "steps": [
-      "Write three distinct Python tools: list directory, read file text, and search text.",
-      "Configure an LLM client with system instructions explaining when and how to use these tools.",
-      "Implement a execution loop to handle tool calls returned by the model.",
-      "Test the agent with a multi-step user request like finding a specific note and summarizing it."
+      "Start from a working retrieve-then-answer script over a local index and wrap the retrieval call as a tool with a query argument.",
+      "Prompt the model to search, read the results, state whether they are sufficient, and either search again or answer.",
+      "Cap the loop at three searches and a fixed context budget, and log every query and result count per run.",
+      "Run thirty single-hop and thirty multi-hop questions and compare accuracy, latency and token cost against the original script."
     ],
     "skills": [
-      "Tool Use",
+      "tool calling",
+      "RAG",
       "Python",
-      "File I/O"
+      "evals"
     ],
     "time": "a day",
-    "stretch": "Give the agent a memory log file so it can recall findings across separate tool calls."
+    "stretch": "Add a sufficiency check from a second, smaller model and see whether it cuts unnecessary extra searches."
+  },
+  "allowlisting": {
+    "title": "Scoped tool gateway for an agent",
+    "goal": "Put a small policy layer between an agent and its tools so each run can only call what its task scope allows.",
+    "steps": [
+      "Write three tools (fetch URL, read file, send message) and wrap them in a dispatcher the agent must go through.",
+      "Define scopes as JSON files listing allowed tools, host patterns and read or write permission per task type.",
+      "Make the dispatcher deny any call outside the active scope, return a clear error to the model and log the attempt.",
+      "Run a research task with a scope that allows only two documentation hosts and confirm off-list fetches are refused."
+    ],
+    "skills": [
+      "Python",
+      "tool calling",
+      "policy design",
+      "logging"
+    ],
+    "time": "an afternoon",
+    "stretch": "Add an escalation path where a denied call can be approved once by a human and the approval is recorded with the trace."
+  },
+  "assertion-based-evals": {
+    "title": "Replace a judge with thirty assertions",
+    "goal": "Write a deterministic test suite for an LLM task and measure how much of a judge's work it can take over.",
+    "steps": [
+      "Pick a task with structured output, such as extracting fields from a product description into JSON.",
+      "Collect forty outputs and list every failure you can describe as a rule, such as missing key, wrong type or price outside a range.",
+      "Implement each rule as a test function and run the suite over the forty outputs.",
+      "Compare the suite's pass or fail verdicts with an LLM judge's verdicts and count the disagreements."
+    ],
+    "skills": [
+      "Testing",
+      "JSON Schema",
+      "Regex",
+      "Python"
+    ],
+    "time": "an afternoon",
+    "stretch": "Add a code-execution assertion that runs a generated SQL query against a sample database and checks the row count."
+  },
+  "autonomy-slider": {
+    "title": "Add a three-level autonomy control to a task agent",
+    "goal": "Build a small file-organising agent whose behaviour changes with a setting of suggest, confirm or auto.",
+    "steps": [
+      "Write an agent that proposes moves for files in a scratch folder based on their names and contents.",
+      "Implement three modes, one that prints suggestions only, one that asks yes or no before each move, and one that moves without asking.",
+      "Make the auto mode refuse to delete anything and cap it at twenty moves per run.",
+      "Run the same messy folder through all three modes and record how many actions each one took."
+    ],
+    "skills": [
+      "Python",
+      "CLI",
+      "agent design"
+    ],
+    "time": "an afternoon",
+    "stretch": "Add a log that shows the user what auto mode did and a one-command undo for the last run."
+  },
+  "base-vs-chat-model": {
+    "title": "Spot the base model from its output",
+    "goal": "Build a small classifier that tells whether a response came from a base or a chat model.",
+    "steps": [
+      "Collect fifty responses each from a base and an instruct checkpoint of the same family.",
+      "Write simple heuristics such as fabricated user turns, missing answers and run-on text.",
+      "Score every response and measure how often each heuristic fires per model.",
+      "Package the check as a script that warns when a deployment looks like a base model."
+    ],
+    "skills": [
+      "Python",
+      "Hugging Face",
+      "Evals"
+    ],
+    "time": "an afternoon",
+    "stretch": "Run the check against a real serving endpoint on every deploy and fail the pipeline if it trips."
   },
   "batching": {
     "title": "Process text queries in asynchronous batches",
@@ -84,6 +172,23 @@
     "time": "under an hour",
     "stretch": "Combine BM25 keyword scores with vector similarity scores using reciprocal rank fusion."
   },
+  "byte-pair-encoding": {
+    "title": "Train a tiny BPE tokenizer from scratch",
+    "goal": "Implement the merge loop on a small corpus and watch the vocabulary form.",
+    "steps": [
+      "Take a few thousand lines of text and split them into UTF-8 bytes.",
+      "Count adjacent pairs, merge the most frequent pair into a new symbol, and repeat two hundred times.",
+      "Print the first fifty merges and tokenize a few new sentences with the result.",
+      "Compare token counts for English, code and a non-Latin script sample."
+    ],
+    "skills": [
+      "Python",
+      "Tokenization",
+      "Algorithms"
+    ],
+    "time": "an afternoon",
+    "stretch": "Tokenize the same text with a production tokenizer and explain the three biggest differences in its merges."
+  },
   "caching": {
     "title": "Cache LLM responses with a local SQLite database",
     "goal": "Save model outputs to disk so identical queries return instantly without calling the paid API.",
@@ -100,6 +205,24 @@
     ],
     "time": "under an hour",
     "stretch": "Add a Time-To-Live (TTL) expiration timestamp so cached entries automatically invalidate after 24 hours."
+  },
+  "canary-prompts": {
+    "title": "Run a canary probe against a model endpoint every hour",
+    "goal": "Detect a changed model or prompt by comparing probe outputs against a stored baseline and alerting on differences.",
+    "steps": [
+      "Write ten prompts with deterministic expectations, such as a JSON shape, a required key, or a fixed classification label.",
+      "Store a baseline run with temperature zero, recording each output and the assertions it passes.",
+      "Schedule the probes with cron or a GitHub Action and compare each run against the baseline.",
+      "Send a message to a chat channel or email when any assertion or similarity check fails."
+    ],
+    "skills": [
+      "Monitoring",
+      "Assertions",
+      "Cron",
+      "Python"
+    ],
+    "time": "an afternoon",
+    "stretch": "Swap the model alias to an older version and confirm the canary fires within one scheduled run."
   },
   "chain-of-thought": {
     "title": "Compare standard and step-by-step prompts",
@@ -118,6 +241,23 @@
     "time": "under an hour",
     "stretch": "Extract the reasoning steps using regex and check if the model arrived at the correct answer for the right reasons."
   },
+  "chat-template": {
+    "title": "Render the same conversation through three chat templates",
+    "goal": "See exactly what the model receives for a given message list across model families.",
+    "steps": [
+      "Load the tokenizers for three different open-weight chat models.",
+      "Build one conversation with a system, two user and one assistant message.",
+      "Call each tokenizer's chat template function and print the rendered string and token count.",
+      "Note the special tokens, role markers and where the generation prompt is appended."
+    ],
+    "skills": [
+      "Hugging Face",
+      "Python",
+      "Tokenization"
+    ],
+    "time": "under an hour",
+    "stretch": "Deliberately send a conversation rendered with the wrong template to a model and document how the answers degrade."
+  },
   "chunking": {
     "title": "Split long documents with overlapping chunks",
     "goal": "Write a Python function that divides a long text file into smaller overlapping segments for retrieval.",
@@ -134,6 +274,42 @@
     ],
     "time": "under an hour",
     "stretch": "Implement semantic chunking by splitting text wherever embedding distance between sentences spikes."
+  },
+  "citation-verification": {
+    "title": "Build a claim-by-claim citation checker",
+    "goal": "Verify that every sentence a RAG answer cites is actually supported by the quoted source text.",
+    "steps": [
+      "Generate twenty answers from a local RAG setup with a sentence-level citation on each claim.",
+      "Write a checker that extracts each claim and the cited chunk, then asks a small model whether the chunk supports, contradicts or does not mention the claim.",
+      "Add a deterministic pass that flags any number, date or percentage in a claim that does not appear in the cited chunk.",
+      "Report the share of unsupported claims per answer and hand-label a sample to measure the checker's own accuracy."
+    ],
+    "skills": [
+      "RAG",
+      "LLM-as-judge",
+      "regular expressions",
+      "Python"
+    ],
+    "time": "a day",
+    "stretch": "Rewrite the answer with unsupported claims removed and measure how often the result is still useful."
+  },
+  "computer-use": {
+    "title": "Build a browser agent that fills a form from a screenshot",
+    "goal": "Drive a local web page with a model that reads screenshots and returns click and type actions, with a hard step cap.",
+    "steps": [
+      "Serve a simple local HTML form with three fields and a submit button.",
+      "Use Playwright to take a screenshot and send it to a vision-capable model asking for the next action as JSON.",
+      "Execute the action, take a new screenshot, and loop until the model reports done or fifteen steps pass.",
+      "Record every screenshot and action to a folder so each run can be replayed."
+    ],
+    "skills": [
+      "Playwright",
+      "vision models",
+      "Python",
+      "JSON"
+    ],
+    "time": "a day",
+    "stretch": "Add a confirmation prompt before the submit click and measure how often the model tries to submit with a field still empty."
   },
   "content-moderation": {
     "title": "Build a pre-flight content moderation filter",
@@ -169,6 +345,24 @@
     "time": "an afternoon",
     "stretch": "Add priority weighting so critical system rules are never dropped when trimming context."
   },
+  "context-rot": {
+    "title": "Run a needle-position experiment on your own model",
+    "goal": "Measure how answer accuracy changes with where a fact sits in a long prompt and how long the prompt is.",
+    "steps": [
+      "Write one short fact and a question it answers, then build filler prompts from unrelated text at 4k, 32k and 100k tokens.",
+      "Insert the fact at the start, at several middle positions and at the end of each filler length.",
+      "Ask the question thirty times per position and length and record the accuracy.",
+      "Plot accuracy against position and length to find where the model starts to lose the fact."
+    ],
+    "skills": [
+      "evals",
+      "Python",
+      "prompt design",
+      "plotting"
+    ],
+    "time": "an afternoon",
+    "stretch": "Repeat the run with two distractor facts that contradict the needle and see how much faster accuracy falls."
+  },
   "context-window": {
     "title": "Visualize context window limits on a long text file",
     "goal": "Write a script that measures token count per section and flags text that overflows a target limit.",
@@ -184,6 +378,25 @@
     ],
     "time": "under an hour",
     "stretch": "Add a sliding window chunker that splits the text into safe overlapping segments."
+  },
+  "contextual-retrieval": {
+    "title": "Add generated context to every chunk and measure recall",
+    "goal": "Rebuild a chunk index where each chunk carries a model-written description of where it came from, then compare retrieval accuracy.",
+    "steps": [
+      "Chunk three or four long documents with similar structure, such as reports from different years or product manuals for different models.",
+      "For each chunk, prompt a model with the full document and the chunk to write two sentences situating it, and prepend that text to the chunk.",
+      "Index both the original and the contextualised chunks in a local vector store and a BM25 index.",
+      "Run twenty questions that name a specific document and compare how often the right chunk appears in the top five."
+    ],
+    "skills": [
+      "chunking",
+      "prompt caching",
+      "BM25",
+      "embeddings",
+      "Python"
+    ],
+    "time": "an afternoon",
+    "stretch": "Measure the token cost of contextualising with and without prompt caching on the full document."
   },
   "cost-tracking": {
     "title": "Build a simple API wrapper that logs cost per call",
@@ -313,6 +526,24 @@
     "time": "under an hour",
     "stretch": "Add an LLM-as-a-judge check to evaluate the semantic correctness of the output."
   },
+  "failure-taxonomy": {
+    "title": "Build a failure taxonomy from one hundred traces",
+    "goal": "Turn free-text notes on real or simulated failures into a counted list of named failure modes with an eval for the top one.",
+    "steps": [
+      "Gather one hundred traces from a system you run, or generate them by running a small assistant over realistic inputs.",
+      "For each trace, write a one-line note on the first thing that went wrong, in a spreadsheet, without choosing categories yet.",
+      "Group the notes into five to eight named modes and count how many traces fall into each.",
+      "Write an automated check for the most common mode and run it over the same hundred traces to see how well it agrees with your labels."
+    ],
+    "skills": [
+      "Error analysis",
+      "Labelling",
+      "Spreadsheets",
+      "Python"
+    ],
+    "time": "a day",
+    "stretch": "Re-run the taxonomy after one fix and show how the counts shifted."
+  },
   "fallback-models": {
     "title": "Implement an automatic retry and fallback proxy",
     "goal": "Write a client wrapper that catches API rate limits and errors, switching to a backup model automatically.",
@@ -416,6 +647,25 @@
     "time": "an afternoon",
     "stretch": "Benchmark the tokens-per-second throughput under concurrent requests using Apache Bench."
   },
+  "graphrag": {
+    "title": "Extract a small knowledge graph and query it alongside vectors",
+    "goal": "Build a graph of people, organisations and relationships from a document set and use it to answer multi-hop questions.",
+    "steps": [
+      "Pick thirty short documents that mention overlapping people and organisations, such as press releases or meeting notes.",
+      "Prompt a model to extract entity and relation triples from each document as JSON and load them into a networkx graph.",
+      "Write ten two-hop questions and answer them by walking the graph to find linked documents, then passing those to the model.",
+      "Compare the answers and the retrieval cost against plain vector search over the same documents."
+    ],
+    "skills": [
+      "prompt design",
+      "structured output",
+      "networkx",
+      "Python",
+      "embeddings"
+    ],
+    "time": "a weekend",
+    "stretch": "Track how many extraction tokens the graph cost and estimate the bill for re-extracting when ten percent of the documents change."
+  },
   "grounding": {
     "title": "Build a Source-Cited Answer Generator",
     "goal": "Force an LLM to output inline citations pointing back to supplied reference text paragraphs.",
@@ -468,6 +718,24 @@
     "time": "an afternoon",
     "stretch": "Automatically highlight unsupported sentences in red using a simple command-line interface."
   },
+  "handoffs": {
+    "title": "Build a two-agent triage-to-specialist handoff",
+    "goal": "Route a support message from a triage agent to one of two specialists with a structured state summary the specialist actually uses.",
+    "steps": [
+      "Write a triage prompt that classifies a message and extracts known facts into a small JSON summary.",
+      "Write two specialist prompts (billing, shipping) that receive only the summary plus the latest user message.",
+      "Log every handoff payload to a file and inspect ten of them by hand.",
+      "Write five test conversations where a fact is given early and check the specialist never re-asks for it."
+    ],
+    "skills": [
+      "prompt design",
+      "JSON",
+      "Python",
+      "logging"
+    ],
+    "time": "an afternoon",
+    "stretch": "Add a handoff back to triage when the specialist decides the message was misrouted, and make sure facts survive the round trip."
+  },
   "human-in-the-loop": {
     "title": "Create an Approval Workflow for AI Drafts",
     "goal": "Pause an automated email generator so a human can edit and approve drafts before sending.",
@@ -502,6 +770,41 @@
     ],
     "time": "a weekend",
     "stretch": "Compare retrieval precision between pure vector search and hybrid search on a set of test queries."
+  },
+  "hyde": {
+    "title": "Measure HyDE against plain query embedding",
+    "goal": "Find out whether embedding a model-written draft answer retrieves better chunks than embedding the question on your own corpus.",
+    "steps": [
+      "Index a folder of your own notes or docs into a local vector store with an open embedding model.",
+      "Write twenty short questions and record which document should answer each one.",
+      "For each question, retrieve once with the raw query and once with a model-written hypothetical answer.",
+      "Compare recall at five for the two methods and log the extra latency of the drafting call."
+    ],
+    "skills": [
+      "embeddings",
+      "Python",
+      "retrieval metrics",
+      "prompt design"
+    ],
+    "time": "an afternoon",
+    "stretch": "Try averaging the query vector with the draft vector and see whether the blend beats either alone."
+  },
+  "in-context-learning": {
+    "title": "Measure how many examples a task really needs",
+    "goal": "Plot accuracy against the number of in-context examples for one classification task.",
+    "steps": [
+      "Pick a labelled dataset with a few hundred rows and hold out a hundred for testing.",
+      "Build prompts with zero, two, five, ten and twenty examples drawn from the rest.",
+      "Run the test set through each prompt and record accuracy, tokens and cost.",
+      "Chart the three curves and find where more examples stop paying for themselves."
+    ],
+    "skills": [
+      "Python",
+      "Prompting",
+      "Evals"
+    ],
+    "time": "an afternoon",
+    "stretch": "Replace the fixed examples with the five nearest examples by embedding similarity and compare the curve."
   },
   "indirect-prompt-injection": {
     "title": "Build an RSS summary reader that catches malicious prompt payloads",
@@ -593,6 +896,24 @@
     "time": "an afternoon",
     "stretch": "Simulate network jitter and track how intermittent timeouts impact the p99 latency metric."
   },
+  "llm": {
+    "title": "Build a tiny character-level language model from scratch",
+    "goal": "Train a minimal neural network in PyTorch that predicts the next character in a text file.",
+    "steps": [
+      "Load a small text file like Shakespeare's works and convert characters to integer indices.",
+      "Define a simple embedding and linear layer stack using PyTorch.",
+      "Write a training loop with cross-entropy loss to optimize next-character prediction.",
+      "Generate new text by sampling characters autoregressively from the trained model."
+    ],
+    "skills": [
+      "PyTorch",
+      "Foundations",
+      "Neural Networks",
+      "Python"
+    ],
+    "time": "a day",
+    "stretch": "Upgrade the model architecture from a simple feedforward network to a tiny single-head attention block."
+  },
   "llm-as-judge": {
     "title": "Build an automated evaluation pipeline using LLM-as-Judge",
     "goal": "Grade a set of model-generated text outputs against a reference rubric using an independent LLM.",
@@ -628,24 +949,6 @@
     ],
     "time": "a weekend",
     "stretch": "Add a simple token bucket rate limiter to protect your downstream application from exceeding budget limits."
-  },
-  "llm": {
-    "title": "Build a tiny character-level language model from scratch",
-    "goal": "Train a minimal neural network in PyTorch that predicts the next character in a text file.",
-    "steps": [
-      "Load a small text file like Shakespeare's works and convert characters to integer indices.",
-      "Define a simple embedding and linear layer stack using PyTorch.",
-      "Write a training loop with cross-entropy loss to optimize next-character prediction.",
-      "Generate new text by sampling characters autoregressively from the trained model."
-    ],
-    "skills": [
-      "PyTorch",
-      "Foundations",
-      "Neural Networks",
-      "Python"
-    ],
-    "time": "a day",
-    "stretch": "Upgrade the model architecture from a simple feedforward network to a tiny single-head attention block."
   },
   "lora": {
     "title": "Fine-tune a small model on custom text using a LoRA adapter",
@@ -699,6 +1002,23 @@
     ],
     "time": "an afternoon",
     "stretch": "Add a background summarization step that compresses old messages into a running profile when history grows too long."
+  },
+  "message-roles": {
+    "title": "Test how role placement changes behaviour",
+    "goal": "Measure whether the same instruction is followed more reliably in the system role than in the user role.",
+    "steps": [
+      "Write one strict rule such as always replying in exactly three bullet points.",
+      "Build twenty short multi-turn conversations that tempt the model to break the rule.",
+      "Run each conversation twice, once with the rule in the system message and once at the top of the first user message.",
+      "Count rule violations for each placement and record the difference."
+    ],
+    "skills": [
+      "Prompting",
+      "Python",
+      "Evals"
+    ],
+    "time": "under an hour",
+    "stretch": "Add a third variant that repeats the rule as a short reminder in every user turn and see whether it helps or hurts."
   },
   "metadata-filtering": {
     "title": "Build a filtered vector search tool",
@@ -768,6 +1088,41 @@
     "time": "under an hour",
     "stretch": "Build a simple web interface where users can drag and drop images and download the resulting CSV."
   },
+  "native-audio-models": {
+    "title": "Cascade versus native audio latency bench",
+    "goal": "Measure turn latency and transcript quality for a cascade voice pipeline and a native audio model on the same recorded questions.",
+    "steps": [
+      "Record twenty short spoken questions as audio files, including two with background noise and one with an interruption.",
+      "Build a cascade from open-source speech-to-text, a text model and text-to-speech, timing each stage.",
+      "Send the same audio to an API that accepts audio input and returns audio, timing the full turn.",
+      "Tabulate time to first audible word, total turn time and whether each answer was correct."
+    ],
+    "skills": [
+      "voice pipelines",
+      "latency measurement",
+      "Python",
+      "audio APIs"
+    ],
+    "time": "a day",
+    "stretch": "Add a parallel transcription of the native model's audio output and run your text filters on it to see what a compliance layer would cost in latency."
+  },
+  "next-token-prediction": {
+    "title": "Watch a model pick its next token",
+    "goal": "Print the top candidate tokens and their probabilities at each step of a short completion.",
+    "steps": [
+      "Load a small open-weight model locally with the Hugging Face transformers library.",
+      "Feed it a sentence fragment and read the logits for the final position.",
+      "Convert the logits to probabilities and print the ten most likely tokens with their scores.",
+      "Append the chosen token and repeat for ten steps, once greedily and once with sampling."
+    ],
+    "skills": [
+      "Python",
+      "Hugging Face",
+      "Probability"
+    ],
+    "time": "an afternoon",
+    "stretch": "Plot how the probability of the top token changes as you raise the temperature from 0 to 2."
+  },
   "observability": {
     "title": "Build an LLM call logger and tracer",
     "goal": "Capture prompt tokens, latency, costs, and outputs for every LLM interaction in a local dashboard.",
@@ -836,6 +1191,24 @@
     "time": "an afternoon",
     "stretch": "Let the orchestrator dynamically decide how many workers to spawn based on topic complexity."
   },
+  "output-filtering": {
+    "title": "Streaming-safe output filter",
+    "goal": "Build a filter that scans a streamed model reply for phone numbers and emails and redacts them before any chunk reaches the client.",
+    "steps": [
+      "Stream a reply from any model API and print chunks as they arrive to see how small they are.",
+      "Add a buffer that holds back the last thirty characters so a pattern split across chunks can still be matched.",
+      "Run regex checks for phone numbers and emails on the buffer and replace matches before releasing text.",
+      "Send twenty test prompts that tempt the model to repeat contact details and confirm nothing leaks."
+    ],
+    "skills": [
+      "streaming",
+      "regex",
+      "Python",
+      "PII handling"
+    ],
+    "time": "an afternoon",
+    "stretch": "Add a small classifier call on each completed sentence for policy violations and measure how much latency it adds to time to first token."
+  },
   "pairwise-evals": {
     "title": "Build a side-by-side model comparison tool",
     "goal": "Compare two model outputs for the same prompt and record a preference vote to rank them.",
@@ -852,6 +1225,24 @@
     ],
     "time": "an afternoon",
     "stretch": "Implement the Bradley-Terry statistical model to calculate dynamic Elo ratings for each model configuration."
+  },
+  "parent-document-retrieval": {
+    "title": "Index small chunks, answer from their parents",
+    "goal": "Build a two-level index where retrieval happens on sentences but generation sees whole sections.",
+    "steps": [
+      "Split a long document into sections, then split each section into sentence-sized child chunks that store their parent section id.",
+      "Embed only the child chunks into a local vector store.",
+      "Retrieve the top ten children for a question, map them to parents, and deduplicate.",
+      "Send the unique parent sections to the model and compare answers against sending the raw children."
+    ],
+    "skills": [
+      "chunking",
+      "embeddings",
+      "Python",
+      "vector database"
+    ],
+    "time": "an afternoon",
+    "stretch": "Log context token counts per request and find the parent size where accuracy stops improving."
   },
   "pii-redaction": {
     "title": "Build a Local PII Scrubber",
@@ -889,6 +1280,41 @@
     "time": "a weekend",
     "stretch": "Allow the agent to dynamically insert or remove steps from its plan as it learns new information."
   },
+  "pretraining-vs-post-training": {
+    "title": "Compare a base checkpoint with its chat version",
+    "goal": "Send the same prompts to a base model and its post-trained sibling and document how the outputs differ.",
+    "steps": [
+      "Pick an open-weight model family that publishes both a base and an instruct checkpoint.",
+      "Write ten prompts mixing questions, instructions and half-finished sentences.",
+      "Run each prompt through both models with identical sampling settings.",
+      "Record side by side where the base model continues text and the chat model answers."
+    ],
+    "skills": [
+      "Hugging Face",
+      "Python",
+      "Prompting"
+    ],
+    "time": "an afternoon",
+    "stretch": "Write a one-page note on which behaviours you believe came from pretraining and which from post-training, with evidence."
+  },
+  "prompt": {
+    "title": "Construct a Structured Prompt Template",
+    "goal": "Combine system instructions, few-shot examples, and user input into a reliable prompt format.",
+    "steps": [
+      "Define clear XML-style tags for instructions, context, and examples.",
+      "Write a Python function using f-strings to inject dynamic user variables into the template.",
+      "Test the template across five different edge-case inputs to check adherence.",
+      "Refine the prompt layout to minimize token usage while maintaining accuracy."
+    ],
+    "skills": [
+      "templating",
+      "XML tags",
+      "few-shot",
+      "Python"
+    ],
+    "time": "under an hour",
+    "stretch": "Write an automated unit test suite that validates the prompt outputs required JSON keys consistently."
+  },
   "prompt-caching": {
     "title": "Benchmark Prompt Caching Costs",
     "goal": "Measure how prompt caching reduces latency and token costs for a large system prompt.",
@@ -925,6 +1351,23 @@
     "time": "an afternoon",
     "stretch": "Implement a secondary classification model that screens incoming text for injection patterns before processing."
   },
+  "prompt-template": {
+    "title": "Write a tiny prompt templating library",
+    "goal": "Render prompts from a template file with named slots, strict missing-slot errors and escaped user content.",
+    "steps": [
+      "Define a template format with named placeholders and store templates as text files under version control.",
+      "Write a render function that raises an error when a slot is missing or unused.",
+      "Escape or fence user-supplied content so it cannot be confused with instructions.",
+      "Add a test that renders each template with sample inputs and snapshots the result."
+    ],
+    "skills": [
+      "Python",
+      "Templating",
+      "Testing"
+    ],
+    "time": "an afternoon",
+    "stretch": "Add a version field to each template and log it alongside every model call so you can trace an answer back to the exact prompt text."
+  },
   "prompt-versioning": {
     "title": "Build a Git-Backed Prompt Registry",
     "goal": "Store prompts in a version-controlled directory and load them via unique IDs in code.",
@@ -943,23 +1386,23 @@
     "time": "under an hour",
     "stretch": "Add a metadata header to each prompt file tracking author, description, and performance evaluation scores."
   },
-  "prompt": {
-    "title": "Construct a Structured Prompt Template",
-    "goal": "Combine system instructions, few-shot examples, and user input into a reliable prompt format.",
+  "qlora": {
+    "title": "Fine-tune a 7B model on one free GPU with QLoRA",
+    "goal": "Train a QLoRA adapter for a small open-weight model on a free cloud GPU and measure memory, time and quality against the base.",
     "steps": [
-      "Define clear XML-style tags for instructions, context, and examples.",
-      "Write a Python function using f-strings to inject dynamic user variables into the template.",
-      "Test the template across five different edge-case inputs to check adherence.",
-      "Refine the prompt layout to minimize token usage while maintaining accuracy."
+      "Prepare two hundred instruction and answer pairs for a narrow task such as rewriting ticket titles.",
+      "Load a 7B open-weight model in 4-bit using bitsandbytes and attach a LoRA config with PEFT.",
+      "Train for one epoch on a free Colab or Kaggle GPU, logging peak memory and step time.",
+      "Compare base and adapted outputs on fifty held-out examples with a simple pass or fail check."
     ],
     "skills": [
-      "templating",
-      "XML tags",
-      "few-shot",
+      "PEFT",
+      "quantization",
+      "Hugging Face",
       "Python"
     ],
-    "time": "under an hour",
-    "stretch": "Write an automated unit test suite that validates the prompt outputs required JSON keys consistently."
+    "time": "a day",
+    "stretch": "Run the same data as a standard LoRA on a 16-bit base using a rented GPU and compare quality and cost per run."
   },
   "quantization": {
     "title": "Run a Quantized Local Model",
@@ -978,6 +1421,24 @@
     ],
     "time": "an afternoon",
     "stretch": "Plot a latency-versus-perplexity curve for 2-bit, 4-bit, 8-bit, and 16-bit versions of the same base model."
+  },
+  "query-decomposition": {
+    "title": "Build a sub-query splitter with per-intent recall",
+    "goal": "Turn multi-part questions into separate searches and prove the merged results cover every part.",
+    "steps": [
+      "Collect thirty questions from your own domain that each ask about two or three things at once.",
+      "Prompt a model to split each question into a JSON list of standalone sub-queries.",
+      "Retrieve the top chunks for each sub-query against a local index and merge them with a per-query cap.",
+      "Score whether each intent's expected document appears, and compare against single-query retrieval."
+    ],
+    "skills": [
+      "prompt design",
+      "structured output",
+      "Python",
+      "retrieval metrics"
+    ],
+    "time": "an afternoon",
+    "stretch": "Add a rule that skips decomposition when the model returns only one sub-query, and measure the latency saved."
   },
   "query-rewriting": {
     "title": "Build a Query Rewriting Pipeline",
@@ -1084,6 +1545,24 @@
     "time": "an afternoon",
     "stretch": "Incorporate a self-mutating attack loop where the script uses failure outputs to generate smarter follow-up attacks."
   },
+  "reflection": {
+    "title": "Build a draft-critique-revise loop with a rubric",
+    "goal": "Generate an answer, score it against a written rubric with a second model call, and revise only when a criterion fails.",
+    "steps": [
+      "Write a five-item rubric for a task such as summarising a support ticket, each item a yes or no question.",
+      "Generate a draft, then ask the model to score the draft against the rubric and return JSON with a reason per item.",
+      "If any item fails, send the draft and the failed items back for one revision.",
+      "Run twenty inputs with and without the loop and compare rubric pass rates and token cost."
+    ],
+    "skills": [
+      "prompt design",
+      "JSON",
+      "evals",
+      "Python"
+    ],
+    "time": "an afternoon",
+    "stretch": "Replace the rubric score with the output of real unit tests for a small coding task and see whether the revision rate changes."
+  },
   "regression-evals": {
     "title": "Set up automated regression evals for prompt updates",
     "goal": "Build a CI-style eval script that prevents prompt updates from breaking previously passing test cases.",
@@ -1152,6 +1631,24 @@
     "time": "under an hour",
     "stretch": "Plot a graph showing how Recall changes as you increase K from 1 to 10."
   },
+  "reward-hacking": {
+    "title": "Catch a judge being gamed",
+    "goal": "Show that an LLM judge can be fooled by surface features and measure how much each one moves the score.",
+    "steps": [
+      "Write a judge prompt that scores support replies from one to ten for helpfulness.",
+      "Take twenty good replies and generate variants that add apologies, extra length, confident phrasing or bullet lists without changing the facts.",
+      "Score every variant and chart the average shift per manipulation.",
+      "Rewrite the judge as a checklist of binary criteria and repeat to see which manipulations stop working."
+    ],
+    "skills": [
+      "LLM-as-judge",
+      "evals",
+      "Python",
+      "data analysis"
+    ],
+    "time": "an afternoon",
+    "stretch": "Fine-tune a tiny model with the gamed judge as the reward and watch it learn the manipulation on its own."
+  },
   "rlhf": {
     "title": "Fine-tune a model using direct preference optimization",
     "goal": "Take a base model and use a preference dataset to align its outputs using DPO (Direct Preference Optimization).",
@@ -1168,6 +1665,23 @@
     ],
     "time": "a weekend",
     "stretch": "Format your own custom preference dataset from logged chat thumbs-up and thumbs-down clicks."
+  },
+  "rubric-design": {
+    "title": "Rewrite a vague rubric into binary checks and measure agreement",
+    "goal": "Turn a one-to-ten quality score into five yes-or-no criteria and compare judge scores with your own labels.",
+    "steps": [
+      "Collect thirty real or realistic outputs from a task you run and label each one good or bad yourself, with a one-line reason.",
+      "Write five binary criteria in concrete language that would have caught the bad ones.",
+      "Run an LLM judge over the thirty outputs with both the original one-to-ten rubric and the new binary rubric.",
+      "Compute agreement with your labels for each rubric and note which criterion the judge gets wrong most."
+    ],
+    "skills": [
+      "LLM-as-judge",
+      "Labelling",
+      "Python"
+    ],
+    "time": "an afternoon",
+    "stretch": "Add two deliberately borderline outputs and tighten the wording of whichever criterion splits on them."
   },
   "semantic-caching": {
     "title": "Build a semantic cache to save API costs",
@@ -1203,6 +1717,42 @@
     "time": "under an hour",
     "stretch": "Add a command-line interface so you can query your document folder interactively in your terminal."
   },
+  "skill-library": {
+    "title": "Build a three-skill library with a router",
+    "goal": "Package three small procedures as named skills with descriptions and tests, and let a model pick the right one per request.",
+    "steps": [
+      "Write three skills as folders, each with a prompt file, a list of allowed tools and three test inputs with expected outputs.",
+      "Write a loader that reads every skill's name and one-line description into a menu.",
+      "Ask the model to choose a skill for an incoming request, then run that skill's prompt with only its tools.",
+      "Write a test runner that executes every skill's test inputs and reports pass or fail per skill."
+    ],
+    "skills": [
+      "prompt design",
+      "Python",
+      "testing",
+      "file layout"
+    ],
+    "time": "a day",
+    "stretch": "Version each skill and have the runner diff outputs between the current and previous version on the same test inputs."
+  },
+  "software-3-0": {
+    "title": "Solve one task three ways",
+    "goal": "Implement the same text classification with rules, a trained model and a prompt, then compare them.",
+    "steps": [
+      "Choose a small labelled dataset such as spam versus not spam.",
+      "Write a rule-based classifier with keyword lists and regexes.",
+      "Train a logistic regression on the same training split.",
+      "Write a prompt for a hosted LLM and run it zero-shot on the test split.",
+      "Compare accuracy, cost per thousand items, and how long each took to change when you add a new category."
+    ],
+    "skills": [
+      "Python",
+      "scikit-learn",
+      "Prompting"
+    ],
+    "time": "a day",
+    "stretch": "Write a short decision note on which approach you would ship and under what conditions you would switch."
+  },
   "speculative-decoding": {
     "title": "Build a mini speculative decoding script",
     "goal": "Write a script that uses a small draft model to guess tokens and a large model to verify them in one pass.",
@@ -1236,6 +1786,23 @@
     ],
     "time": "under an hour",
     "stretch": "Add speaker diarization using pyannote.audio to separate different voices in a meeting recording."
+  },
+  "stop-sequences": {
+    "title": "Build a stop-sequence tester",
+    "goal": "Measure how much output and latency a stop sequence saves on a real prompt, and how often it fires early.",
+    "steps": [
+      "Write a prompt that tends to produce a trailing section you do not want, such as a sign-off.",
+      "Run fifty generations without a stop sequence and record tokens and time per request.",
+      "Run the same fifty with the section header as a stop sequence and record the savings.",
+      "Scan both sets for cases where the stop string appeared inside wanted content."
+    ],
+    "skills": [
+      "Python",
+      "API calls",
+      "Latency"
+    ],
+    "time": "under an hour",
+    "stretch": "Compare the stop-sequence approach with a prompt instruction that asks the model to omit the section, on both cost and reliability."
   },
   "streaming": {
     "title": "Build a real-time streaming text client",
@@ -1287,6 +1854,24 @@
     ],
     "time": "a day",
     "stretch": "Evaluate the fine-tuned model against the base model using an automated LLM-as-a-judge scoring script."
+  },
+  "synthetic-eval-data": {
+    "title": "Grow a tiny eval set with a generator and a filter",
+    "goal": "Turn ten hand-written test cases into two hundred usable ones and measure how many survive filtering.",
+    "steps": [
+      "Write ten real test cases for a task you care about, each with an input and a short note on what a good answer must contain.",
+      "Prompt a model to produce twenty variations of each case that change names, numbers and phrasing while keeping the required answer.",
+      "Deduplicate near-identical cases with an embedding similarity threshold and drop any case the model answers correctly in a zero-shot sanity run.",
+      "Hand-grade thirty surviving cases and record how many were unusable."
+    ],
+    "skills": [
+      "Prompting",
+      "Embeddings",
+      "Data cleaning",
+      "Python"
+    ],
+    "time": "an afternoon",
+    "stretch": "Compare the pass rate on the synthetic set with the pass rate on the ten real cases and explain any gap."
   },
   "system-prompt": {
     "title": "Build a persona-constrained support bot",
@@ -1424,6 +2009,23 @@
     "time": "an afternoon",
     "stretch": "Add a second tool that fetches current weather from a free public API and let the model choose between tools."
   },
+  "tool-result-budgets": {
+    "title": "Add a spend meter to an agent loop",
+    "goal": "Wrap an existing tool-calling loop so it tracks calls, tokens and seconds, and stops with a summary when any cap is exceeded.",
+    "steps": [
+      "Write a small agent loop with two tools, such as read a file and search a folder.",
+      "Add a budget object with caps for tool calls, total tokens and wall-clock seconds, checked before every call.",
+      "When a cap is hit, have the model write a one-paragraph summary of progress and return it instead of continuing.",
+      "Give the agent a task that cannot be finished and confirm it stops at the cap every time."
+    ],
+    "skills": [
+      "Python",
+      "tool calling",
+      "cost tracking"
+    ],
+    "time": "an afternoon",
+    "stretch": "Log which tool consumed the most budget per run and plot the distribution across fifty runs."
+  },
   "top-p-sampling": {
     "title": "Build a custom token sampler script",
     "goal": "Write a raw Python script that takes a list of next-token probabilities and applies top-p filtering.",
@@ -1457,6 +2059,24 @@
     ],
     "time": "an afternoon",
     "stretch": "Render the recorded execution traces as an interactive collapsible tree view in a local HTML page."
+  },
+  "trajectory-evals": {
+    "title": "Score an agent's path, not just its answer",
+    "goal": "Record tool-call traces from a small agent and write checks that fail on bad paths even when the answer is right.",
+    "steps": [
+      "Build or reuse a small agent with three tools, one of which is destructive, such as delete or send.",
+      "Log every tool call with its arguments and order into a JSON trace per run.",
+      "Write checks over the trace that fail on any destructive call the task did not require, more than ten steps, or a write before a read.",
+      "Run twenty tasks and report path failures separately from answer failures."
+    ],
+    "skills": [
+      "Agents",
+      "Tracing",
+      "Testing",
+      "Python"
+    ],
+    "time": "a day",
+    "stretch": "Add a cost-per-run check and plot how step count changes when you tighten the system prompt."
   },
   "transformer": {
     "title": "Build a tiny self-attention module",

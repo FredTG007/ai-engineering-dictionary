@@ -1,0 +1,5 @@
+A prompt template is the fixed part of a prompt with named holes in it. The skeleton holds the instructions, formatting rules and examples. The holes are filled at request time with the user message, retrieved documents, or whatever changes per call. It separates the wording from the code, so a prompt change can ship without redeploying the service.
+
+Templates fail in specific ways. One team's retrieval assistant stopped citing documents, though retrieval metrics looked fine. A wording tweak had renamed the context slot in the template but not in the code filling it, so the renderer quietly inserted an empty string. The model answered from memory for six days, and nothing errored because the prompt was still valid text.
+
+Make the renderer fail on missing slots, snapshot-test the rendered output, and log the template version with every call.

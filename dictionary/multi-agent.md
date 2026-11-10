@@ -33,7 +33,7 @@ The trade-offs are real and often underestimated:
 | Different models per role | Information lost in handoffs between agents |
 | Isolated tool permissions | Coordination failures, loops and duplicated work |
 
-Handoffs are where most multi-agent bugs live. When the orchestrator summarizes a subtask for a worker, it can drop a constraint the user stated, and the worker cheerfully produces something that violates it. Passing structured briefs rather than free-text summaries, and giving each agent a clear stopping condition in its [agent loop](./agent-loop.md), reduces this.
+[Handoffs](./handoffs.md) are where most multi-agent bugs live. When the orchestrator summarizes a subtask for a worker, it can drop a constraint the user stated, and the worker cheerfully produces something that violates it. Passing structured briefs rather than free-text summaries, and giving each agent a clear stopping condition in its [agent loop](./agent-loop.md), reduces this.
 
 Before reaching for multiple agents, check whether better [planning](./planning.md) or a tighter tool set in one agent would do. When you do go multi-agent, invest early in [tracing](./tracing.md) so you can see which agent said what, because "the system gave a wrong answer" is nearly impossible to diagnose otherwise.
 

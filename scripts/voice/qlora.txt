@@ -1,0 +1,5 @@
+QLoRA is LoRA fine-tuning on top of a base model that has been quantized to four bits. The frozen base is stored compactly, the small adapters train in normal precision, and the base is dequantized on the fly each step. The point is memory. A model that needs a hundred and forty gigabytes in sixteen bit needs about thirty-five in four bit, so one card replaces a node.
+
+One team spent about eighteen hundred dollars on a multi-GPU node across three attempts at a large adapter run. The fourth run used QLoRA on one GPU overnight for roughly twenty dollars, and scored within a point.
+
+The trade is slower steps and a small quality risk from the quantized base, so measure it on your task. Decide up front whether to serve on the quantized base or merge the adapter.

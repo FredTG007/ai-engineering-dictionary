@@ -22,7 +22,7 @@ buildThis:
 
 Context engineering is the work of deciding what goes into the model's [context window](./context-window.md) on every call: which instructions, which retrieved documents, which conversation history, which tool results, and in what order and format. Prompt writing is one part of it. The larger part is the code that assembles everything around the prompt.
 
-It becomes a discipline of its own once a system has several sources competing for space. A typical failure: an assistant performed well in demos, then started ignoring its formatting rules in long sessions. The cause was not the instructions themselves. Thirty turns of history and four large tool outputs had pushed the [system prompt](./system-prompt.md) far from the end of the context, and the rules were drowned out. Nothing in the prompt changed; the context around it did.
+It becomes a discipline of its own once a system has several sources competing for space. A typical failure: an assistant performed well in demos, then started ignoring its formatting rules in long sessions. The cause was not the instructions themselves. Thirty turns of history and four large tool outputs had pushed the [system prompt](./system-prompt.md) far from the end of the context, and the rules were drowned out, a textbook case of [context rot](./context-rot.md). Nothing in the prompt changed; the context around it did.
 
 Most context decisions are trade-offs between completeness, cost and focus.
 

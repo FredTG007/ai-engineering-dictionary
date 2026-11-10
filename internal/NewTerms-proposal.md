@@ -1,6 +1,26 @@
 # Proposed new terms (merged)
 
-Draft only — **no entries written yet**. Gaps checked against the current 91 slugs in `dictionary/` and against each other.
+## Status (10 November 2026)
+
+**Writing in progress on branch `new-terms-35`.** The 35 terms below are being written as full entries (dictionary file, voice script, Build This card, search hint, curriculum, track and map position):
+
+| Track | Slugs |
+| --- | --- |
+| Foundations | next-token-prediction, pretraining-vs-post-training, byte-pair-encoding, base-vs-chat-model, chat-template, in-context-learning, software-3-0, message-roles, stop-sequences, prompt-template |
+| RAG | hyde, query-decomposition, parent-document-retrieval, graphrag, citation-verification, contextual-retrieval, context-rot, agentic-rag |
+| Agents | handoffs, computer-use, tool-result-budgets, skill-library, reflection, autonomy-slider |
+| Evals | synthetic-eval-data, rubric-design, trajectory-evals, canary-prompts, assertion-based-evals, failure-taxonomy |
+| Safety | allowlisting, output-filtering, reward-hacking |
+| Training & Inference | qlora |
+| Voice | native-audio-models |
+
+**Deferred to keep this batch at 35** (still must-haves from the earlier proposal, next batch): Data poisoning · Token budget per user · Shadow traffic · Circuit breaker · Prompt/model canary · Continued pretraining · Continuous batching · Barge-in · Voice activity detection (VAD) · Speaker diarization.
+
+Everything under "Park for later" below is unchanged.
+
+---
+
+The original merged proposal follows. Gaps checked against the current 91 slugs in `dictionary/` and against each other.
 
 Sources researched (via Gemini Flash Lite + web notes):
 - Andrej Karpathy — Neural Networks: Zero to Hero (`Let's build GPT`, `Let's build the GPT Tokenizer`), Intro to LLMs, Deep Dive into LLMs like ChatGPT, How I use LLMs, Software Is Changing (Again) / Software 3.0
@@ -183,4 +203,4 @@ If we only write ~30–35 next:
 
 ---
 
-**Out of scope for this proposal:** writing full entries, map positions, audio, or embeddings — awaiting Fred’s approval of which terms to keep.
+**Out of scope for this proposal:** writing full entries, map positions, audio, or embeddings — see the status block at the top for what is now in progress.

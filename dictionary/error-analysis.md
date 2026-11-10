@@ -29,7 +29,7 @@ The process has a few plain steps:
 |---|---|
 | Sample | Pull 50 to 200 failing or flagged traces, not hand-picked ones |
 | Annotate | Write a short free-text note on the first thing that went wrong |
-| Group | Cluster the notes into a handful of named failure categories |
+| Group | Cluster the notes into a handful of named failure categories, a [failure taxonomy](./failure-taxonomy.md) |
 | Count | Rank categories by frequency and by how much they hurt users |
 | Act | Fix the top category, then add its cases to your [evals](./evals.md) |
 

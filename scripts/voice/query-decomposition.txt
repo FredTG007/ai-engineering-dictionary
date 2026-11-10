@@ -1,0 +1,5 @@
+Query decomposition means breaking a question that asks for several things into smaller questions that each ask for one thing, running retrieval for each, and merging the results before the model writes an answer.
+
+The failure it fixes is easy to reproduce. One support team noticed that thirty percent of their compare questions, like compare the Starter and Team plans, produced answers that only described one plan. Every trace showed the same thing: a single embedding of the whole question landed nearest the Starter chunks, so the Team plan never made it into the context, and the model filled the gap by guessing.
+
+The habit is to split first, give each part its own retrieval budget, cap the chunks per sub-query, and score recall per intent rather than per question.

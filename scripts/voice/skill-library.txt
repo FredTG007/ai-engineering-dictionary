@@ -1,0 +1,5 @@
+A skill library is a collection of named procedures an agent can choose from. Each skill packages a prompt, the tools it may call, and checks that confirm it did the job. The agent reads a short menu of descriptions, picks one, and loads only that skill's instructions for the task.
+
+The usual trigger is duplication nobody noticed. One company found three teams had each written their own send invoice prompt for the shared agent. One required a purchase order number, one made it optional, and one didn't know the field existed. Customers got different invoices, and finance spent a week reconciling them. Collapsing the three into one versioned skill fixed it in a release.
+
+Give each skill one owner, a version history, honest descriptions, and tests that run before any new version goes live.

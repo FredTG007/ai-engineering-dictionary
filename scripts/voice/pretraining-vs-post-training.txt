@@ -1,0 +1,5 @@
+Pretraining and post-training are the two stages that make a model. Pretraining runs next-token prediction over an enormous general corpus, and produces a base model that knows a lot but only knows how to continue documents. Post-training then uses far less data to teach it to behave like an assistant: answer questions, follow instructions, and use tools.
+
+Confusing the two gets expensive. One team spent three weeks fine-tuning a model on their help centre so it would know the product. The tone improved at once. But it still quoted a pricing plan retired a year earlier, because a few hundred examples cannot overwrite what billions of pretraining tokens say a price list looks like. Retrieving the price table into the prompt fixed it in an afternoon.
+
+The rule is simple. Post-training for behaviour, context for facts.

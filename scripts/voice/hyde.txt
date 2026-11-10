@@ -1,0 +1,5 @@
+HyDE, short for hypothetical document embeddings, is a retrieval trick. Instead of embedding the user's question, you ask the model to write a short, plausible answer first, embed that draft, and search with it. The draft is never shown to anyone. It exists only to produce a vector that looks like the documents you want.
+
+One IT help assistant found the right article for long questions about eighty percent of the time, but terse searches typed from a phone found it under forty percent of the time. Adding a drafting step with a small, fast model lifted short-query recall to about seventy percent without touching the index.
+
+The habit is to measure it. It adds a model call and some latency, and when the model knows nothing about the topic, the draft can steer retrieval the wrong way.

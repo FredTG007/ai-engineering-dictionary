@@ -1,0 +1,5 @@
+An autonomy slider is a product control that lets the user decide how much an agent does without asking. At the low end the model only suggests. In the middle it prepares an action and waits for a yes. At the high end it completes whole tasks on its own, inside set limits. Andrej Karpathy used the slider image to describe how useful AI products let people pick the level rather than forcing full autonomy on them.
+
+One team launched an email assistant with follow-ups fully automated by default. On the first day it sent about two hundred messages users had never reviewed, some to people who had asked not to be contacted. The feature was pulled within hours.
+
+It relaunched with draft only as the default, confirmation before sending, and an autonomous mode users switched on themselves.
